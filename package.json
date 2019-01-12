@@ -15,7 +15,7 @@
   ],
   "author": "Juan Carlos Cancela <cancela.juancarlos@gmail.com>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/randiantech/evertok-rt-api#readme",
+  "homepage": "https://github.com/juancancela/rt-services#readme",
   "dependencies": {
     "@types/express": "^4.16.0",
     "@types/node-fetch": "^2.1.4",
