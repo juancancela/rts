@@ -3,6 +3,9 @@ import Message from '../../models/Message/Message';
 import User from '../user/models/User/User';
 import MessageFilter from '../../models/Message/MessageFilter';
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default interface MessagingService extends BaseService {
   pinMessage(message: Message): Promise<Message>;
   unpinMessage(message: Message): Promise<Message>;

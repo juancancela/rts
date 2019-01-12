@@ -1,7 +1,6 @@
 import GeoLocation from './GeoLocation';
 
 /**
- * GeoLocation implementation.
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class GeoLocationImpl implements GeoLocation {

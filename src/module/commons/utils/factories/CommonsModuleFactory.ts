@@ -6,26 +6,34 @@ import AuthenticationServiceImpl from '../../services/security/AuthenticationSer
 import AuthorizationServiceImpl from '../../services/security/AuthorizationServiceImpl';
 import UserServiceImpl from '../../services/user/UserServiceImpl';
 import CommonsModuleImpl from '../../CommonsModuleImpl';
+import ExecutionContext from '../constants/ExecutionContext';
+import RemoteMessagingServiceImpl from '../../services/messaging/RemoteMessagingServiceImpl';
 
 export default class CommonsModuleFactory implements AbstractFactory<CommonsModule> {
-  static create(): CommonsModule {
-    const geoLocationService = new GeoLocationServiceImpl();
-    const messagingService = new MessagingServiceImpl();
-    const authenticationService = new AuthenticationServiceImpl();
-    const authorizationService = new AuthorizationServiceImpl();
-    const userService = new UserServiceImpl();
+  static create(context: ExecutionContext): CommonsModule {
+    switch (context) {
+      case ExecutionContext.LOCAL:
+        return new CommonsModuleImpl(
+          new GeoLocationServiceImpl(),
+          new MessagingServiceImpl(),
+          new AuthenticationServiceImpl(),
+          new AuthorizationServiceImpl(),
+          new UserServiceImpl()
+        );
 
-    return new CommonsModuleImpl(
-      geoLocationService,
-      messagingService,
-      authenticationService,
-      authorizationService,
-      userService
-    );
+      case ExecutionContext.REMOTE:
+        return new CommonsModuleImpl(
+          new GeoLocationServiceImpl(),
+          new RemoteMessagingServiceImpl(),
+          new AuthenticationServiceImpl(),
+          new AuthorizationServiceImpl(),
+          new UserServiceImpl()
+        );
+    }
   }
 
-  create(): CommonsModule {
-      return CommonsModuleFactory.create();
+  create(context: ExecutionContext): CommonsModule {
+    return CommonsModuleFactory.create(context);
   }
 
   private constructor() {}

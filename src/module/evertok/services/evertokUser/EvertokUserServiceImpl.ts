@@ -1,5 +1,8 @@
 import EvertokUserService from './EvertokUserService';
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default class EvertokUserServiceImpl implements EvertokUserService {
   getCurrentlyConnectedUsers(spot: import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/evertok/models/EvertokSpot/EvertokSpot").default): import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default[] {
     throw new Error("Method not implemented.");

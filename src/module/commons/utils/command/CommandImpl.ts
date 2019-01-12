@@ -3,6 +3,9 @@ import fetch from 'node-fetch';
 import MessagingServiceImpl from '../../services/messaging/MessagingServiceImpl';
 const log = console.log;
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default class CommandImpl implements Command {
   private isRemoteExecution: boolean = false;
 

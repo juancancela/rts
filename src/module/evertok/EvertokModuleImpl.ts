@@ -2,6 +2,9 @@ import EvertokModule from './EvertokModule';
 import EvertokSpotService from './services/evertokSpot/EvertokSpotService';
 import EvertokUserService from './services/evertokUser/EvertokUserService';
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default class EvertokModuleImpl implements EvertokModule {
   private spotService: EvertokSpotService;
   private userService: EvertokUserService;

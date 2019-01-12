@@ -4,6 +4,9 @@ import EvertokSpotServiceImpl from '../../services/evertokSpot/EvertokSpotServic
 import EvertokUserServiceImpl from '../../services/evertokUser/EvertokUserServiceImpl';
 import EvertokModuleImpl from '../../EvertokModuleImpl';
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default class EvertokModuleFactory implements AbstractFactory<EvertokModule> {
   static create(): EvertokModule {
     const spotService = new EvertokSpotServiceImpl();

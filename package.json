@@ -23,7 +23,8 @@
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",
     "socket.io": "^2.2.0",
-    "typescript-eslint-parser": "^21.0.2"
+    "typescript-eslint-parser": "^21.0.2",
+    "rt-services":"file:../rt-services/dist"
   },
   "devDependencies": {
     "eslint": "^5.11.1",

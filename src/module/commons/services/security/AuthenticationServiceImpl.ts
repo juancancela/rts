@@ -15,5 +15,4 @@ export default class AuthenticationServiceImpl implements AuthenticationService 
     isRemote(): boolean {
         return this.isRemoteExecution;
     }
-
 }

@@ -1,5 +1,6 @@
 import BaseService from '../../models/BaseService/BaseService';
 
-export default interface GeoLocationService extends BaseService {
-    
-}
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
+export default interface GeoLocationService extends BaseService {}

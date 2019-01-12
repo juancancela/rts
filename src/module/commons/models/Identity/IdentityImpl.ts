@@ -1,5 +1,8 @@
 import Identity from './Identity';
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default class IdentityImpl implements Identity {
   private user: string;
   private phoneNumber: string;

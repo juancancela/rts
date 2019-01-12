@@ -5,6 +5,9 @@ import AuthenticationService from './services/security/AuthenticationService';
 import AuthorizationService from './services/security/AuthorizationService';
 import UserService from './services/user/UserService';
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default interface CommonsModule extends BaseModule {
   getLocationService(): GeoLocationService;
   getMessagingService(): MessagingService;

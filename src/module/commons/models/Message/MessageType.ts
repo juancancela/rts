@@ -1,3 +1,6 @@
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export enum MessageType {
   TEXT_ONLY,
   TEXT_AND_IMAGE,

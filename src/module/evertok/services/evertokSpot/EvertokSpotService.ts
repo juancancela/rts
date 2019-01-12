@@ -4,19 +4,23 @@ import User from "../../../commons/services/user/models/User/User";
 import EvertokSpotMetadata from "../../models/EvertokSpotMetadata/EvertokSpotMetadata";
 import SpotFilter from "../../models/EvertokSpot/SpotFilter";
 
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default interface EvertokSpotService extends BaseService {
-  create(newSpot: EvertokSpot): EvertokSpot;
-  addUser(user: User, spot: EvertokSpot): void;
-  removeUser(user: User, spot: EvertokSpot): void;
-  archive(spot: EvertokSpot): void;
-  getMetadata(spot: EvertokSpot, user: User): EvertokSpotMetadata;
-  getFiles(spot: EvertokSpot): any;
-  getSpots(spotFilter: SpotFilter): EvertokSpot[];
-  getModerators(spot: EvertokSpot): User[];
-  updateName(updatedName: string, spot: EvertokSpot): EvertokSpot;
-  setAnnouncement(announcement: string): void;
-  setDescription(description: string): void;
+  create(newSpot: EvertokSpot): Promise<EvertokSpot>;
+  addUser(user: User, spot: EvertokSpot): Promise<void>;
+  removeUser(user: User, spot: EvertokSpot): Promise<void>;
+  archive(spot: EvertokSpot): Promise<void>;
+  getMetadata(spot: EvertokSpot, user: User): Promise<EvertokSpotMetadata>;
+  getFiles(spot: EvertokSpot): Promise<any>;
+  getSpots(spotFilter: SpotFilter): Promise<EvertokSpot[]>;
+  getTrendingSpots(): Promise<EvertokSpot[]>;
+  getModerators(spot: EvertokSpot): Promise<User[]>;
+  updateName(updatedName: string, spot: EvertokSpot): Promise<EvertokSpot>;
+  setAnnouncement(announcement: string): Promise<void>;
+  setDescription(description: string): Promise<void>;
   setTopic(topic: string): void;
-  getUserVisitedSpots(user: User): EvertokSpot[];
-  getUserCurrentSpot(user: User): EvertokSpot;
+  getUserVisitedSpots(user: User): Promise<EvertokSpot[]>;
+  getUserCurrentSpot(user: User): Promise<EvertokSpot>;
 }
