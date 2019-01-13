@@ -1,4 +1,3 @@
-import BaseModule from './utils/modules/BaseModule';
 import GeoLocationService from './services/geolocation/GeoLocationService';
 import MessagingService from './services/messaging/MessagingService';
 import AuthenticationService from './services/security/AuthenticationService';

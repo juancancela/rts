@@ -1,4 +1,4 @@
-import RemoteMessagingServiceImpl from "./src/module/commons/services/messaging/RemoteMessagingServiceImpl";
 import CommonsModuleImpl from "./src/module/commons/CommonsModuleImpl";
+import MessagingServiceImpl from "./src/module/commons/services/messaging/MessagingServiceImpl";
 
-export default new CommonsModuleImpl(null, new RemoteMessagingServiceImpl(), null, null, null);
+export default new CommonsModuleImpl(null, new MessagingServiceImpl(true), null, null, null);

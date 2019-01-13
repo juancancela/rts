@@ -3,16 +3,18 @@ import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import User from '../../../commons/services/user/models/User/User';
 import EvertokSpotMetadata from '../../models/EvertokSpotMetadata/EvertokSpotMetadata';
 import SpotFilter from '../../models/EvertokSpot/SpotFilter';
-import Commandable from '../../../commons/utils/command/Commandable';
 import AbstractService from '../../../commons/utils/services/AbstractService';
 import { mockedData } from './mockedTrendingData';
+import EvertokSpotImpl from '../../models/EvertokSpot/EvertokSpotImpl';
+import ModuleType from '../../../../utils/modules/ModuleType';
+import Commandable from '../../../../utils/command/Commandable';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokSpotServiceImpl extends AbstractService implements EvertokSpotService, Commandable {
-  async getTrendingSpots(): Promise<EvertokSpot[]> {
-    return mockedData;
+  constructor(isRemote: boolean = false) {
+    super(isRemote);
   }
 
   async create(newSpot: EvertokSpot): Promise<EvertokSpot> {
@@ -69,5 +71,21 @@ export default class EvertokSpotServiceImpl extends AbstractService implements E
 
   async getUserCurrentSpot(user: User): Promise<EvertokSpot> {
     throw new Error('Method not implemented.');
+  }
+
+  async getTrendingSpots(): Promise<EvertokSpot[]> {
+    if (this.isRemote()) {
+      const objectResult = await this.getCommand().execute(
+        ModuleType.EVERTOK,
+        'getTrendingSpots',
+        'EvertokSpot[]',
+        'EvertokSpotService',
+        null
+      );
+      return objectResult.map((obj: any) => {
+        return (obj = EvertokSpotImpl.fromJSON(obj));
+      });
+    }
+    return mockedData;
   }
 }

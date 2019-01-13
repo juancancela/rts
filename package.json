@@ -22,9 +22,10 @@
     "concurrently": "^3.5.1",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",
+    "rt-services": "file:../rt-services/dist",
     "socket.io": "^2.2.0",
-    "typescript-eslint-parser": "^21.0.2",
-    "rt-services":"file:../rt-services/dist"
+    "systemjs": "^3.0.0",
+    "typescript-eslint-parser": "^21.0.2"
   },
   "devDependencies": {
     "eslint": "^5.11.1",

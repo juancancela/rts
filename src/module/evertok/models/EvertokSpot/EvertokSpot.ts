@@ -6,9 +6,8 @@ import GeoLocation from "../../../commons/models/GeoLocation/GeoLocation";
  */
 export default interface EvertokSpot extends Room {
   getGeoLocation(): GeoLocation;
-  getRadius(): Number;
+  getRadius(): number;
   getImage(): string;
-  getName(): string;
   isPromoted(): boolean;
   getCreationDate(): Date;
 }

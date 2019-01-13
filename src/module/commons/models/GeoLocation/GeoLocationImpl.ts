@@ -5,23 +5,23 @@ import Serializable from '../../utils/serialization/Serializable';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class GeoLocationImpl implements GeoLocation, Serializable<GeoLocationImpl> {
-  private lat: Number;
-  private lon: Number;
+  private lat: number;
+  private lon: number;
 
   /**
    * @param lat Latitude value.
    * @param lon Longitude value.
    */
-  constructor(lat: Number, lon: Number) {
+  constructor(lat?: number, lon?: number) {
     this.lat = lat;
     this.lon = lon;
   }
 
-  getLat(): Number {
+  getLat(): number {
     return this.lat;
   }
 
-  getLon(): Number {
+  getLon(): number {
     return this.lon;
   }
 
@@ -30,6 +30,10 @@ export default class GeoLocationImpl implements GeoLocation, Serializable<GeoLoc
   }
 
   fromJSON(serializedObject: Object): GeoLocationImpl {
-    throw new Error('Method not implemented.');
+    return GeoLocationImpl.fromJSON(serializedObject);
+  }
+
+  static fromJSON(serializedObject: Object): GeoLocationImpl {
+    return Object.assign(new GeoLocationImpl(), serializedObject);
   }
 }

@@ -1,23 +1,25 @@
 import BaseService from './BaseService';
-import Commandable from '../command/Commandable';
-import Command from '../command/Command';
-import RemoteCommandImpl from '../command/RemoteCommandImpl';
-import CommandImpl from '../command/CommandImpl';
+import Commandable from '../../../../utils/command/Commandable';
+import Command from '../../../../utils/command/Command';
+import CommandImpl from '../../../../utils/command/CommandImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default abstract class AbstractService implements BaseService, Commandable {
   private isRemoteExecution: boolean = false;
-  private remoteCommand: Command = new RemoteCommandImpl();
-  private command: Command = new CommandImpl();
+
+  constructor(isRemote: boolean = false) {
+    this.isRemoteExecution = isRemote;
+  }
 
   getCommand(): Command {
-    if (this.isRemote()) return this.remoteCommand;
-    return this.command;
+    if (this.isRemote()) return new CommandImpl(true);
+    return new CommandImpl(false);
   }
 
   isRemote(): boolean {
     return this.isRemoteExecution;
   }
 }
+

@@ -1,13 +1,17 @@
 import AuthenticationService from './AuthenticationService';
-import Commandable from '../../utils/command/Commandable';
 import AbstractService from '../../utils/services/AbstractService';
 import Identity from '../../models/Identity/Identity';
 import User from '../user/models/User/User';
+import Commandable from '../../../../utils/command/Commandable';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class AuthenticationServiceImpl extends AbstractService implements AuthenticationService, Commandable {
+  constructor(isRemote: boolean = false) {
+    super(isRemote);
+  }
+  
   login(identity: Identity): boolean {
     throw new Error('Method not implemented.');
   }
