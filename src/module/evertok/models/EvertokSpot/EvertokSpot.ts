@@ -1,11 +1,11 @@
 import Room from "../../../commons/models/Room/Room";
-import Serializable from "../../../commons/utils/serialization/Serializable";
+import GeoLocation from "../../../commons/models/GeoLocation/GeoLocation";
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface EvertokSpot extends Room {
-  getLocation(): Location;
+  getGeoLocation(): GeoLocation;
   getRadius(): Number;
   getImage(): string;
   getName(): string;

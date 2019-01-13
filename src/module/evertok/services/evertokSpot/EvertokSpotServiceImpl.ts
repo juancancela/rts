@@ -5,13 +5,14 @@ import EvertokSpotMetadata from '../../models/EvertokSpotMetadata/EvertokSpotMet
 import SpotFilter from '../../models/EvertokSpot/SpotFilter';
 import Commandable from '../../../commons/utils/command/Commandable';
 import AbstractService from '../../../commons/utils/services/AbstractService';
+import { mockedData } from './mockedTrendingData';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokSpotServiceImpl extends AbstractService implements EvertokSpotService, Commandable {
   async getTrendingSpots(): Promise<EvertokSpot[]> {
-    throw new Error('Method not implemented.');
+    return mockedData;
   }
 
   async create(newSpot: EvertokSpot): Promise<EvertokSpot> {

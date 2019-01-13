@@ -1,6 +1,5 @@
 import Command from './Command';
 import fetch from 'node-fetch';
-import MessagingServiceImpl from '../../services/messaging/MessagingServiceImpl';
 const log = console.log;
 
 /**
@@ -28,10 +27,7 @@ export default class CommandImpl implements Command {
       log(`  result: ${JSON.stringify(response)}`);
       return response;
     } else {
-      const messagingService = new MessagingServiceImpl();
-      const response = await messagingService.getMessage('1'); 
-      log(`  result: ${JSON.stringify(response)}`);
-      return response;
+      return null;
     }
   }
 }

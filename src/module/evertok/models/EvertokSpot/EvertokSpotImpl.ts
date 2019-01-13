@@ -1,30 +1,57 @@
 import Serializable from '../../../commons/utils/serialization/Serializable';
 import EvertokSpot from './EvertokSpot';
+import GeoLocation from '../../../commons/models/GeoLocation/GeoLocation';
 
 export default class EvertokSpotImpl implements EvertokSpot, Serializable<EvertokSpotImpl> {
-  getLocation(): Location {
-    throw new Error('Method not implemented.');
+  private geoLocation: GeoLocation;
+  private radius: Number;
+  private image: string;
+  private name: string;
+  private promoted: boolean;
+  private creationDate: Date;
+  private id: string;
+
+  constructor(
+    geoLocation: GeoLocation,
+    radius: Number,
+    image: string,
+    name: string,
+    promoted: boolean,
+    creationDate: Date,
+    id: string
+  ) {
+    this.geoLocation = geoLocation;
+    this.radius = radius;
+    this.image = image;
+    this.name = name;
+    this.promoted = promoted;
+    this.creationDate = creationDate;
+    this.id = id;
+  }
+
+  getGeoLocation(): GeoLocation {
+    return this.geoLocation;
   }
   getRadius(): Number {
-    throw new Error('Method not implemented.');
+    return this.radius;
   }
   getImage(): string {
-    throw new Error('Method not implemented.');
+    return this.image;
   }
   getName(): string {
-    throw new Error('Method not implemented.');
+    return this.name;
   }
   isPromoted(): boolean {
-    throw new Error('Method not implemented.');
+    return this.promoted;
   }
   getCreationDate(): Date {
-    throw new Error('Method not implemented.');
+    return this.creationDate;
   }
   setName(): string {
-    throw new Error('Method not implemented.');
+    return this.name;
   }
   getId(): string {
-    throw new Error('Method not implemented.');
+    return this.id;
   }
   fromJSON(serializedObject: Object): EvertokSpotImpl {
     throw new Error('Method not implemented.');
