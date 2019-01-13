@@ -1,9 +1,8 @@
-import AuthorizationService from "./AuthorizationService";
+import AuthorizationService from './AuthorizationService';
+import Commandable from '../../utils/command/Commandable';
+import AbstractService from '../../utils/services/AbstractService';
 
-export default class AuthorizationServiceImpl implements AuthorizationService {
-    private isRemoteExecution: boolean = false;
-
-    isRemote(): boolean {
-        return this.isRemoteExecution;
-    }
-}
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
+export default class AuthorizationServiceImpl extends AbstractService implements AuthorizationService, Commandable {}

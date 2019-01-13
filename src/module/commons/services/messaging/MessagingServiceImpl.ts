@@ -8,24 +8,13 @@ import RemoteCommandImpl from '../../utils/command/RemoteCommandImpl';
 import Command from '../../utils/command/Command';
 import Commandable from '../../utils/command/Commandable';
 import CommandImpl from '../../utils/command/CommandImpl';
+import AbstractService from '../../utils/services/AbstractService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class MessagingServiceImpl implements MessagingService, Commandable {
-  private isRemoteExecution: boolean = false;
-  private remoteCommand: Command = new RemoteCommandImpl();
-  private command: Command = new CommandImpl();
-
-  getCommand(): Command {
-    if (this.isRemote()) return this.remoteCommand;
-    return this.command;
-  }
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
-  }
-
+export default class MessagingServiceImpl extends AbstractService implements MessagingService, Commandable {
+  
   async pinMessage(message: Message): Promise<Message> {
     throw new Error('Method not implemented.');
   }
@@ -53,7 +42,12 @@ export default class MessagingServiceImpl implements MessagingService, Commandab
       return typedResult;
     }
     //TODO Hardcoded
-    return await new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), messageId, true, 'local text content');
+    return await new MessageImpl(
+      new MessageMetadataImpl(new Date(), true, '23'),
+      messageId,
+      true,
+      'local text content'
+    );
   }
 
   async getMessages(messageFilter: MessageFilter): Promise<Message[]> {

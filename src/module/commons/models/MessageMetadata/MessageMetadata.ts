@@ -1,4 +1,4 @@
-import BaseResource from "../BaseResource/BaseResource";
+import BaseResource from "../../utils/resources/BaseResource";
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

@@ -1,4 +1,4 @@
-import BaseService from '../../models/BaseService/BaseService';
+import BaseService from '../../utils/services/BaseService';
 import User from './models/User/User';
 import UserFilter from './models/User/UserFilter';
 

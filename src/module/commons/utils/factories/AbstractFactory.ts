@@ -1,7 +1,10 @@
-import BaseResource from "../../models/BaseResource/BaseResource";
+import BaseResource from '../resources/BaseResource';
 
-abstract class AbstractFactory<T>{
-    abstract create(...params:any):T;
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
+abstract class AbstractFactory<T> {
+  abstract create(...params: any[]): T;
 }
 
 export default AbstractFactory;

@@ -1,4 +1,4 @@
-import BaseService from "../../../commons/models/BaseService/BaseService";
+import BaseService from "../../../commons/utils/services/BaseService";
 import EvertokSpot from "../../models/EvertokSpot/EvertokSpot";
 import User from "../../../commons/services/user/models/User/User";
 import EvertokSpotMetadata from "../../models/EvertokSpotMetadata/EvertokSpotMetadata";

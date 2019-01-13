@@ -4,27 +4,12 @@ import User from '../../../commons/services/user/models/User/User';
 import EvertokSpotMetadata from '../../models/EvertokSpotMetadata/EvertokSpotMetadata';
 import SpotFilter from '../../models/EvertokSpot/SpotFilter';
 import Commandable from '../../../commons/utils/command/Commandable';
-import Command from '../../../commons/utils/command/Command';
-import RemoteCommandImpl from '../../../commons/utils/command/RemoteCommandImpl';
-import CommandImpl from '../../../commons/utils/command/CommandImpl';
+import AbstractService from '../../../commons/utils/services/AbstractService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class EvertokSpotServiceImpl implements EvertokSpotService, Commandable {
-  private isRemoteExecution: boolean = false;
-  private remoteCommand: Command = new RemoteCommandImpl();
-  private command: Command = new CommandImpl();
-
-  getCommand(): Command {
-    if (this.isRemote()) return this.remoteCommand;
-    return this.command;
-  }
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
-  }
-
+export default class EvertokSpotServiceImpl extends AbstractService implements EvertokSpotService, Commandable {
   async getTrendingSpots(): Promise<EvertokSpot[]> {
     throw new Error('Method not implemented.');
   }

@@ -1,4 +1,4 @@
-import Remoteable from '../../utils/command/Remoteable';
+import Remoteable from '../command/Remoteable';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

@@ -5,7 +5,7 @@ import AuthenticationService from './services/security/AuthenticationService';
 import AuthorizationService from './services/security/AuthorizationService';
 import UserService from './services/user/UserService';
 import CommonsModule from './CommonsModule';
-import BaseService from './models/BaseService/BaseService';
+import BaseService from './utils/services/BaseService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

@@ -1,24 +1,26 @@
 import UserService from './UserService';
+import AbstractService from '../../utils/services/AbstractService';
+import User from './models/User/User';
+import UserFilter from './models/User/UserFilter';
+import Commandable from '../../utils/command/Commandable';
 
-export default class UserServiceImpl implements UserService {
-  getUser(userId: string): import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default {
-    throw new Error("Method not implemented.");
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
+export default class UserServiceImpl extends AbstractService implements UserService, Commandable {
+  getUser(userId: string): User {
+    throw new Error('Method not implemented.');
   }
-  getUsers(userFilter: import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/UserFilter").default): import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default[] {
-    throw new Error("Method not implemented.");
+  getUsers(userFilter: UserFilter): User[] {
+    throw new Error('Method not implemented.');
   }
-  deleteUser(userId: string): import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default {
-    throw new Error("Method not implemented.");
+  deleteUser(userId: string): User {
+    throw new Error('Method not implemented.');
   }
-  updateUser(updatedUser: import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default): import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default {
-    throw new Error("Method not implemented.");
+  updateUser(updatedUser: User): User {
+    throw new Error('Method not implemented.');
   }
-  createUser(newUser: import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default): import("/Users/Aetion/Documents/projs/rt/rt-services/src/module/commons/services/user/models/User/User").default {
-    throw new Error("Method not implemented.");
-  }
-  private isRemoteExecution: boolean = false;
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
+  createUser(newUser: User): User {
+    throw new Error('Method not implemented.');
   }
 }

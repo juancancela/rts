@@ -1,5 +1,5 @@
-import AbstractFactory from "./AbstractFactory";
-import Message from "../../models/Message/Message";
+import AbstractFactory from "../utils/factories/AbstractFactory";
+import Message from "../models/Message/Message";
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

@@ -1,4 +1,4 @@
-import BaseResource from '../../models/BaseResource/BaseResource';
+import BaseResource from '../resources/BaseResource';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

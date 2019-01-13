@@ -1,4 +1,5 @@
 import Room from "../../../commons/models/Room/Room";
+import Serializable from "../../../commons/utils/serialization/Serializable";
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

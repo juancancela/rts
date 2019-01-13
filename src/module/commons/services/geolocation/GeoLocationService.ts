@@ -1,4 +1,4 @@
-import BaseService from '../../models/BaseService/BaseService';
+import BaseService from '../../utils/services/BaseService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

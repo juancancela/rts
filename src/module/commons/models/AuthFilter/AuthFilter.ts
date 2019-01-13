@@ -1,4 +1,4 @@
-import BaseFilter from "../BaseFilter/BaseFilter";
+import BaseFilter from "../../utils/filters/BaseFilter";
 import Identity from "../Identity/Identity";
 
 /**
