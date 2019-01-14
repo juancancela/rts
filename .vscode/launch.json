@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Debug rt-services",
-            "program": "${workspaceFolder}/index.ts",
+            "program": "${workspaceFolder}/server.ts",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": [
                 "${workspaceFolder}/dist/**/*.js"

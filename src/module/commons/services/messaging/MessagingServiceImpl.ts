@@ -4,16 +4,28 @@ import MessageImpl from '../../models/Message/MessageImpl';
 import User from '../user/models/User/User';
 import MessageFilter from '../../models/Message/MessageFilter';
 import MessageMetadataImpl from '../../models/MessageMetadata/MessageMetadataImpl';
-import AbstractService from '../../utils/services/AbstractService';
 import ModuleType from '../../../../utils/modules/ModuleType';
 import Commandable from '../../../../utils/command/Commandable';
+import Command from '../../../../utils/command/Command';
+import CommandImpl from '../../../../utils/command/CommandImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class MessagingServiceImpl extends AbstractService implements MessagingService, Commandable {
+export default class MessagingServiceImpl implements MessagingService, Commandable {
+  private isRemoteExecution: boolean = false;
+
   constructor(isRemote: boolean = false) {
-    super(isRemote);
+    this.isRemoteExecution = isRemote;
+  }
+
+  getCommand(): Command {
+    if (this.isRemote()) return new CommandImpl(true);
+    return new CommandImpl(false);
+  }
+
+  isRemote(): boolean {
+    return this.isRemoteExecution;
   }
 
   async pinMessage(message: Message): Promise<Message> {

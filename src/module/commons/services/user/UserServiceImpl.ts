@@ -1,15 +1,27 @@
 import UserService from './UserService';
-import AbstractService from '../../utils/services/AbstractService';
 import User from './models/User/User';
 import UserFilter from './models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
+import Command from '../../../../utils/command/Command';
+import CommandImpl from '../../../../utils/command/CommandImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class UserServiceImpl extends AbstractService implements UserService, Commandable {
+export default class UserServiceImpl implements UserService, Commandable {
+  private isRemoteExecution: boolean = false;
+
   constructor(isRemote: boolean = false) {
-    super(isRemote);
+    this.isRemoteExecution = isRemote;
+  }
+
+  getCommand(): Command {
+    if (this.isRemote()) return new CommandImpl(true);
+    return new CommandImpl(false);
+  }
+
+  isRemote(): boolean {
+    return this.isRemoteExecution;
   }
 
   getUser(userId: string): User {
@@ -27,7 +39,7 @@ export default class UserServiceImpl extends AbstractService implements UserServ
   updateUser(updatedUser: User): User {
     throw new Error('Method not implemented.');
   }
-  
+
   createUser(newUser: User): User {
     throw new Error('Method not implemented.');
   }

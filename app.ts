@@ -1,5 +1,8 @@
 import ModuleType from './src/utils/modules/ModuleType';
 import CommandImpl from './src/utils/command/CommandImpl';
+import EvertokModuleFactory from './src/module/evertok/utils/factories/EvertokModuleFactory';
+import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
+import RT from './src/RT';
 const express = require('express');
 const app = express();
 const log = console.log;
@@ -12,14 +15,16 @@ app.get('/socket', (req: any, res: any) => {
 
 app.get('/test', async (req: any, res: any) => {
   log('test 12345');
-  // const evertokSpotService = new RemoteEvertokSpotServiceImpl();
-  // const result = await evertokSpotService.getTrendingSpots();
-  // return res.send(result);
-  return res.send('hola');
+  const result = await RT.getEvertokModule(ExecutionContext.REMOTE).getSpotService().getTrendingSpots();
+  return res.send(result);
 });
 
 app.post('/remote', async (req: any, res: any) => {
-  const { methodName, returnType, serviceName, parameters } = req.body;
+  //const { methodName, returnType, serviceName, parameters } = req.body;
+  const methodName = 'methodName';
+  const returnType = 'returnType';
+  const serviceName = 'serviceName';
+  const parameters = 'parameters';
   log(`Executing remotely ${serviceName}.${methodName}():${returnType}`);
   return res.send(await new CommandImpl().execute(ModuleType.COMMONS, methodName, returnType, serviceName, parameters));
 });

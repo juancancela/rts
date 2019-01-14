@@ -1,18 +1,29 @@
 import EvertokUserService from './EvertokUserService';
-import AbstractService from '../../../commons/utils/services/AbstractService';
 import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import User from '../../../commons/services/user/models/User/User';
 import UserFilter from '../../../commons/services/user/models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
+import Command from '../../../../utils/command/Command';
+import CommandImpl from '../../../../utils/command/CommandImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class EvertokUserServiceImpl extends AbstractService implements EvertokUserService, Commandable {
+export default class EvertokUserServiceImpl implements EvertokUserService, Commandable {
+  private isRemoteExecution: boolean = false;
+
   constructor(isRemote: boolean = false) {
-    super(isRemote);
+    this.isRemoteExecution = isRemote;
   }
 
+  getCommand(): Command {
+    if (this.isRemote()) return new CommandImpl(true);
+    return new CommandImpl(false);
+  }
+
+  isRemote(): boolean {
+    return this.isRemoteExecution;
+  }
   getCurrentlyConnectedUsers(spot: EvertokSpot): User[] {
     throw new Error('Method not implemented.');
   }
