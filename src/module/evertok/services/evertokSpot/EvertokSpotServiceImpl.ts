@@ -28,6 +28,7 @@ export default class EvertokSpotServiceImpl implements EvertokSpotService, Comma
   isRemote(): boolean {
     return this.isRemoteExecution;
   }
+  
   async create(newSpot: EvertokSpot): Promise<EvertokSpot> {
     throw new Error('Method not implemented.');
   }
@@ -85,13 +86,14 @@ export default class EvertokSpotServiceImpl implements EvertokSpotService, Comma
   }
 
   async getTrendingSpots(): Promise<EvertokSpot[]> {
-    if (this.isRemote()) {
+    if (this && this.isRemote()) {
       const objectResult = await this.getCommand().execute(
         ModuleType.EVERTOK,
+        'spotService',
         'getTrendingSpots',
         'EvertokSpot[]',
-        'EvertokSpotService',
-        null
+        null,
+        'http://localhost:8090/remote'
       );
       return objectResult.map((obj: any) => {
         return (obj = EvertokSpotImpl.fromJSON(obj));

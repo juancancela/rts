@@ -4,9 +4,11 @@ import EvertokModuleFactory from './src/module/evertok/utils/factories/EvertokMo
 import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
 import RT from './src/RT';
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const log = console.log;
 
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get('/socket', (req: any, res: any) => {
@@ -20,13 +22,9 @@ app.get('/test', async (req: any, res: any) => {
 });
 
 app.post('/remote', async (req: any, res: any) => {
-  //const { methodName, returnType, serviceName, parameters } = req.body;
-  const methodName = 'methodName';
-  const returnType = 'returnType';
-  const serviceName = 'serviceName';
-  const parameters = 'parameters';
+  const { methodName, returnType, serviceName, parameters } = req.body;
   log(`Executing remotely ${serviceName}.${methodName}():${returnType}`);
-  return res.send(await new CommandImpl().execute(ModuleType.COMMONS, methodName, returnType, serviceName, parameters));
+  return res.send(await new CommandImpl().execute(ModuleType.EVERTOK, serviceName, methodName, returnType, parameters, 'http://localhost:8090/remote'));
 });
 
 export default app;

@@ -50,7 +50,7 @@ export default class MessagingServiceImpl implements MessagingService, Commandab
 
   async getMessage(messageId: string): Promise<Message> {
     if (this.isRemote()) {
-      const objectResult = await this.getCommand().execute(ModuleType.COMMONS, 'MessageService', 'getMessage', 'Message', null);
+      const objectResult = await this.getCommand().execute(ModuleType.COMMONS, 'MessageService', 'getMessage', 'Message', null, 'http://localhost:8090/remote');
       const typedResult = await MessageImpl.fromJSON(objectResult);
       return typedResult;
     }
