@@ -16,7 +16,6 @@ app.get('/socket', (req: any, res: any) => {
 });
 
 app.get('/test', async (req: any, res: any) => {
-  log('test 12345');
   const result = await RT.getEvertokModule(ExecutionContext.REMOTE).getSpotService().getTrendingSpots();
   return res.send(result);
 });
