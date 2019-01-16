@@ -1,15 +1,20 @@
 import Command from './Command';
 import fetch from 'node-fetch';
 import ExecutionContext from '../../module/commons/utils/constants/ExecutionContext';
-import ModuleType from '../modules/ModuleType';
+import Modules from '../modules/Modules';
 import CommonsModuleFactory from '../../module/commons/utils/factories/CommonsModuleFactory';
 import EvertokModuleFactory from '../../module/evertok/utils/factories/EvertokModuleFactory';
+import BaseModule from '../../module/commons/utils/modules/BaseModule';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class CommandImpl implements Command {
   private isRemoteExecution: boolean = false;
+  private modules = {
+    commons: CommonsModuleFactory.create(ExecutionContext.LOCAL),
+    evertok: EvertokModuleFactory.create(ExecutionContext.LOCAL)
+  };
 
   constructor(isRemoteExecution: boolean = false) {
     this.isRemoteExecution = isRemoteExecution;
@@ -19,8 +24,12 @@ export default class CommandImpl implements Command {
     return this.isRemoteExecution;
   }
 
+  getModule<T extends BaseModule>(moduleName: Modules): T {
+    return this.modules[moduleName.toLowerCase()];
+  }
+
   async execute(
-    moduleName: ModuleType,
+    moduleName: Modules,
     serviceName: string,
     methodName: string,
     returnType: string,
@@ -39,19 +48,10 @@ export default class CommandImpl implements Command {
       const response = await rawResponse.json();
       return response;
     } else {
-      // return await RT[moduleName](ExecutionContext.LOCAL)[serviceName](parameters);
-      switch (moduleName) {
-        case ModuleType.COMMONS:
-          const commonsModule = CommonsModuleFactory.create(ExecutionContext.LOCAL);
-          const commonsTargetService = commonsModule[serviceName];
-          const commonsTargetMethod = commonsTargetService[methodName];
-          return commonsTargetMethod(parameters);
-        case ModuleType.EVERTOK:
-          const evertokModule = EvertokModuleFactory.create(ExecutionContext.LOCAL);
-          const evertokTargetService = evertokModule[serviceName];
-          const evertokTargetMethod = evertokTargetService[methodName];
-          return evertokTargetMethod(parameters);
-      }
+      const _module = this.getModule(moduleName);
+      const targetService = _module[serviceName];
+      const targetMethod = targetService[methodName];
+      return targetMethod(parameters);
     }
   }
 }

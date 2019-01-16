@@ -5,7 +5,7 @@ import EvertokSpotMetadata from '../../models/EvertokSpotMetadata/EvertokSpotMet
 import SpotFilter from '../../models/EvertokSpot/SpotFilter';
 import { mockedData } from './mockedTrendingData';
 import EvertokSpotImpl from '../../models/EvertokSpot/EvertokSpotImpl';
-import ModuleType from '../../../../utils/modules/ModuleType';
+import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
@@ -88,7 +88,7 @@ export default class EvertokSpotServiceImpl implements EvertokSpotService, Comma
   async getTrendingSpots(): Promise<EvertokSpot[]> {
     if (this && this.isRemote()) {
       const objectResult = await this.getCommand().execute(
-        ModuleType.EVERTOK,
+        Modules.EVERTOK,
         'spotService',
         'getTrendingSpots',
         'EvertokSpot[]',

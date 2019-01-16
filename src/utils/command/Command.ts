@@ -1,9 +1,11 @@
 import Remoteable from './Remoteable';
-import ModuleType from '../modules/ModuleType';
+import Modules from '../modules/Modules';
+import BaseModule from '../../module/commons/utils/modules/BaseModule';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface Command {
-  execute(moduleName: ModuleType, service: string, methodName: string, returnType: string, parameters: any, remoteEndpoint: string): Promise<Object[]>;
+  execute(moduleName: Modules, service: string, methodName: string, returnType: string, parameters: any, remoteEndpoint: string): Promise<Object[]>;
+  getModule<T extends BaseModule>(moduleType: Modules): T;
 }

@@ -1,4 +1,4 @@
-import ModuleType from './src/utils/modules/ModuleType';
+import Modules from './src/utils/modules/Modules';
 import CommandImpl from './src/utils/command/CommandImpl';
 import EvertokModuleFactory from './src/module/evertok/utils/factories/EvertokModuleFactory';
 import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
@@ -24,7 +24,7 @@ app.get('/test', async (req: any, res: any) => {
 app.post('/remote', async (req: any, res: any) => {
   const { methodName, returnType, serviceName, parameters } = req.body;
   log(`Executing remotely ${serviceName}.${methodName}():${returnType}`);
-  return res.send(await new CommandImpl().execute(ModuleType.EVERTOK, serviceName, methodName, returnType, parameters, 'http://localhost:8090/remote'));
+  return res.send(await new CommandImpl().execute(Modules.EVERTOK, serviceName, methodName, returnType, parameters, 'http://localhost:8090/remote'));
 });
 
 export default app;
