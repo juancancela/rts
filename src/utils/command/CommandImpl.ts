@@ -28,30 +28,25 @@ export default class CommandImpl implements Command {
     return this.modules[moduleName.toLowerCase()];
   }
 
-  async execute(
-    moduleName: Modules,
-    serviceName: string,
-    methodName: string,
-    returnType: string,
-    parameters: any,
-    remoteEndpoint: string
-  ): Promise<Object[]> {
-    if (this.isRemote()) {
-      const rawResponse = await fetch(remoteEndpoint, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ moduleName, serviceName, methodName, returnType, parameters })
-      });
-      const response = await rawResponse.json();
-      return response;
-    } else {
-      const _module = this.getModule(moduleName);
-      const targetService = _module[serviceName];
-      const targetMethod = targetService[methodName];
-      return targetMethod(parameters);
-    }
+  async executeRemotely(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint: string) {
+    return (await fetch(remoteEndpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ moduleName, serviceName, methodName, parameters })
+    })).json();
+  }
+
+  async executeLocally(module: any, serviceName: string, methodName: string, parameters: any) {
+    const targetService = module[serviceName];
+    return targetService[methodName](parameters);
+  }
+
+  async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint: string): Promise<Object[]> {
+    return this.isRemote()
+      ? await this.executeRemotely(moduleName, serviceName, methodName, parameters, remoteEndpoint)
+      : await this.executeLocally(this.getModule(moduleName), serviceName, methodName, parameters);
   }
 }

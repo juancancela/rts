@@ -8,14 +8,16 @@ import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
+import AbstractService from '../../utils/services/AbstractService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class MessagingServiceImpl implements MessagingService, Commandable {
+export default class MessagingServiceImpl extends AbstractService implements MessagingService, Commandable {
   private isRemoteExecution: boolean = false;
 
   constructor(isRemote: boolean = false) {
+    super();
     this.isRemoteExecution = isRemote;
   }
 
@@ -49,11 +51,7 @@ export default class MessagingServiceImpl implements MessagingService, Commandab
   }
 
   async getMessage(messageId: string): Promise<Message> {
-    if (this.isRemote()) {
-      const objectResult = await this.getCommand().execute(Modules.COMMONS, 'MessageService', 'getMessage', 'Message', null, 'http://localhost:8090/remote');
-      const typedResult = await MessageImpl.fromJSON(objectResult);
-      return typedResult;
-    }
+    if (this.isRemote()) return await this.execute('getMessage', null, this.getCommand(), this.getServiceName(), this.getModuleName());
     return await new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), messageId, true, 'local text content');
   }
 
@@ -67,5 +65,13 @@ export default class MessagingServiceImpl implements MessagingService, Commandab
 
   async deleteMessage(messageId: string): Promise<Message> {
     throw new Error('Method not implemented.');
+  }
+
+  getModuleName(): Modules {
+    return Modules.COMMONS;
+  }
+
+  getServiceName(): string {
+    return 'messagingService';
   }
 }

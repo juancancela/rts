@@ -3,10 +3,12 @@ import CommandImpl from './src/utils/command/CommandImpl';
 import EvertokModuleFactory from './src/module/evertok/utils/factories/EvertokModuleFactory';
 import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
 import RT from './src/RT';
+import CommonsModuleFactory from './src/module/commons/utils/factories/CommonsModuleFactory';
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const log = console.log;
+const command = new CommandImpl(false);
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -20,10 +22,15 @@ app.get('/test', async (req: any, res: any) => {
   return res.send(result);
 });
 
+app.get('/test2', async (req: any, res: any) => {
+  const result = await RT.getCommonsModule(ExecutionContext.REMOTE).getMessagingService().getMessage('1');
+  return res.send(result);
+});
+
 app.post('/remote', async (req: any, res: any) => {
-  const { methodName, returnType, serviceName, parameters } = req.body;
-  log(`Executing remotely ${serviceName}.${methodName}():${returnType}`);
-  return res.send(await new CommandImpl().execute(Modules.EVERTOK, serviceName, methodName, returnType, parameters, 'http://localhost:8090/remote'));
+  const { moduleName, methodName, serviceName, parameters } = req.body;
+  log(`Executing remotely ${serviceName}.${methodName}()`);
+  return res.send(await command.execute(moduleName, serviceName, methodName, parameters, 'http://localhost:8090/remote'));
 });
 
 export default app;

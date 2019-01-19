@@ -5,6 +5,7 @@ import UserFilter from '../../../commons/services/user/models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
+import Modules from '../../../../utils/modules/Modules';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -54,5 +55,13 @@ export default class EvertokUserServiceImpl implements EvertokUserService, Comma
 
   createUser(newUser: User): User {
     throw new Error('Method not implemented.');
+  }
+
+  getModuleName(): Modules {
+    return Modules.EVERTOK;
+  }
+
+  getServiceName(): string {
+    return 'evertokUserService';
   }
 }

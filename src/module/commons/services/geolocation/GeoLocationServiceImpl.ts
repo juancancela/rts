@@ -4,6 +4,7 @@ import User from '../user/models/User/User';
 import GeoLocation from '../../models/GeoLocation/GeoLocation';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
+import Modules from '../../../../utils/modules/Modules';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -26,5 +27,13 @@ export default class GeoLocationServiceImpl implements GeoLocationService, Comma
 
   getUserLocation(user: User): GeoLocation {
     throw new Error('Method not implemented.');
+  }
+
+  getModuleName(): Modules {
+    return Modules.COMMONS;
+  }
+
+  getServiceName(): string {
+    return 'geoLocationService';
   }
 }
