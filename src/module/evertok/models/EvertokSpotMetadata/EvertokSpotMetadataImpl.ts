@@ -1,8 +1,7 @@
-import Serializable from '../../../commons/utils/serialization/Serializable';
 import EvertokSpotMetadata from './EvertokSpotMetadata';
 import User from '../../../commons/services/user/models/User/User';
 
-export default class EvertokSpotMetadataImpl implements EvertokSpotMetadata, Serializable<EvertokSpotMetadataImpl> {
+export default class EvertokSpotMetadataImpl implements EvertokSpotMetadata {
   private id: string;
   private membersCount: number;
   private unreadMessages: number;
@@ -48,9 +47,5 @@ export default class EvertokSpotMetadataImpl implements EvertokSpotMetadata, Ser
 
   getUserMentions(user: User): number {
     return this.userMentions;
-  }
-  
-  fromJSON(serializedObject: Object): EvertokSpotMetadataImpl {
-    return null;
   }
 }

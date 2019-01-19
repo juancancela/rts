@@ -1,10 +1,9 @@
 import Identity from './Identity';
-import Serializable from '../../utils/serialization/Serializable';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class IdentityImpl implements Identity, Serializable<IdentityImpl> {
+export default class IdentityImpl implements Identity {
   private user: string;
   private phoneNumber: string;
   private id: string;
@@ -15,10 +14,6 @@ export default class IdentityImpl implements Identity, Serializable<IdentityImpl
     this.phoneNumber = phoneNumber;
     this.id = id;
     this.password = password;
-  }
-
-  fromJSON(serializedObject: Object): IdentityImpl {
-    throw new Error('Method not implemented.');
   }
 
   getUser(): string {

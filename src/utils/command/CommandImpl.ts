@@ -44,7 +44,7 @@ export default class CommandImpl implements Command {
     return targetService[methodName](parameters);
   }
 
-  async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint: string): Promise<Object[]> {
+  async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint?: string): Promise<Object[]> {
     return this.isRemote()
       ? await this.executeRemotely(moduleName, serviceName, methodName, parameters, remoteEndpoint)
       : await this.executeLocally(this.getModule(moduleName), serviceName, methodName, parameters);

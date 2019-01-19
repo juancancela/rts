@@ -1,10 +1,9 @@
 import GeoLocation from './GeoLocation';
-import Serializable from '../../utils/serialization/Serializable';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class GeoLocationImpl implements GeoLocation, Serializable<GeoLocationImpl> {
+export default class GeoLocationImpl implements GeoLocation {
   private lat: number;
   private lon: number;
 
@@ -27,13 +26,5 @@ export default class GeoLocationImpl implements GeoLocation, Serializable<GeoLoc
 
   getId(): string {
     return 'GeoLocationImpl';
-  }
-
-  fromJSON(serializedObject: Object): GeoLocationImpl {
-    return GeoLocationImpl.fromJSON(serializedObject);
-  }
-
-  static fromJSON(serializedObject: Object): GeoLocationImpl {
-    return Object.assign(new GeoLocationImpl(), serializedObject);
   }
 }

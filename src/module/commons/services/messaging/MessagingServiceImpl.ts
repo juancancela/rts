@@ -56,7 +56,8 @@ export default class MessagingServiceImpl extends AbstractService implements Mes
   }
 
   async getMessages(messageFilter: MessageFilter): Promise<Message[]> {
-    throw new Error('Method not implemented.');
+    if (this.isRemote()) return await this.execute('getMessages', null, this.getCommand(), this.getServiceName(), this.getModuleName());
+    return await [new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'local text content')];
   }
 
   async updateMessage(updatedMessage: Message): Promise<Message> {

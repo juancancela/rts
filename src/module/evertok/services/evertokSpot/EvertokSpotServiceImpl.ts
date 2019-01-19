@@ -9,14 +9,16 @@ import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
+import AbstractService from '../../../commons/utils/services/AbstractService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class EvertokSpotServiceImpl implements EvertokSpotService, Commandable {
+export default class EvertokSpotServiceImpl extends AbstractService implements EvertokSpotService, Commandable {
   private isRemoteExecution: boolean = false;
 
   constructor(isRemote: boolean = false) {
+    super();
     this.isRemoteExecution = isRemote;
   }
 
@@ -28,7 +30,7 @@ export default class EvertokSpotServiceImpl implements EvertokSpotService, Comma
   isRemote(): boolean {
     return this.isRemoteExecution;
   }
-  
+
   async create(newSpot: EvertokSpot): Promise<EvertokSpot> {
     throw new Error('Method not implemented.');
   }
@@ -86,19 +88,9 @@ export default class EvertokSpotServiceImpl implements EvertokSpotService, Comma
   }
 
   async getTrendingSpots(): Promise<EvertokSpot[]> {
-    if (this.isRemote()) {
-      const objectResult = await this.getCommand().execute(
-        Modules.EVERTOK,
-        'spotService',
-        'getTrendingSpots',
-        null,
-        'http://localhost:8090/remote'
-      );
-      return objectResult.map((obj: any) => {
-        return (obj = EvertokSpotImpl.fromJSON(obj));
-      });
-    }
-    return mockedData;
+    return this.isRemote()
+      ? await this.execute('getTrendingSpots', null, this.getCommand(), this.getServiceName(), this.getModuleName())
+      : mockedData;
   }
 
   getModuleName(): Modules {
@@ -106,6 +98,6 @@ export default class EvertokSpotServiceImpl implements EvertokSpotService, Comma
   }
 
   getServiceName(): string {
-    return 'evertokSpotService';
+    return 'spotService';
   }
 }

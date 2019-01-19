@@ -1,12 +1,10 @@
 import Message from './Message';
-import Serializable from '../../utils/serialization/Serializable';
 import MessageMetadata from '../MessageMetadata/MessageMetadata';
-import MessageMetadataImpl from '../MessageMetadata/MessageMetadataImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class MessageImpl implements Message, Serializable<Message> {
+export default class MessageImpl implements Message {
   private messageMetadata: MessageMetadata;
   private id: string;
   private promoted: boolean;
@@ -41,15 +39,5 @@ export default class MessageImpl implements Message, Serializable<Message> {
 
   getContent(): string {
     return this.content;
-  }
-
-  fromJSON(serializedObject: Object): Message {
-    return MessageImpl.fromJSON(serializedObject);
-  }
-
-  static fromJSON(serializedObject: Object): Message {
-    let d = Object.assign(new MessageImpl(), serializedObject);
-    d.messageMetadata = MessageMetadataImpl.fromJSON(d['messageMetadata']);
-    return d;
   }
 }

@@ -1,12 +1,9 @@
 import MessagingServerMetadata from './MessagingServerMetadata';
-import Serializable from '../../utils/serialization/Serializable';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class MessagingServerMetadataImpl
-  implements MessagingServerMetadata, Serializable<MessagingServerMetadataImpl> {
-
+export default class MessagingServerMetadataImpl implements MessagingServerMetadata {
   getId(): string {
     throw new Error('Method not implemented.');
   }
@@ -14,12 +11,8 @@ export default class MessagingServerMetadataImpl
   getInfo(): string {
     throw new Error('Method not implemented.');
   }
-  
-  getStatistics(): string {
-    throw new Error('Method not implemented.');
-  }
 
-  fromJSON(serializedObject: Object): MessagingServerMetadataImpl {
+  getStatistics(): string {
     throw new Error('Method not implemented.');
   }
 }

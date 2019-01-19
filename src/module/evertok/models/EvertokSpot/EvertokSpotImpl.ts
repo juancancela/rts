@@ -1,12 +1,10 @@
-import Serializable from '../../../commons/utils/serialization/Serializable';
 import EvertokSpot from './EvertokSpot';
 import GeoLocation from '../../../commons/models/GeoLocation/GeoLocation';
-import GeoLocationImpl from '../../../commons/models/GeoLocation/GeoLocationImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class EvertokSpotImpl implements EvertokSpot, Serializable<EvertokSpotImpl> {
+export default class EvertokSpotImpl implements EvertokSpot {
   private geoLocation: GeoLocation;
   private radius: number;
   private image: string;
@@ -63,15 +61,5 @@ export default class EvertokSpotImpl implements EvertokSpot, Serializable<Everto
 
   getId(): string {
     return this.id;
-  }
-
-  fromJSON(serializedObject: Object): EvertokSpotImpl {
-    return EvertokSpotImpl.fromJSON(serializedObject);
-  }
-
-  static fromJSON(serializedObject: Object): EvertokSpotImpl {
-    let d = Object.assign(new EvertokSpotImpl(), serializedObject);
-    d.geoLocation = GeoLocationImpl.fromJSON(d['geoLocation']);
-    return d;
   }
 }
