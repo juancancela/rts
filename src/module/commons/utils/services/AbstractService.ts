@@ -6,7 +6,7 @@ import Modules from '../../../../utils/modules/Modules';
  */
 abstract class AbstractService {
   async execute(methodName: string, params: any, command: Command, serviceName: string, moduleName: Modules): Promise<any> {
-    return await command.execute(moduleName, serviceName, methodName, params, 'http://localhost:8090/remote');
+    return await command.execute(moduleName, serviceName, methodName, params, process.env.RT_API_PATH);
   }
 }
 
