@@ -1,4 +1,6 @@
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default abstract class BaseModule {}
+export default interface Resource {
+  getId(): string;
+}

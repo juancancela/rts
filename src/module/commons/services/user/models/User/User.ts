@@ -1,10 +1,10 @@
 import UserPersonalData from '../UserPersonalData/UserPersonalData';
-import BaseResource from '../../../../utils/resources/BaseResource';
+import Resource from '../../../../utils/resources/Resource';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface User extends BaseResource {
+export default interface User extends Resource {
   getUserPersonalData(): UserPersonalData;
   getTag(): string;
   setAvatar(file: any): void;

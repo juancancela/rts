@@ -4,15 +4,19 @@ import Room from './Room';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class RoomImpl implements Room {
-  getName(): string {
-    throw new Error('Method not implemented.');
+  private name: string;
+  private id: string;
+
+  constructor(name: string, id: string) {
+    this.name = name;
+    this.id = id;
   }
 
-  setName(): string {
-    throw new Error('Method not implemented.');
+  getName(): string {
+    return this.name;
   }
 
   getId(): string {
-    throw new Error('Method not implemented.');
+    return this.id;
   }
 }

@@ -1,10 +1,10 @@
 import User from '../../../commons/services/user/models/User/User';
-import BaseResource from '../../../commons/utils/resources/BaseResource';
+import Resource from '../../../commons/utils/resources/Resource';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface EvertokSpotMetadata extends BaseResource {
+export default interface EvertokSpotMetadata extends Resource {
   getMembersCount(): number;
   getUnreadMessages(user: User): number;
   getLastDateOfRead(user: User): number;

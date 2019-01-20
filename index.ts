@@ -1,2 +1,2 @@
-import RT from './src/RT';
-export { RT as rt };
+import RTS from './src/RTS';
+export { RTS as rt };

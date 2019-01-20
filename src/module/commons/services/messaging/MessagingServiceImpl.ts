@@ -8,12 +8,14 @@ import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
-import AbstractService from '../../utils/services/AbstractService';
+import AbstractBaseService from '../../utils/services/AbstractBaseService';
+import Room from '../../models/Room/Room';
+import RoomFilter from '../../models/Room/RoomFilter';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class MessagingServiceImpl extends AbstractService implements MessagingService, Commandable {
+export default class MessagingServiceImpl extends AbstractBaseService implements MessagingService, Commandable {
   private isRemoteExecution: boolean = false;
 
   constructor(isRemote: boolean = false) {
@@ -38,7 +40,7 @@ export default class MessagingServiceImpl extends AbstractService implements Mes
     throw new Error('Method not implemented.');
   }
 
-  async reportMessage(reportedMessage: Message, reportedUser: User): Promise<void> {
+  async reportMessage(reportedMessage: Message, reportedUser: User): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
@@ -46,7 +48,7 @@ export default class MessagingServiceImpl extends AbstractService implements Mes
     throw new Error('Method not implemented.');
   }
 
-  async sendMessage(message: Message): Promise<Message> {
+  async sendMessageToRoom(message: Message, room: Room): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
@@ -65,6 +67,28 @@ export default class MessagingServiceImpl extends AbstractService implements Mes
   }
 
   async deleteMessage(messageId: string): Promise<Message> {
+    throw new Error('Method not implemented.');
+  }
+
+  getModerators(room: Room): Promise<User[]> {
+    throw new Error('Method not implemented.');
+  }
+  updateRoomName(updatedName: string, room: Room): Promise<Room> {
+    throw new Error('Method not implemented.');
+  }
+  getRooms(roomFilter: RoomFilter): Promise<Room[]> {
+    throw new Error('Method not implemented.');
+  }
+  createRoom(newRoom: Room): Promise<Room> {
+    throw new Error('Method not implemented.');
+  }
+  deleteRoom(room: Room): Room {
+    throw new Error('Method not implemented.');
+  }
+  addUserToRoom(user: User, room: Room): Promise<User> {
+    throw new Error('Method not implemented.');
+  }
+  removeUserFromRoom(user: User, room: Room): Promise<User> {
     throw new Error('Method not implemented.');
   }
 

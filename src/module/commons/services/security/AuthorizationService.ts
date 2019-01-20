@@ -1,7 +1,6 @@
-import BaseService from '../../utils/services/BaseService';
+import Service from '../../utils/services/Service';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface AuthorizationService extends BaseService {
-}
+export default interface AuthorizationService extends Service {}

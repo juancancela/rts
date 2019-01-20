@@ -1,7 +1,7 @@
-import EvertokSpot from "./EvertokSpot";
-import BaseFilter from "../../../commons/utils/filters/BaseFilter";
+import EvertokSpot from './EvertokSpot';
+import Filter from '../../../commons/utils/filters/Filter';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface SpotFilter extends BaseFilter<EvertokSpot> {}
+export default interface SpotFilter extends Filter<EvertokSpot> {}

@@ -4,9 +4,23 @@ import AuthenticationService from './services/security/AuthenticationService';
 import AuthorizationService from './services/security/AuthorizationService';
 import UserService from './services/user/UserService';
 import CommonsModule from './CommonsModule';
-import BaseService from './utils/services/BaseService';
+import Service from './utils/services/Service';
 
 /**
+ * @description
+ *
+ * Commons Module
+ * ===============================
+ * Module Services:
+ *   * Geolocation
+ *   * Messaging
+ *   * Authentication
+ *   * Authorization
+ *   * User Management
+ *
+ * Commons module emcompasses the fundational, core services provided by RTS platform.
+ * They are widely used throughout rest of RTS services.
+ *
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class CommonsModuleImpl implements CommonsModule {
@@ -30,7 +44,7 @@ export default class CommonsModuleImpl implements CommonsModule {
     this.userService = userService;
   }
 
-  getServices(): BaseService[] {
+  getServices(): Service[] {
     return [
       this.getLocationService(),
       this.getMessagingService(),

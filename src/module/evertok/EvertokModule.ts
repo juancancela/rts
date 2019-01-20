@@ -1,11 +1,11 @@
-import BaseModule from "../commons/utils/modules/BaseModule";
-import EvertokSpotService from "./services/evertokSpot/EvertokSpotService";
-import EvertokUserService from "./services/evertokUser/EvertokUserService";
+import AbstractBaseModule from '../commons/utils/modules/AbstractBaseModule';
+import EvertokSpotService from './services/evertokSpot/EvertokSpotService';
+import EvertokUserService from './services/evertokUser/EvertokUserService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface EvertokModule extends BaseModule {
+export default interface EvertokModule extends AbstractBaseModule {
   getSpotService(): EvertokSpotService;
   getUserService(): EvertokUserService;
 }

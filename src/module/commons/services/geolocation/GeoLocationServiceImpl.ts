@@ -5,14 +5,16 @@ import GeoLocation from '../../models/GeoLocation/GeoLocation';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
 import Modules from '../../../../utils/modules/Modules';
+import AbstractBaseService from '../../utils/services/AbstractBaseService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class GeoLocationServiceImpl implements GeoLocationService, Commandable {
+export default class GeoLocationServiceImpl extends AbstractBaseService implements GeoLocationService, Commandable {
   private isRemoteExecution: boolean = false;
 
   constructor(isRemote: boolean = false) {
+    super();
     this.isRemoteExecution = isRemote;
   }
 

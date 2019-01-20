@@ -1,7 +1,7 @@
+import Room from './Room';
 import Filter from '../../utils/filters/Filter';
-import Identity from '../Identity/Identity';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface AuthFilter extends Filter<Identity> {}
+export default interface RoomFilter extends Filter<Room> {}

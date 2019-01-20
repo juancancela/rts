@@ -1,20 +1,18 @@
 import EvertokSpotService from './EvertokSpotService';
 import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import User from '../../../commons/services/user/models/User/User';
-import EvertokSpotMetadata from '../../models/EvertokSpotMetadata/EvertokSpotMetadata';
 import SpotFilter from '../../models/EvertokSpot/SpotFilter';
 import { mockedData } from './mockedTrendingData';
-import EvertokSpotImpl from '../../models/EvertokSpot/EvertokSpotImpl';
 import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
-import AbstractService from '../../../commons/utils/services/AbstractService';
+import AbstractBaseService from '../../../commons/utils/services/AbstractBaseService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class EvertokSpotServiceImpl extends AbstractService implements EvertokSpotService, Commandable {
+export default class EvertokSpotServiceImpl extends AbstractBaseService implements EvertokSpotService, Commandable {
   private isRemoteExecution: boolean = false;
 
   constructor(isRemote: boolean = false) {
@@ -31,54 +29,6 @@ export default class EvertokSpotServiceImpl extends AbstractService implements E
     return this.isRemoteExecution;
   }
 
-  async create(newSpot: EvertokSpot): Promise<EvertokSpot> {
-    throw new Error('Method not implemented.');
-  }
-
-  async addUser(user: User, spot: EvertokSpot): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-
-  async removeUser(user: User, spot: EvertokSpot): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-
-  async archive(spot: EvertokSpot): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-
-  async getMetadata(spot: EvertokSpot, user: User): Promise<EvertokSpotMetadata> {
-    throw new Error('Method not implemented.');
-  }
-
-  async getFiles(spot: EvertokSpot) {
-    throw new Error('Method not implemented.');
-  }
-
-  async getSpots(spotFilter: SpotFilter): Promise<EvertokSpot[]> {
-    throw new Error('Method not implemented.');
-  }
-
-  async getModerators(spot: EvertokSpot): Promise<User[]> {
-    throw new Error('Method not implemented.');
-  }
-
-  async updateName(updatedName: string, spot: EvertokSpot): Promise<EvertokSpot> {
-    throw new Error('Method not implemented.');
-  }
-
-  async setAnnouncement(announcement: string): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-
-  async setDescription(description: string): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-
-  async setTopic(topic: string): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-
   async getUserVisitedSpots(user: User): Promise<EvertokSpot[]> {
     throw new Error('Method not implemented.');
   }
@@ -88,6 +38,7 @@ export default class EvertokSpotServiceImpl extends AbstractService implements E
   }
 
   async getTrendingSpots(): Promise<EvertokSpot[]> {
+    console.log('executing getTrendingSpots()');
     return this.isRemote()
       ? await this.execute('getTrendingSpots', null, this.getCommand(), this.getServiceName(), this.getModuleName())
       : mockedData;

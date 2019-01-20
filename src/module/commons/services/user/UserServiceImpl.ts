@@ -5,14 +5,16 @@ import Commandable from '../../../../utils/command/Commandable';
 import Command from '../../../../utils/command/Command';
 import CommandImpl from '../../../../utils/command/CommandImpl';
 import Modules from '../../../../utils/modules/Modules';
+import AbstractBaseService from '../../utils/services/AbstractBaseService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class UserServiceImpl implements UserService, Commandable {
+export default class UserServiceImpl extends AbstractBaseService implements UserService, Commandable {
   private isRemoteExecution: boolean = false;
 
   constructor(isRemote: boolean = false) {
+    super();
     this.isRemoteExecution = isRemote;
   }
 

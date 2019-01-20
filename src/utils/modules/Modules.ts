@@ -1,9 +1,10 @@
 /**
+ * @description List of RTS modules
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 enum Modules {
-    COMMONS = 'COMMONS',
-    EVERTOK = 'EVERTOK'
+  COMMONS = 'COMMONS',
+  EVERTOK = 'EVERTOK'
 }
 
 export default Modules;

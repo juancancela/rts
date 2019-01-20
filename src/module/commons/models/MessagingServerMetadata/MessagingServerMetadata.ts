@@ -1,9 +1,9 @@
-import BaseResource from '../../utils/resources/BaseResource';
+import Resource from '../../utils/resources/Resource';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface MessagingServerMetadata extends BaseResource {
+export default interface MessagingServerMetadata extends Resource {
   getInfo(): string;
   getStatistics(): string;
 }
