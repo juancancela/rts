@@ -64,6 +64,9 @@ import EvertokModule from './module/evertok/EvertokModule';
  *   constructors, then class methods are not accessible when the service
  *   invokation started remotely.
  *
+ * * RTS heavily relies on Typescript (TS) to transfer typing data between local
+ *   and remote operations, thus at the moment is required to have TS both on
+ *   client and server. Eventually it would work on any ES6 compliant runtime.
  *
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
