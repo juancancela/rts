@@ -4,25 +4,26 @@ import User from '../user/models/User/User';
 import MessageFilter from '../../models/Message/MessageFilter';
 import RoomFilter from '../../models/Room/RoomFilter';
 import Room from '../../models/Room/Room';
+import UserImpl from '../user/models/User/UserImpl';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface MessagingService extends Service {
-  pinMessage(message: Message): Promise<Message>;
-  unpinMessage(message: Message): Promise<Message>;
-  reportMessage(reportedMessage: Message, reportedUser: User): Promise<Message>;
-  getLastMessage(user: User): Promise<Message>;
-  sendMessageToRoom(message: Message, room: Room): Promise<Message>;
+  pinMessage(messageId: string): Promise<Message>;
+  unpinMessage(messageId: string): Promise<Message>;
+  reportMessage({ messageId, userId }: { messageId: string; userId: string }): Promise<Message>;
+  getLastMessage(userId: string): Promise<Message>;
+  sendMessageToRoom(messageId: string, roomId: string): Promise<Message>;
   getMessage(messageId: string): Promise<Message>;
   getMessages(messageFilter: MessageFilter): Promise<Message[]>;
   updateMessage(updatedMessage: Message): Promise<Message>;
   deleteMessage(messageId: string): Promise<Message>;
-  getModerators(room: Room): Promise<User[]>;
-  updateRoomName(updatedName: string, room: Room): Promise<Room>;
+  getModerators(roomId: string): Promise<User[]>;
+  updateRoomName(updatedName: string, roomId: string): Promise<Room>;
   getRooms(roomFilter: RoomFilter): Promise<Room[]>;
   createRoom(newRoom: Room): Promise<Room>;
-  deleteRoom(room: Room): Room;
-  addUserToRoom(user: User, room: Room): Promise<User>;
-  removeUserFromRoom(user: User, room: Room): Promise<User>;
+  deleteRoom(roomId: string): Room;
+  addUserToRoom(userId: string, roomId: string): Promise<User>;
+  removeUserFromRoom(userId: string, roomID: string): Promise<User>;
 }

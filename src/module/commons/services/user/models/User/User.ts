@@ -7,6 +7,5 @@ import Resource from '../../../../utils/resources/Resource';
 export default interface User extends Resource {
   getUserPersonalData(): UserPersonalData;
   getTag(): string;
-  setAvatar(file: any): void;
   getAvatar(): string;
 }

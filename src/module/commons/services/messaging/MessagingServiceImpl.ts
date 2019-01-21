@@ -16,27 +16,29 @@ import remote from '../../../../utils/decorators/remote';
  */
 export default class MessagingServiceImpl extends AbstractBaseService implements MessagingService, Commandable {
   @remote
-  async pinMessage(message: Message): Promise<Message> {
+  async pinMessage(messageId: string): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  async unpinMessage(message: Message): Promise<Message> {
+  async unpinMessage(messageId: string): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  async reportMessage(reportedMessage: Message, reportedUser: User): Promise<Message> {
-    return new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'zaraza report');
+  async reportMessage({ messageId, userId }: { messageId: string; userId: string }): Promise<Message> {
+    console.log('messageId => ', messageId);
+    console.log('userId => ', userId);
+    return await new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'zaraza report');
   }
 
   @remote
-  async getLastMessage(user: User): Promise<Message> {
+  async getLastMessage(userId: string): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  async sendMessageToRoom(message: Message, room: Room): Promise<Message> {
+  async sendMessageToRoom(messageId: string, roomId: string): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
@@ -61,12 +63,12 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
-  getModerators(room: Room): Promise<User[]> {
+  getModerators(roomId: string): Promise<User[]> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  updateRoomName(updatedName: string, room: Room): Promise<Room> {
+  updateRoomName(updatedName: string, roomId: string): Promise<Room> {
     throw new Error('Method not implemented.');
   }
 
@@ -81,17 +83,17 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
-  deleteRoom(room: Room): Room {
+  deleteRoom(roomId: string): Room {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  addUserToRoom(user: User, room: Room): Promise<User> {
+  addUserToRoom(userId: string, roomId: string): Promise<User> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  removeUserFromRoom(user: User, room: Room): Promise<User> {
+  removeUserFromRoom(userId: string, roomId: string): Promise<User> {
     throw new Error('Method not implemented.');
   }
 

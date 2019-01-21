@@ -1,3 +1,5 @@
+import GeoLocation from '../../../../models/GeoLocation/GeoLocation';
+
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
@@ -7,6 +9,6 @@ export default interface UserPersonalData {
   getMiddleLetter(): string;
   getLastName(): string;
   getEmailAddress(): string;
-  getUserDefaultPosition(): Position;
+  getUserDefaultPosition(): GeoLocation;
   getBio(): string;
 }

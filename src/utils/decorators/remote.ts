@@ -6,7 +6,7 @@
 function remote(target, key, descriptor) {
   const originalFunction = descriptor.value;
   if (target.isRemote()) {
-    descriptor.value = async (params: any) => {
+    descriptor.value = async (params: any[]) => {
       if (!target.isRemote()) {
         return await originalFunction(params);
       } else {

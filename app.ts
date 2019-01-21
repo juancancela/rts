@@ -13,6 +13,9 @@ const command = new CommandImpl();
 import * as dotenv from 'dotenv';
 import MessageFilterImpl from './src/module/commons/models/Message/MessageFilterImpl';
 import Config from './src/config/Config';
+import { MessageImpl, GeoLocationImpl, MessageMetadataImpl } from './src/module/commons/models';
+import UserImpl from './src/module/commons/services/user/models/User/UserImpl';
+import UserPersonalDataImpl from './src/module/commons/services/user/models/UserPersonalData/UserPersonalDataImpl';
 dotenv.config();
 //*****************************************************************************
 
@@ -41,10 +44,19 @@ app.get('/test', async (req: any, res: any) => {
 
 app.get('/test2', async (req: any, res: any) => {
   Config.isRemote = true;
+  let userPersonalData = new UserPersonalDataImpl(
+    'juan cancela',
+    'juan',
+    'c',
+    'cancela',
+    'cancela.juancarlos@gmail.com',
+    new GeoLocationImpl(45, 32),
+    'dev'
+  );
   const result = await rt
     .getCommonsModule()
     .getMessagingService()
-    .reportMessage(null, null);
+    .reportMessage({ messageId: '123', userId: '43' });
   return res.send(result);
 });
 //*****************************************************************************
