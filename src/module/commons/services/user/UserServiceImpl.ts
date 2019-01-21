@@ -2,8 +2,6 @@ import UserService from './UserService';
 import User from './models/User/User';
 import UserFilter from './models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
-import Command from '../../../../utils/command/Command';
-import CommandImpl from '../../../../utils/command/CommandImpl';
 import Modules from '../../../../utils/modules/Modules';
 import AbstractBaseService from '../../utils/services/AbstractBaseService';
 
