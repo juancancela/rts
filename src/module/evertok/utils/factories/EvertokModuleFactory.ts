@@ -1,4 +1,3 @@
-import ExecutionContext from '../../../commons/utils/constants/ExecutionContext';
 import EvertokModuleImpl from '../../EvertokModuleImpl';
 import EvertokSpotServiceImpl from '../../services/evertokSpot/EvertokSpotServiceImpl';
 import EvertokUserServiceImpl from '../../services/evertokUser/EvertokUserServiceImpl';

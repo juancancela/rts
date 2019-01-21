@@ -5,21 +5,23 @@ import { mockedData } from './mockedTrendingData';
 import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import AbstractBaseService from '../../../commons/utils/services/AbstractBaseService';
+import remote from '../../../../utils/decorators/remote';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokSpotServiceImpl extends AbstractBaseService implements EvertokSpotService, Commandable {
-  async getUserVisitedSpots(user: User): Promise<EvertokSpot[]> {
+  @remote
+  async getUserVisitedSpots(userId: String): Promise<EvertokSpot[]> {
     throw new Error('Method not implemented.');
   }
 
-  async getUserCurrentSpot(user: User): Promise<EvertokSpot> {
+  @remote
+  async getUserCurrentSpot(userId: String): Promise<EvertokSpot> {
     throw new Error('Method not implemented.');
   }
 
   async getTrendingSpots(): Promise<EvertokSpot[]> {
-    console.log('executing getTrendingSpots()');
     return mockedData;
   }
 

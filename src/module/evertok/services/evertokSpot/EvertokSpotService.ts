@@ -9,6 +9,6 @@ import SpotFilter from '../../models/EvertokSpot/SpotFilter';
  */
 export default interface EvertokSpotService extends Service {
   getTrendingSpots(): Promise<EvertokSpot[]>;
-  getUserVisitedSpots(user: User): Promise<EvertokSpot[]>;
-  getUserCurrentSpot(user: User): Promise<EvertokSpot>;
+  getUserVisitedSpots(userId: String): Promise<EvertokSpot[]>;
+  getUserCurrentSpot(userId: String): Promise<EvertokSpot>;
 }
