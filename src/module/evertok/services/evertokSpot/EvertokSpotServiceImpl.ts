@@ -22,7 +22,7 @@ export default class EvertokSpotServiceImpl extends AbstractBaseService implemen
   }
 
   async getTrendingSpots(): Promise<EvertokSpot[]> {
-    return mockedData;
+    return await mockedData;
   }
 
   getModuleName(): Modules {

@@ -53,7 +53,7 @@ export default class CommandImpl implements Command {
    */
   async executeLocally(module: any, serviceName: string, methodName: string, parameters: any) {
     const targetService = module[serviceName];
-    return targetService[methodName](parameters);
+    return await targetService[methodName](parameters);
   }
 
   /**

@@ -1,6 +1,5 @@
 import CommandImpl from './src/utils/command/CommandImpl';
-import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
-import rt from './src/RTS';
+import rts from './src/RTS';
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -35,7 +34,7 @@ app.get('/socket', (req: any, res: any) => {
 
 app.get('/test', async (req: any, res: any) => {
   Config.isRemote = true;
-  const result = await rt
+  const result = await rts
     .getEvertokModule()
     .getSpotService()
     .getTrendingSpots();
@@ -44,16 +43,7 @@ app.get('/test', async (req: any, res: any) => {
 
 app.get('/test2', async (req: any, res: any) => {
   Config.isRemote = true;
-  let userPersonalData = new UserPersonalDataImpl(
-    'juan cancela',
-    'juan',
-    'c',
-    'cancela',
-    'cancela.juancarlos@gmail.com',
-    new GeoLocationImpl(45, 32),
-    'dev'
-  );
-  const result = await rt
+  const result = await rts
     .getCommonsModule()
     .getMessagingService()
     .reportMessage({ messageId: '123', userId: '43' });
