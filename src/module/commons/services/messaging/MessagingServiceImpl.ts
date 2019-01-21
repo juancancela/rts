@@ -6,88 +6,91 @@ import MessageFilter from '../../models/Message/MessageFilter';
 import MessageMetadataImpl from '../../models/MessageMetadata/MessageMetadataImpl';
 import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
-import Command from '../../../../utils/command/Command';
-import CommandImpl from '../../../../utils/command/CommandImpl';
 import AbstractBaseService from '../../utils/services/AbstractBaseService';
 import Room from '../../models/Room/Room';
 import RoomFilter from '../../models/Room/RoomFilter';
+import remote from '../../../../utils/decorators/remote';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class MessagingServiceImpl extends AbstractBaseService implements MessagingService, Commandable {
-  private isRemoteExecution: boolean = false;
-
-  constructor(isRemote: boolean = false) {
-    super();
-    this.isRemoteExecution = isRemote;
-  }
-
-  getCommand(): Command {
-    if (this.isRemote()) return new CommandImpl(true);
-    return new CommandImpl(false);
-  }
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
-  }
-
+  @remote
   async pinMessage(message: Message): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
+  @remote
   async unpinMessage(message: Message): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
+  @remote
   async reportMessage(reportedMessage: Message, reportedUser: User): Promise<Message> {
-    throw new Error('Method not implemented.');
+    return new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'zaraza report');
   }
 
+  @remote
   async getLastMessage(user: User): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
+  @remote
   async sendMessageToRoom(message: Message, room: Room): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
+  @remote
   async getMessage(messageId: string): Promise<Message> {
-    if (this.isRemote()) return await this.execute('getMessage', null, this.getCommand(), this.getServiceName(), this.getModuleName());
     return await new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), messageId, true, 'local text content');
   }
 
+  @remote
   async getMessages(messageFilter: MessageFilter): Promise<Message[]> {
-    if (this.isRemote()) return await this.execute('getMessages', null, this.getCommand(), this.getServiceName(), this.getModuleName());
     return await [new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'local text content')];
   }
 
+  @remote
   async updateMessage(updatedMessage: Message): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
+  @remote
   async deleteMessage(messageId: string): Promise<Message> {
     throw new Error('Method not implemented.');
   }
 
+  @remote
   getModerators(room: Room): Promise<User[]> {
     throw new Error('Method not implemented.');
   }
+
+  @remote
   updateRoomName(updatedName: string, room: Room): Promise<Room> {
     throw new Error('Method not implemented.');
   }
+
+  @remote
   getRooms(roomFilter: RoomFilter): Promise<Room[]> {
     throw new Error('Method not implemented.');
   }
+
+  @remote
   createRoom(newRoom: Room): Promise<Room> {
     throw new Error('Method not implemented.');
   }
+
+  @remote
   deleteRoom(room: Room): Room {
     throw new Error('Method not implemented.');
   }
+
+  @remote
   addUserToRoom(user: User, room: Room): Promise<User> {
     throw new Error('Method not implemented.');
   }
+
+  @remote
   removeUserFromRoom(user: User, room: Room): Promise<User> {
     throw new Error('Method not implemented.');
   }

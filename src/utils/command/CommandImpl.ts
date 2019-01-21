@@ -5,6 +5,7 @@ import Modules from '../modules/Modules';
 import CommonsModuleFactory from '../../module/commons/utils/factories/CommonsModuleFactory';
 import EvertokModuleFactory from '../../module/evertok/utils/factories/EvertokModuleFactory';
 import AbstractBaseModule from '../../module/commons/utils/modules/AbstractBaseModule';
+import Config from '../../config/Config';
 
 /**
  * @description
@@ -12,19 +13,10 @@ import AbstractBaseModule from '../../module/commons/utils/modules/AbstractBaseM
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class CommandImpl implements Command {
-  private isRemoteExecution: boolean = false;
   private modules = {
-    commons: CommonsModuleFactory.create(ExecutionContext.LOCAL),
-    evertok: EvertokModuleFactory.create(ExecutionContext.LOCAL)
+    commons: CommonsModuleFactory.create(),
+    evertok: EvertokModuleFactory.create()
   };
-
-  constructor(isRemoteExecution: boolean = false) {
-    this.isRemoteExecution = isRemoteExecution;
-  }
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
-  }
 
   getModule<T extends AbstractBaseModule>(moduleName: Modules): T {
     return this.modules[moduleName.toLowerCase()];
@@ -79,8 +71,10 @@ export default class CommandImpl implements Command {
    * @param remoteEndpoint URL of the remote endpoint where RTS is deployed, to send the remote operation, if needed.
    */
   async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint?: string): Promise<Object[]> {
-    return this.isRemote()
-      ? await this.executeRemotely(moduleName, serviceName, methodName, parameters, remoteEndpoint)
-      : await this.executeLocally(this.getModule(moduleName), serviceName, methodName, parameters);
+    if (Config.isRemote === true) {
+      return await this.executeRemotely(moduleName, serviceName, methodName, parameters, remoteEndpoint);
+    } else {
+      return await this.executeLocally(this.getModule(moduleName), serviceName, methodName, parameters);
+    }
   }
 }

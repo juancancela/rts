@@ -9,13 +9,12 @@ import EvertokModule from '../../EvertokModule';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokModuleFactory implements AbstractFactory<EvertokModule> {
-  static create(context: ExecutionContext): EvertokModule {
-    const isRemote = context === ExecutionContext.REMOTE ? true : false;
-    return new EvertokModuleImpl(new EvertokSpotServiceImpl(isRemote), new EvertokUserServiceImpl(isRemote));
+  static create(): EvertokModule {
+    return new EvertokModuleImpl(new EvertokSpotServiceImpl(), new EvertokUserServiceImpl());
   }
 
-  create(context: ExecutionContext): EvertokModule {
-    return EvertokModuleFactory.create(context);
+  create(): EvertokModule {
+    return EvertokModuleFactory.create();
   }
 
   private constructor() {}

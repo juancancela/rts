@@ -3,8 +3,6 @@ import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import User from '../../../commons/services/user/models/User/User';
 import UserFilter from '../../../commons/services/user/models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
-import Command from '../../../../utils/command/Command';
-import CommandImpl from '../../../../utils/command/CommandImpl';
 import Modules from '../../../../utils/modules/Modules';
 import AbstractBaseService from '../../../commons/utils/services/AbstractBaseService';
 
@@ -12,21 +10,6 @@ import AbstractBaseService from '../../../commons/utils/services/AbstractBaseSer
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokUserServiceImpl extends AbstractBaseService implements EvertokUserService, Commandable {
-  private isRemoteExecution: boolean = false;
-
-  constructor(isRemote: boolean = false) {
-    super();
-    this.isRemoteExecution = isRemote;
-  }
-
-  getCommand(): Command {
-    if (this.isRemote()) return new CommandImpl(true);
-    return new CommandImpl(false);
-  }
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
-  }
   getCurrentlyConnectedUsers(spot: EvertokSpot): User[] {
     throw new Error('Method not implemented.');
   }

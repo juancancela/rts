@@ -2,29 +2,13 @@ import AuthenticationService from './AuthenticationService';
 import Identity from '../../models/Identity/Identity';
 import User from '../user/models/User/User';
 import Commandable from '../../../../utils/command/Commandable';
-import Command from '../../../../utils/command/Command';
-import CommandImpl from '../../../../utils/command/CommandImpl';
 import Modules from '../../../../utils/modules/Modules';
+import AbstractBaseService from '../../utils/services/AbstractBaseService';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class AuthenticationServiceImpl implements AuthenticationService, Commandable {
-  private isRemoteExecution: boolean = false;
-
-  constructor(isRemote: boolean = false) {
-    this.isRemoteExecution = isRemote;
-  }
-
-  getCommand(): Command {
-    if (this.isRemote()) return new CommandImpl(true);
-    return new CommandImpl(false);
-  }
-
-  isRemote(): boolean {
-    return this.isRemoteExecution;
-  }
-
+export default class AuthenticationServiceImpl extends AbstractBaseService implements AuthenticationService, Commandable {
   login(identity: Identity): boolean {
     throw new Error('Method not implemented.');
   }

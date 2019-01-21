@@ -5,12 +5,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const log = console.log;
-const command = new CommandImpl(false);
+const command = new CommandImpl();
 
 //*****************************************************************************
 // Environment Configuration
 //*****************************************************************************
 import * as dotenv from 'dotenv';
+import MessageFilterImpl from './src/module/commons/models/Message/MessageFilterImpl';
+import Config from './src/config/Config';
 dotenv.config();
 //*****************************************************************************
 
@@ -29,18 +31,20 @@ app.get('/socket', (req: any, res: any) => {
 });
 
 app.get('/test', async (req: any, res: any) => {
+  Config.isRemote = true;
   const result = await rt
-    .getEvertokModule(ExecutionContext.REMOTE)
+    .getEvertokModule()
     .getSpotService()
     .getTrendingSpots();
   return res.send(result);
 });
 
 app.get('/test2', async (req: any, res: any) => {
+  Config.isRemote = true;
   const result = await rt
-    .getCommonsModule(ExecutionContext.REMOTE)
+    .getCommonsModule()
     .getMessagingService()
-    .getMessages(null);
+    .reportMessage(null, null);
   return res.send(result);
 });
 //*****************************************************************************
@@ -49,6 +53,7 @@ app.get('/test2', async (req: any, res: any) => {
 // Remote Method Execution Entry Point
 //*****************************************************************************
 app.post('/remote', async (req: any, res: any) => {
+  Config.isRemote = false;
   const { moduleName, methodName, serviceName, parameters } = req.body;
   log(`Executing remotely ${serviceName}.${methodName}()`);
   return res.send(await command.execute(moduleName, serviceName, methodName, parameters));
