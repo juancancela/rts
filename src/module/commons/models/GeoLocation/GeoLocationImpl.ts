@@ -1,6 +1,7 @@
 import GeoLocation from './GeoLocation';
 
 /**
+ * GeoLocation provides a contract for geo positioning
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class GeoLocationImpl implements GeoLocation {
@@ -16,14 +17,23 @@ export default class GeoLocationImpl implements GeoLocation {
     this.lon = lon;
   }
 
+  /**
+   * @returns the latitude
+   */
   getLat(): number {
     return this.lat;
   }
 
+  /**
+   * @returns the longitude
+   */
   getLon(): number {
     return this.lon;
   }
 
+  /**
+   * @returns the id of the instance
+   */
   getId(): string {
     return 'GeoLocationImpl';
   }
