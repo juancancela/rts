@@ -51,12 +51,10 @@ export default class EvertokUserServiceImpl extends AbstractBaseService implemen
     throw new Error('Method not implemented.');
   }
 
-  @remote
   getModuleName(): Modules {
     return Modules.EVERTOK;
   }
 
-  @remote
   getServiceName(): string {
     return 'evertokUserService';
   }

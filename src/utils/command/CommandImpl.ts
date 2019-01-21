@@ -29,10 +29,9 @@ export default class CommandImpl implements Command {
    * @param serviceName name of the service to which the method that needs to the executed belongs to.
    * @param methodName name of the method that needs to be executed.
    * @param parameters parameters that need to be provided to the target method.
-   * @param remoteEndpoint URL of the remote endpoint where RTS is deployed, to send the remote operation, if needed.
    */
-  async executeRemotely(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint: string) {
-    return (await fetch(remoteEndpoint, {
+  async executeRemotely(moduleName: Modules, serviceName: string, methodName: string, parameters: any) {
+    return (await fetch(Config.apiBaseUrl, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -68,11 +67,10 @@ export default class CommandImpl implements Command {
    * @param serviceName name of the service to which the method that needs to the executed belongs to.
    * @param methodName name of the method that needs to be executed.
    * @param parameters parameters that need to be provided to the target method.
-   * @param remoteEndpoint URL of the remote endpoint where RTS is deployed, to send the remote operation, if needed.
    */
-  async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any, remoteEndpoint?: string): Promise<Object[]> {
+  async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any): Promise<Object[]> {
     if (Config.isRemote === true) {
-      return await this.executeRemotely(moduleName, serviceName, methodName, parameters, remoteEndpoint);
+      return await this.executeRemotely(moduleName, serviceName, methodName, parameters);
     } else {
       return await this.executeLocally(this.getModule(moduleName), serviceName, methodName, parameters);
     }

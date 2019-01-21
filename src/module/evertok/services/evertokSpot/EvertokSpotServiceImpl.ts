@@ -21,6 +21,7 @@ export default class EvertokSpotServiceImpl extends AbstractBaseService implemen
     throw new Error('Method not implemented.');
   }
 
+  @remote
   async getTrendingSpots(): Promise<EvertokSpot[]> {
     return await mockedData;
   }
