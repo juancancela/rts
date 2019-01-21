@@ -1,6 +1,5 @@
 import Command from './Command';
 import fetch from 'node-fetch';
-import ExecutionContext from '../../module/commons/utils/constants/ExecutionContext';
 import Modules from '../modules/Modules';
 import CommonsModuleFactory from '../../module/commons/utils/factories/CommonsModuleFactory';
 import EvertokModuleFactory from '../../module/evertok/utils/factories/EvertokModuleFactory';
@@ -23,6 +22,7 @@ export default class CommandImpl implements Command {
   }
 
   /**
+   * @description
    * Function in charge of creating a request to the given remote endpoint where RTS is running to reconstruct to the operation there,
    * and get back results.
    * @param moduleName name of the module to which the service that contains the method that needs to be executed belongs to.
@@ -43,6 +43,7 @@ export default class CommandImpl implements Command {
   }
 
   /**
+   * @description
    * Function in charge of look up target method and execute it with the given parameters.
    *
    * @param moduleName name of the module to which the service that contains the method that needs to be executed belongs to.
@@ -57,7 +58,6 @@ export default class CommandImpl implements Command {
 
   /**
    * @description
-   *
    * Function in charge of whether:
    *   * Run remote execution strategy, which means creating an HTTP POST request to the given endpoint with enough
    *     information on it to reconstruct the operation on the remote RTS instance.
