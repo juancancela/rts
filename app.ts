@@ -1,20 +1,16 @@
-import CommandImpl from './src/utils/command/CommandImpl';
-import rts from './src/RTS';
+import * as dotenv from 'dotenv';
+import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
+import RTS from './src/RTS';
+const rtsRemote = new RTS(ExecutionContext.REMOTE);
+const rtsLocal = new RTS(ExecutionContext.LOCAL);
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const log = console.log;
-const command = new CommandImpl();
 
 //*****************************************************************************
 // Environment Configuration
 //*****************************************************************************
-import * as dotenv from 'dotenv';
-import MessageFilterImpl from './src/module/commons/models/Message/MessageFilterImpl';
-import Config from './src/config/Config';
-import { MessageImpl, GeoLocationImpl, MessageMetadataImpl } from './src/module/commons/models';
-import UserImpl from './src/module/commons/services/user/models/User/UserImpl';
-import UserPersonalDataImpl from './src/module/commons/services/user/models/UserPersonalData/UserPersonalDataImpl';
 dotenv.config();
 //*****************************************************************************
 
@@ -33,8 +29,7 @@ app.get('/socket', (req: any, res: any) => {
 });
 
 app.get('/test', async (req: any, res: any) => {
-  Config.isRemote = true;
-  const result = await rts
+  const result = await rtsRemote
     .getEvertokModule()
     .getSpotService()
     .getTrendingSpots();
@@ -42,8 +37,7 @@ app.get('/test', async (req: any, res: any) => {
 });
 
 app.get('/test2', async (req: any, res: any) => {
-  Config.isRemote = true;
-  const result = await rts
+  const result = await rtsRemote
     .getCommonsModule()
     .getMessagingService()
     .reportMessage({ messageId: '123', userId: '43' });
@@ -55,10 +49,9 @@ app.get('/test2', async (req: any, res: any) => {
 // Remote Method Execution Entry Point
 //*****************************************************************************
 app.post('/remote', async (req: any, res: any) => {
-  Config.isRemote = false;
   const { moduleName, methodName, serviceName, parameters } = req.body;
   log(`Executing remotely ${serviceName}.${methodName}()`);
-  return res.send(await command.execute(moduleName, serviceName, methodName, parameters));
+  return res.send(await rtsLocal.getCommand().execute(moduleName, serviceName, methodName, parameters));
 });
 //*****************************************************************************
 

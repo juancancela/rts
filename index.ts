@@ -1,2 +1,3 @@
 import RTS from './src/RTS';
-export { RTS as rts };
+import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
+export default new RTS(ExecutionContext.REMOTE);

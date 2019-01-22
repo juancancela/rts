@@ -4,6 +4,8 @@ import CommonsModuleFactory from './module/commons/utils/factories/CommonsModule
 import EvertokModuleFactory from './module/evertok/utils/factories/EvertokModuleFactory';
 import CommonsModule from './module/commons/CommonsModule';
 import EvertokModule from './module/evertok/EvertokModule';
+import ExecutionContext from './module/commons/utils/constants/ExecutionContext';
+import Config from './config/Config';
 
 /**
  * @description
@@ -71,27 +73,36 @@ import EvertokModule from './module/evertok/EvertokModule';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class RTS {
-  private static command: Command = new CommandImpl();
-  private static commonsModule = CommonsModuleFactory.create();
-  private static evertokModule = EvertokModuleFactory.create();
+  private command: Command = new CommandImpl();
+  private commonsModule = CommonsModuleFactory.create();
+  private evertokModule = EvertokModuleFactory.create();
 
-  private constructor() {}
+  constructor(executionContext?: ExecutionContext) {
+    switch (executionContext) {
+      case ExecutionContext.LOCAL:
+        Config.isRemote = false;
+      case ExecutionContext.REMOTE:
+        Config.isRemote = true;
+      default:
+        Config.isRemote = false;
+    }
+  }
 
-  static getCommand(): Command {
+  getCommand(): Command {
     return this.command;
   }
 
   /**
    * @returns Commons Services Module
    */
-  static getCommonsModule(): CommonsModule {
+  getCommonsModule(): CommonsModule {
     return this.commonsModule;
   }
 
   /**
    * @returns Evertok Services Module
    */
-  static getEvertokModule(): EvertokModule {
+  getEvertokModule(): EvertokModule {
     return this.evertokModule;
   }
 }

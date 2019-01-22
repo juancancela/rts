@@ -6,5 +6,5 @@ import User from '../user/models/User/User';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface GeoLocationService extends Service {
-  getUserLocation(user: User): GeoLocation;
+  getUserLocation(userId: string): GeoLocation;
 }
