@@ -21,9 +21,9 @@ export default interface MessagingService extends Service {
   deleteMessage(messageId: string): Promise<Message>;
   getModerators(roomId: string): Promise<User[]>;
   updateRoomName(updatedName: string, roomId: string): Promise<Room>;
-  getRooms(roomFilter: RoomFilter): Promise<Room[]>;
   createRoom(newRoom: Room): Promise<Room>;
-  deleteRoom(roomId: string): Room;
+  deleteRoom(roomId: string): Promise<Room>;
   addUserToRoom(userId: string, roomId: string): Promise<User>;
   removeUserFromRoom(userId: string, roomID: string): Promise<User>;
+  getRooms(): Promise<Room[]>
 }

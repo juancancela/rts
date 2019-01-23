@@ -8,10 +8,11 @@ import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
 import AbstractBaseService from '../../utils/services/AbstractBaseService';
 import Room from '../../models/Room/Room';
-import RoomFilter from '../../models/Room/RoomFilter';
 import remote from '../../../../utils/decorators/remote';
+import RocketChatProvider from '../../providers/RocketChatProvider';
 
 /**
+ * @internal
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class MessagingServiceImpl extends AbstractBaseService implements MessagingService, Commandable {
@@ -53,6 +54,11 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
+  async getRooms(): Promise<Room[]> {
+    return await RocketChatProvider.channels_list();
+  }
+
+  @remote
   async updateMessage(updatedMessage: Message): Promise<Message> {
     throw new Error('Method not implemented.');
   }
@@ -63,37 +69,32 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
-  getModerators(roomId: string): Promise<User[]> {
+  async getModerators(roomId: string): Promise<User[]> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  updateRoomName(updatedName: string, roomId: string): Promise<Room> {
+  async updateRoomName(updatedName: string, roomId: string): Promise<Room> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  getRooms(roomFilter: RoomFilter): Promise<Room[]> {
+  async createRoom(newRoom: Room): Promise<Room> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  createRoom(newRoom: Room): Promise<Room> {
+  async deleteRoom(roomId: string): Promise<Room> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  deleteRoom(roomId: string): Room {
+  async addUserToRoom(userId: string, roomId: string): Promise<User> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  addUserToRoom(userId: string, roomId: string): Promise<User> {
-    throw new Error('Method not implemented.');
-  }
-
-  @remote
-  removeUserFromRoom(userId: string, roomId: string): Promise<User> {
+  async removeUserFromRoom(userId: string, roomId: string): Promise<User> {
     throw new Error('Method not implemented.');
   }
 

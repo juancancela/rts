@@ -4,10 +4,12 @@
   "description": "Randiantech Services Application",
   "main": "index.ts",
   "scripts": {
-    "watch-ts": "tsc -w",
-    "watch-node": "nodemon dist/server.js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
-    "lint": "./node_modules/.bin/eslint '**/*.ts*'"
+    "exec:watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run ___exec:watch:::exec:watch-ts\" \"yarn run ___exec:watch:::exec:watch-node\"",
+    "quality:lint": "./node_modules/.bin/eslint '**/*.ts*'",
+    "docs:generate": "./node_modules/typedoc/bin/typedoc --out docs/ src --module commonjs --target es6",
+    "docs:view": "open ./docs/index.html",
+    "___exec:watch:::exec:watch-ts": "tsc -w",
+    "___exec:watch:::exec:watch-node": "nodemon dist/server.js"
   },
   "keywords": [
     "api",
@@ -27,6 +29,8 @@
     "node-fetch": "^2.3.0",
     "socket.io": "^2.2.0",
     "systemjs": "^3.0.0",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-internal-external": "^2.0.1",
     "typescript-eslint-parser": "^21.0.2"
   },
   "devDependencies": {

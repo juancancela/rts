@@ -43,6 +43,11 @@ app.get('/test2', async (req: any, res: any) => {
     .reportMessage({ messageId: '123', userId: '43' });
   return res.send(result);
 });
+
+app.get('/test3', async (req: any, res: any) => {
+  const result = await rtsRemote.getCommonsModule().getMessagingService().getRooms();
+  return res.send(result);
+});
 //*****************************************************************************
 
 //*****************************************************************************

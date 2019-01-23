@@ -14,7 +14,7 @@ import Config from './config/Config';
  *
  * RTS emcompasses a set of data services used by Randiantech applications.
  * RTS is organized as a set of Modules that bundle a set of Services, each of
- * them providing a set of operations.
+ * them providing a set of service operations.
  *
  * RTS services are implemented using a dual/hybrid/remote architecture, so they
  * can be executed from remote locations (IE: A React Native app, a web app, or
@@ -73,10 +73,26 @@ import Config from './config/Config';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class RTS {
+  /**
+   * command is used to interact with RTS operation services, abstracting away
+   * the context of execution.
+   */
   private command: Command = new CommandImpl();
+
+  /**
+   * RTS Commons module
+   */
   private commonsModule = CommonsModuleFactory.create();
+
+  /**
+   * RTS Evertok module
+   */
   private evertokModule = EvertokModuleFactory.create();
 
+  /**
+   * @param executionContext sets execution context. If not provided, 
+   * defaults to local.
+   */
   constructor(executionContext?: ExecutionContext) {
     switch (executionContext) {
       case ExecutionContext.LOCAL:
@@ -88,6 +104,9 @@ export default class RTS {
     }
   }
 
+  /**
+   * @returns Command instance
+   */
   getCommand(): Command {
     return this.command;
   }
