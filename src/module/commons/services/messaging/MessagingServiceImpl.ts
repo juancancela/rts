@@ -55,7 +55,8 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
 
   @remote
   async getRooms(): Promise<Room[]> {
-    return await RocketChatProvider.channels_list();
+    const channels = await RocketChatProvider.channels_list();
+    return channels;
   }
 
   @remote
