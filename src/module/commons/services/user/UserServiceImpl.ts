@@ -5,6 +5,9 @@ import Commandable from '../../../../utils/command/Commandable';
 import Modules from '../../../../utils/modules/Modules';
 import AbstractBaseService from '../../utils/services/AbstractBaseService';
 import remote from '../../../../utils/decorators/remote';
+import Passport from '../../models/Passport/Passport';
+import PassportImpl from '../../models/Passport/PassportImpl';
+import Providers from '../../../../utils/providers/Providers';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -33,6 +36,15 @@ export default class UserServiceImpl extends AbstractBaseService implements User
   @remote
   createUser(newUser: User): User {
     throw new Error('Method not implemented.');
+  }
+
+  @remote
+  getUserPassport(userId: string): Passport {
+    const mockedPassport = new PassportImpl('1', '15560655', 'travel', {}, '1');
+    mockedPassport.setKey(Providers.ROCKET_CHAT, 'X-Auth-Token', '9YSiSLGtxV7XOPsFDxZmcN7eurrho2SWjmedhGWJ4nz');
+    mockedPassport.setKey(Providers.ROCKET_CHAT, 'X-User-Id', 'WzuLnwgsMmPq3CrwJ');
+
+    return mockedPassport;
   }
 
   @remote

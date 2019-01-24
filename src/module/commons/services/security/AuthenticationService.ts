@@ -1,12 +1,12 @@
 import User from '../user/models/User/User';
 import Service from '../../utils/services/Service';
-import Identity from '../../models/Identity/Identity';
+import Passport from '../../models/Passport/Passport';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface AuthenticationService extends Service {
-  login(identity: Identity): boolean;
-  signUp(identity: Identity, user: User): User;
-  recoverPassword(identity: Identity): void;
+  login(identity: Passport): boolean;
+  signUp(identity: Passport, user: User): User;
+  recoverPassword(identity: Passport): void;
 }
