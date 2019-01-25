@@ -1,6 +1,5 @@
 import Message from './Message';
-import Filter from '../../utils/filters/Filter';
-import { MessageFilter, MessageImpl } from '..';
+import MessageFilter from './MessageFilter';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

@@ -9,12 +9,15 @@ import EvertokModule from '../../EvertokModule';
  */
 export default class EvertokModuleFactory implements AbstractFactory<EvertokModule> {
   static create(): EvertokModule {
-    return new EvertokModuleImpl(new EvertokSpotServiceImpl(), new EvertokUserServiceImpl());
+    const evertokSpotService = new EvertokSpotServiceImpl();
+    const evertokUserService = new EvertokUserServiceImpl();
+
+    return new EvertokModuleImpl(evertokSpotService, evertokUserService);
   }
 
   create(): EvertokModule {
     return EvertokModuleFactory.create();
   }
 
-  private constructor() {}
+  private constructor() { }
 }

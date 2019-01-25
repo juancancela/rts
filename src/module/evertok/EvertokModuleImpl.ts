@@ -9,6 +9,10 @@ export default class EvertokModuleImpl implements EvertokModule {
   private spotService: EvertokSpotService;
   private userService: EvertokUserService;
 
+  /**
+   * @param spotService 
+   * @param userService 
+   */
   constructor(spotService: EvertokSpotService, userService: EvertokUserService) {
     this.spotService = spotService;
     this.userService = userService;

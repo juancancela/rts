@@ -6,6 +6,7 @@ import Commandable from '../../../../utils/command/Commandable';
 import Modules from '../../../../utils/modules/Modules';
 import AbstractBaseService from '../../../commons/utils/services/AbstractBaseService';
 import remote from '../../../../utils/decorators/remote';
+import Passport from '../../../commons/models/Passport/Passport';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -49,6 +50,11 @@ export default class EvertokUserServiceImpl extends AbstractBaseService implemen
   @remote
   createUser(newUser: User): User {
     throw new Error('Method not implemented.');
+  }
+
+  @remote
+  getUserPassport(userId: string): Passport {
+    throw new Error("Method not implemented.");
   }
 
   getModuleName(): Modules {

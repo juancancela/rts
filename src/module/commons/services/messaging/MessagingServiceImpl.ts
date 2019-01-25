@@ -10,6 +10,7 @@ import AbstractBaseService from '../../utils/services/AbstractBaseService';
 import Room from '../../models/Room/Room';
 import remote from '../../../../utils/decorators/remote';
 import RocketChatProvider from '../../providers/RocketChatProvider';
+import RoomImpl from '../../models/Room/RoomImpl';
 
 /**
  * @internal
@@ -55,8 +56,11 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
 
   @remote
   async getRooms(): Promise<Room[]> {
-    const channels = await RocketChatProvider.channelsList();
-    return channels;
+    const rocketChatChannelsList = await RocketChatProvider.channelsList();
+    const rooms = [];
+    rocketChatChannelsList.channels.forEach(channel => rooms.push(new RoomImpl(channel.name, channel._id)));
+
+    return rooms;
   }
 
   @remote

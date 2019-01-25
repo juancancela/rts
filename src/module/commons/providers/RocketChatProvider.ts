@@ -16,9 +16,10 @@ export default class RocketChatProvider extends AbstractBaseProvider {
     /**
      * @returns Rocket Chat HTTP Authentication Headers. Authentication Headers are used to operate with Rocket Chat Rest API.
      */
-    private static getAuthHeaders() {
-        const xAuthToken = RocketChatProvider.userService.getUserPassport('mockedUserId').getKey(Providers.ROCKET_CHAT, 'X-Auth-Token');
-        const xUserId = RocketChatProvider.userService.getUserPassport('mockedUserId').getKey(Providers.ROCKET_CHAT, 'X-User-Id');
+    private static async getAuthHeaders() {
+        const passport = await RocketChatProvider.userService.getUserPassport('mockedUserId');
+        const xAuthToken = passport.getKey(Providers.ROCKET_CHAT, 'X-Auth-Token');
+        const xUserId = passport.getKey(Providers.ROCKET_CHAT, 'X-User-Id');
         return {
             'X-Auth-Token': xAuthToken,
             'X-User-Id': xUserId
@@ -33,7 +34,7 @@ export default class RocketChatProvider extends AbstractBaseProvider {
      * @param body Body to the appended to the request to Rocket Chat Rest API.
      */
     private static async execute(method: HTTPMethod, operation: string, queryParams?: string[], body?: object): Promise<any> {
-        return HttpUtils.exec(method, `${Config.rocketChatUrl}${operation}`, queryParams, body, RocketChatProvider.getAuthHeaders());
+        return HttpUtils.exec(method, `${Config.rocketChatUrl}${operation}`, queryParams, body, await RocketChatProvider.getAuthHeaders());
     }
 
     static async channelsList(): Promise<any> {

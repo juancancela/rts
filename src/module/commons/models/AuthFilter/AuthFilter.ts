@@ -1,7 +1,7 @@
 import Filter from '../../utils/filters/Filter';
-import Identity from '../Identity/Identity';
+import Passport from '../Passport/Passport';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default interface AuthFilter extends Filter<Identity> {}
+export default interface AuthFilter extends Filter<Passport> { }

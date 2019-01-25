@@ -1,5 +1,5 @@
 import UserPersonalData from './UserPersonalData';
-import { GeoLocation } from '../../../../models';
+import GeoLocation from '../../../../models/GeoLocation/GeoLocation';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
