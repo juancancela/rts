@@ -40,8 +40,8 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
-  async sendMessageToRoom(messageId: string, roomId: string): Promise<Message> {
-    throw new Error('Method not implemented.');
+  async sendMessageToRoom(roomId: string, message: Message): Promise<Message> {
+    return await RocketChatProvider.chatPostMessage(roomId, message.getContent());
   }
 
   @remote

@@ -14,7 +14,7 @@ export default interface MessagingService extends Service {
   unpinMessage(messageId: string): Promise<Message>;
   reportMessage({ messageId, userId }: { messageId: string; userId: string }): Promise<Message>;
   getLastMessage(userId: string): Promise<Message>;
-  sendMessageToRoom(messageId: string, roomId: string): Promise<Message>;
+  sendMessageToRoom(roomId: string, message: Message): Promise<Message>;
   getMessage(messageId: string): Promise<Message>;
   getMessages(messageFilter: MessageFilter): Promise<Message[]>;
   updateMessage(updatedMessage: Message): Promise<Message>;
@@ -25,5 +25,5 @@ export default interface MessagingService extends Service {
   deleteRoom(roomId: string): Promise<Room>;
   addUserToRoom(userId: string, roomId: string): Promise<User>;
   removeUserFromRoom(userId: string, roomID: string): Promise<User>;
-  getRooms(): Promise<Room[]>
+  getRooms(): Promise<Room[]>;
 }

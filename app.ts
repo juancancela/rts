@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
 import RTS from './src/RTS';
+import MessageImpl from './src/module/commons/models/Message/MessageImpl';
+import MessageMetadataImpl from './src/module/commons/models/MessageMetadata/MessageMetadataImpl';
 const rtsRemote = new RTS(ExecutionContext.REMOTE);
 const rtsLocal = new RTS(ExecutionContext.LOCAL);
 const express = require('express');
@@ -45,8 +47,21 @@ app.get('/test2', async (req: any, res: any) => {
 });
 
 app.get('/test3', async (req: any, res: any) => {
-  const result = await rtsRemote.getCommonsModule().getMessagingService().getRooms();
+  const result = await rtsRemote
+    .getCommonsModule()
+    .getMessagingService()
+    .getRooms();
   return res.send(result);
+});
+
+app.get('/test4', async (req: any, res: any) => {
+  const message = new MessageImpl(new MessageMetadataImpl(new Date(), false, '1'), '1', false, 'test message from server');
+  return res.send(
+    await rtsRemote
+      .getCommonsModule()
+      .getMessagingService()
+      .sendMessageToRoom('#channelloco', message)
+  );
 });
 //*****************************************************************************
 

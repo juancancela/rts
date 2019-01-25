@@ -7,12 +7,12 @@ import Config from '../../config/Config';
  */
 function remote<T>(target, originalFunctionName, descriptor) {
   const originalFunction = descriptor.value;
-  descriptor.value = async parameters => {
+  descriptor.value = async (...parameters) => {
     if (Config.isRemote) {
       const { execute, getCommand, getServiceName, getModuleName } = target;
       return await execute(originalFunctionName, parameters, getCommand(), getServiceName(), getModuleName());
     } else {
-      return await originalFunction(parameters);
+      return await originalFunction(...parameters);
     }
   };
   return descriptor;
