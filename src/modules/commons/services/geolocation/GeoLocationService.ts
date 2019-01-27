@@ -1,4 +1,4 @@
-import Service from '../../utils/services/Service';
+import Service from '../../../../utils/service/Service';
 import GeoLocation from '../../models/GeoLocation/GeoLocation';
 import User from '../user/models/User/User';
 

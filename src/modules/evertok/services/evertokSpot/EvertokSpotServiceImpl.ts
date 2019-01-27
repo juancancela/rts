@@ -1,11 +1,10 @@
 import EvertokSpotService from './EvertokSpotService';
 import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
-import User from '../../../commons/services/user/models/User/User';
 import { mockedData } from './mockedTrendingData';
-import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
-import AbstractBaseService from '../../../commons/utils/services/AbstractBaseService';
-import remote from '../../../../utils/decorators/remote';
+import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
+import remote from '../../../../utils/command/remote';
+import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -26,8 +25,8 @@ export default class EvertokSpotServiceImpl extends AbstractBaseService implemen
     return await mockedData;
   }
 
-  getModuleName(): Modules {
-    return Modules.EVERTOK;
+  getModuleName(): ModuleType {
+    return ModuleType.EVERTOK;
   }
 
   getServiceName(): string {

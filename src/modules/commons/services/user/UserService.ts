@@ -1,4 +1,4 @@
-import Service from '../../utils/services/Service';
+import Service from '../../../../utils/service/Service';
 import User from './models/User/User';
 import UserFilter from './models/User/UserFilter';
 import Passport from '../../models/Passport/Passport';
@@ -35,7 +35,7 @@ export default interface UserService extends Service {
   createUser(newUser: User): User;
 
   /**
-   * @param userId 
+   * @param userId
    */
   getUserPassport(userId: string): Passport;
 }

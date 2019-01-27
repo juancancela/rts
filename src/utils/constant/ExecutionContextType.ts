@@ -5,9 +5,9 @@
  *
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-enum ExecutionContext {
+enum ExecutionContextType {
   REMOTE = 1,
   LOCAL
 }
 
-export default ExecutionContext;
+export default ExecutionContextType;

@@ -1,5 +1,5 @@
 import User from '../user/models/User/User';
-import Service from '../../utils/services/Service';
+import Service from '../../../../utils/service/Service';
 import Passport from '../../models/Passport/Passport';
 
 /**

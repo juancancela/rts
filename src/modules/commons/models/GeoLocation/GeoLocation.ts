@@ -1,4 +1,4 @@
-import Resource from '../../utils/resources/Resource';
+import Resource from '../../../../utils/resource/Resource';
 
 /**
  * GeoLocation provides a contract for geo positioning

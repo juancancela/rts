@@ -1,7 +1,7 @@
 import EvertokModuleImpl from '../../EvertokModuleImpl';
 import EvertokSpotServiceImpl from '../../services/evertokSpot/EvertokSpotServiceImpl';
 import EvertokUserServiceImpl from '../../services/evertokUser/EvertokUserServiceImpl';
-import AbstractFactory from '../../../commons/utils/factories/AbstractFactory';
+import AbstractFactory from '../../../../utils/factory/AbstractFactory';
 import EvertokModule from '../../EvertokModule';
 
 /**
@@ -19,5 +19,5 @@ export default class EvertokModuleFactory implements AbstractFactory<EvertokModu
     return EvertokModuleFactory.create();
   }
 
-  private constructor() { }
+  private constructor() {}
 }

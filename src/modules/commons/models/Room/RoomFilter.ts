@@ -1,5 +1,5 @@
 import Room from './Room';
-import Filter from '../../utils/filters/Filter';
+import Filter from '../../../../utils/filter/Filter';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

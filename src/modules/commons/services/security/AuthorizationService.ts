@@ -1,4 +1,4 @@
-import Service from '../../utils/services/Service';
+import Service from '../../../../utils/service/Service';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

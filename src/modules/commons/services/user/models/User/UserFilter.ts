@@ -1,4 +1,4 @@
-import Filter from '../../../../utils/filters/Filter';
+import Filter from '../../../../../../utils/filter/Filter';
 import User from './User';
 
 /**

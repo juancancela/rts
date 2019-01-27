@@ -1,4 +1,4 @@
-import Resource from '../../utils/resources/Resource';
+import Resource from '../../../../utils/resource/Resource';
 import MessageMetadata from '../MessageMetadata/MessageMetadata';
 
 /**

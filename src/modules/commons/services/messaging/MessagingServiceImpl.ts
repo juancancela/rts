@@ -4,13 +4,13 @@ import MessageImpl from '../../models/Message/MessageImpl';
 import User from '../user/models/User/User';
 import MessageFilter from '../../models/Message/MessageFilter';
 import MessageMetadataImpl from '../../models/MessageMetadata/MessageMetadataImpl';
-import Modules from '../../../../utils/modules/Modules';
 import Commandable from '../../../../utils/command/Commandable';
-import AbstractBaseService from '../../utils/services/AbstractBaseService';
+import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import Room from '../../models/Room/Room';
-import remote from '../../../../utils/decorators/remote';
+import remote from '../../../../utils/command/remote';
 import RocketChatProvider from '../../providers/RocketChatProvider';
 import RoomImpl from '../../models/Room/RoomImpl';
+import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
  * @internal
@@ -103,8 +103,8 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
     throw new Error('Method not implemented.');
   }
 
-  getModuleName(): Modules {
-    return Modules.COMMONS;
+  getModuleName(): ModuleType {
+    return ModuleType.COMMONS;
   }
 
   getServiceName(): string {

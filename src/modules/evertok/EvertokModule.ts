@@ -1,4 +1,4 @@
-import AbstractBaseModule from '../commons/utils/modules/AbstractBaseModule';
+import AbstractBaseModule from '../../utils/module/AbstractBaseModule';
 import EvertokSpotService from './services/evertokSpot/EvertokSpotService';
 import EvertokUserService from './services/evertokUser/EvertokUserService';
 

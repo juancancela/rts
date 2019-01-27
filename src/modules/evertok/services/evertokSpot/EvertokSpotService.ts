@@ -1,4 +1,4 @@
-import Service from '../../../commons/utils/services/Service';
+import Service from '../../../../utils/service/Service';
 import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 
 /**

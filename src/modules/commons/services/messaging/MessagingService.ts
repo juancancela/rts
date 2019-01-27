@@ -1,4 +1,4 @@
-import Service from '../../utils/services/Service';
+import Service from '../../../../utils/service/Service';
 import Message from '../../models/Message/Message';
 import User from '../user/models/User/User';
 import MessageFilter from '../../models/Message/MessageFilter';

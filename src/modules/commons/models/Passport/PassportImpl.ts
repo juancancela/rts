@@ -1,7 +1,8 @@
 import Passport from './Passport';
-import Providers from '../../../../utils/providers/Providers';
+import ProviderType from '../../../../utils/constant/ProviderType';
 
 /**
+ * Passport is used to specify User identity data.
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class PassportImpl implements Passport {
@@ -11,6 +12,14 @@ export default class PassportImpl implements Passport {
   private userId: string;
   private keys = {};
 
+  /**
+   * constructor
+   * @param userId id of the user
+   * @param phoneNumber user phone number
+   * @param password user password
+   * @param keys user passport keys
+   * @param id passport id
+   */
   constructor(userId: string, phoneNumber: string, password: string, keys: object, id?: string) {
     this.userId = userId;
     this.phoneNumber = phoneNumber;
@@ -19,12 +28,12 @@ export default class PassportImpl implements Passport {
     this.id = id;
   }
 
-  getKey(provider: Providers, id: string): string {
+  getKey(provider: ProviderType, id: string): string {
     const identifier = `${provider}:${id}`;
     return this.keys[identifier];
   }
 
-  setKey(provider: Providers, id: string, value: string): void {
+  setKey(provider: ProviderType, id: string, value: string): void {
     const identifier = `${provider}:${id}`;
     this.keys[identifier] = value;
   }

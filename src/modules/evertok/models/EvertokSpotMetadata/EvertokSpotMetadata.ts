@@ -1,5 +1,5 @@
 import User from '../../../commons/services/user/models/User/User';
-import Resource from '../../../commons/utils/resources/Resource';
+import Resource from '../../../../utils/resource/Resource';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

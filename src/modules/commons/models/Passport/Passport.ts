@@ -1,5 +1,5 @@
-import Resource from '../../utils/resources/Resource';
-import Providers from '../../../../utils/providers/Providers';
+import Resource from '../../../../utils/resource/Resource';
+import { ProviderType } from '../../../../utils/constant';
 
 /**
  * Passport interface defines a contract to specify User identity data.
@@ -8,7 +8,7 @@ import Providers from '../../../../utils/providers/Providers';
 export default interface Passport extends Resource {
   getPassword(): string;
   getPhoneNumber(): string;
-  getKey(provider: Providers, id: string): string;
-  setKey(provider: Providers, id: string, value: string): void;
+  getKey(provider: ProviderType, id: string): string;
+  setKey(provider: ProviderType, id: string, value: string): void;
   getUserId(): string;
 }

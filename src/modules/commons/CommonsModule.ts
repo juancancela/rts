@@ -1,4 +1,4 @@
-import AbstractBaseModule from './utils/modules/AbstractBaseModule';
+import AbstractBaseModule from '../../utils/module/AbstractBaseModule';
 import GeoLocationService from './services/geolocation/GeoLocationService';
 import MessagingService from './services/messaging/MessagingService';
 import AuthenticationService from './services/security/AuthenticationService';

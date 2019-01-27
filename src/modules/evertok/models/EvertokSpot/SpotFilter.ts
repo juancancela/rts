@@ -1,5 +1,5 @@
 import EvertokSpot from './EvertokSpot';
-import Filter from '../../../commons/utils/filters/Filter';
+import Filter from '../../../../utils/filter/Filter';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>

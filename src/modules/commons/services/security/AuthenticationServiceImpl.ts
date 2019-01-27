@@ -1,10 +1,10 @@
 import AuthenticationService from './AuthenticationService';
 import User from '../user/models/User/User';
 import Commandable from '../../../../utils/command/Commandable';
-import Modules from '../../../../utils/modules/Modules';
-import AbstractBaseService from '../../utils/services/AbstractBaseService';
-import remote from '../../../../utils/decorators/remote';
+import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
+import remote from '../../../../utils/command/remote';
 import Passport from '../../models/Passport/Passport';
+import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -26,8 +26,8 @@ export default class AuthenticationServiceImpl extends AbstractBaseService imple
   }
 
   @remote
-  getModuleName(): Modules {
-    return Modules.COMMONS;
+  getModuleName(): ModuleType {
+    return ModuleType.COMMONS;
   }
 
   @remote

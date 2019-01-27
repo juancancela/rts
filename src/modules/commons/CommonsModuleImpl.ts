@@ -4,11 +4,10 @@ import AuthenticationService from './services/security/AuthenticationService';
 import AuthorizationService from './services/security/AuthorizationService';
 import UserService from './services/user/UserService';
 import CommonsModule from './CommonsModule';
-import Service from './utils/services/Service';
+import Service from '../../utils/service/Service';
 
 /**
  * @description
- *
  * Commons Module
  * ===============================
  * Module Services:

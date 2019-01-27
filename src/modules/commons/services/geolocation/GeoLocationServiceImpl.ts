@@ -1,8 +1,8 @@
 import GeoLocationService from './GeoLocationService';
 import Commandable from '../../../../utils/command/Commandable';
 import GeoLocation from '../../models/GeoLocation/GeoLocation';
-import Modules from '../../../../utils/modules/Modules';
-import AbstractBaseService from '../../utils/services/AbstractBaseService';
+import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
+import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -12,8 +12,8 @@ export default class GeoLocationServiceImpl extends AbstractBaseService implemen
     throw new Error('Method not implemented.');
   }
 
-  getModuleName(): Modules {
-    return Modules.COMMONS;
+  getModuleName(): ModuleType {
+    return ModuleType.COMMONS;
   }
 
   getServiceName(): string {

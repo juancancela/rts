@@ -1,10 +1,10 @@
 import Command from './Command';
 import fetch from 'node-fetch';
-import Modules from '../modules/Modules';
-import CommonsModuleFactory from '../../modules/commons/utils/factories/CommonsModuleFactory';
+import CommonsModuleFactory from '../../modules/commons/utils/CommonsModuleFactory';
 import EvertokModuleFactory from '../../modules/evertok/utils/factories/EvertokModuleFactory';
-import AbstractBaseModule from '../../modules/commons/utils/modules/AbstractBaseModule';
+import AbstractBaseModule from '../module/AbstractBaseModule';
 import Config from '../../config/Config';
+import ModuleType from '../constant/ModuleType';
 
 /**
  * @description
@@ -17,7 +17,7 @@ export default class CommandImpl implements Command {
     evertok: EvertokModuleFactory.create()
   };
 
-  getModule<T extends AbstractBaseModule>(moduleName: Modules): T {
+  getModule<T extends AbstractBaseModule>(moduleName: ModuleType): T {
     return this.modules[moduleName.toLowerCase()];
   }
 
@@ -30,7 +30,7 @@ export default class CommandImpl implements Command {
    * @param methodName name of the method that needs to be executed.
    * @param parameters parameters that need to be provided to the target method.
    */
-  async executeRemotely(moduleName: Modules, serviceName: string, methodName: string, parameters: any) {
+  async executeRemotely(moduleName: ModuleType, serviceName: string, methodName: string, parameters: any) {
     return (await fetch(Config.apiBaseUrl, {
       method: 'POST',
       headers: {
@@ -68,7 +68,7 @@ export default class CommandImpl implements Command {
    * @param methodName name of the method that needs to be executed.
    * @param parameters parameters that need to be provided to the target method.
    */
-  async execute(moduleName: Modules, serviceName: string, methodName: string, parameters: any): Promise<Object[]> {
+  async execute(moduleName: ModuleType, serviceName: string, methodName: string, parameters: any): Promise<Object[]> {
     if (Config.isRemote === true) {
       return await this.executeRemotely(moduleName, serviceName, methodName, parameters);
     } else {

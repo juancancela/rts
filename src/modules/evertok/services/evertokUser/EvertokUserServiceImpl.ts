@@ -3,10 +3,10 @@ import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import User from '../../../commons/services/user/models/User/User';
 import UserFilter from '../../../commons/services/user/models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
-import Modules from '../../../../utils/modules/Modules';
-import AbstractBaseService from '../../../commons/utils/services/AbstractBaseService';
-import remote from '../../../../utils/decorators/remote';
+import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
+import remote from '../../../../utils/command/remote';
 import Passport from '../../../commons/models/Passport/Passport';
+import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
@@ -54,11 +54,11 @@ export default class EvertokUserServiceImpl extends AbstractBaseService implemen
 
   @remote
   getUserPassport(userId: string): Passport {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 
-  getModuleName(): Modules {
-    return Modules.EVERTOK;
+  getModuleName(): ModuleType {
+    return ModuleType.EVERTOK;
   }
 
   getServiceName(): string {

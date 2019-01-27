@@ -1,10 +1,10 @@
 import * as dotenv from 'dotenv';
-import ExecutionContext from './src/modules/commons/utils/constants/ExecutionContext';
 import RTS from './src/RTS';
 import MessageImpl from './src/modules/commons/models/Message/MessageImpl';
 import MessageMetadataImpl from './src/modules/commons/models/MessageMetadata/MessageMetadataImpl';
-const rtsRemote = new RTS(ExecutionContext.REMOTE);
-const rtsLocal = new RTS(ExecutionContext.LOCAL);
+import ExecutionContextType from './src/utils/constant/ExecutionContextType';
+const rtsRemote = new RTS(ExecutionContextType.REMOTE);
+const rtsLocal = new RTS(ExecutionContextType.LOCAL);
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();

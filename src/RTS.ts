@@ -1,11 +1,11 @@
 import Command from './utils/command/Command';
 import CommandImpl from './utils/command/CommandImpl';
-import CommonsModuleFactory from './modules/commons/utils/factories/CommonsModuleFactory';
+import CommonsModuleFactory from './modules/commons/utils/CommonsModuleFactory';
 import EvertokModuleFactory from './modules/evertok/utils/factories/EvertokModuleFactory';
 import CommonsModule from './modules/commons/CommonsModule';
 import EvertokModule from './modules/evertok/EvertokModule';
-import ExecutionContext from './modules/commons/utils/constants/ExecutionContext';
 import Config from './config/Config';
+import ExecutionContextType from './utils/constant/ExecutionContextType';
 
 /**
  * @description
@@ -93,11 +93,11 @@ export default class RTS {
    * @param executionContext sets execution context. If not provided,
    * defaults to local.
    */
-  constructor(executionContext?: ExecutionContext) {
+  constructor(executionContext?: ExecutionContextType) {
     switch (executionContext) {
-      case ExecutionContext.LOCAL:
+      case ExecutionContextType.LOCAL:
         Config.isRemote = false;
-      case ExecutionContext.REMOTE:
+      case ExecutionContextType.REMOTE:
         Config.isRemote = true;
       default:
         Config.isRemote = false;

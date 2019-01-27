@@ -1,3 +1,6 @@
+/**
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 import RTS from './src/RTS';
-import ExecutionContext from './src/modules/commons/utils/constants/ExecutionContext';
-export default new RTS(ExecutionContext.REMOTE);
+import ExecutionContextType from './src/utils/constant/ExecutionContextType';
+export default new RTS(ExecutionContextType.REMOTE);

@@ -1,4 +1,4 @@
-import Resource from '../resources/Resource';
+import Resource from '../resource/Resource';
 
 /**
  * Interface used to define model filters.

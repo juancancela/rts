@@ -2,9 +2,9 @@
  * @description List of RTS modules
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-enum Modules {
+enum ModuleType {
   COMMONS = 'COMMONS',
   EVERTOK = 'EVERTOK'
 }
 
-export default Modules;
+export default ModuleType;

@@ -1,4 +1,4 @@
-import Resource from '../../utils/resources/Resource';
+import Resource from '../../../../utils/resource/Resource';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
