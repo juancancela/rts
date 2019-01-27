@@ -1,9 +1,9 @@
 import Command from './Command';
 import fetch from 'node-fetch';
 import Modules from '../modules/Modules';
-import CommonsModuleFactory from '../../module/commons/utils/factories/CommonsModuleFactory';
-import EvertokModuleFactory from '../../module/evertok/utils/factories/EvertokModuleFactory';
-import AbstractBaseModule from '../../module/commons/utils/modules/AbstractBaseModule';
+import CommonsModuleFactory from '../../modules/commons/utils/factories/CommonsModuleFactory';
+import EvertokModuleFactory from '../../modules/evertok/utils/factories/EvertokModuleFactory';
+import AbstractBaseModule from '../../modules/commons/utils/modules/AbstractBaseModule';
 import Config from '../../config/Config';
 
 /**

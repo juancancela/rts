@@ -1,10 +1,10 @@
 import Command from './utils/command/Command';
 import CommandImpl from './utils/command/CommandImpl';
-import CommonsModuleFactory from './module/commons/utils/factories/CommonsModuleFactory';
-import EvertokModuleFactory from './module/evertok/utils/factories/EvertokModuleFactory';
-import CommonsModule from './module/commons/CommonsModule';
-import EvertokModule from './module/evertok/EvertokModule';
-import ExecutionContext from './module/commons/utils/constants/ExecutionContext';
+import CommonsModuleFactory from './modules/commons/utils/factories/CommonsModuleFactory';
+import EvertokModuleFactory from './modules/evertok/utils/factories/EvertokModuleFactory';
+import CommonsModule from './modules/commons/CommonsModule';
+import EvertokModule from './modules/evertok/EvertokModule';
+import ExecutionContext from './modules/commons/utils/constants/ExecutionContext';
 import Config from './config/Config';
 
 /**
@@ -90,7 +90,7 @@ export default class RTS {
   private evertokModule = EvertokModuleFactory.create();
 
   /**
-   * @param executionContext sets execution context. If not provided, 
+   * @param executionContext sets execution context. If not provided,
    * defaults to local.
    */
   constructor(executionContext?: ExecutionContext) {

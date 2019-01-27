@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
-import ExecutionContext from './src/module/commons/utils/constants/ExecutionContext';
+import ExecutionContext from './src/modules/commons/utils/constants/ExecutionContext';
 import RTS from './src/RTS';
-import MessageImpl from './src/module/commons/models/Message/MessageImpl';
-import MessageMetadataImpl from './src/module/commons/models/MessageMetadata/MessageMetadataImpl';
+import MessageImpl from './src/modules/commons/models/Message/MessageImpl';
+import MessageMetadataImpl from './src/modules/commons/models/MessageMetadata/MessageMetadataImpl';
 const rtsRemote = new RTS(ExecutionContext.REMOTE);
 const rtsLocal = new RTS(ExecutionContext.LOCAL);
 const express = require('express');

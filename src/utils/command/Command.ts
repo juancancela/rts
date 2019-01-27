@@ -1,6 +1,5 @@
-import Remoteable from './Remoteable';
 import Modules from '../modules/Modules';
-import AbstractBaseModule from '../../module/commons/utils/modules/AbstractBaseModule';
+import AbstractBaseModule from '../../modules/commons/utils/modules/AbstractBaseModule';
 
 /**
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
