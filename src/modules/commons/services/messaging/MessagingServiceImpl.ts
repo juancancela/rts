@@ -1,19 +1,18 @@
-import MessagingService from './MessagingService';
-import Message from '../../models/Message/Message';
-import MessageImpl from '../../models/Message/MessageImpl';
-import User from '../user/models/User/User';
-import MessageFilter from '../../models/Message/MessageFilter';
-import MessageMetadataImpl from '../../models/MessageMetadata/MessageMetadataImpl';
-import Commandable from '../../../../utils/command/Commandable';
+import { remote, Commandable } from '../../../../utils/command';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
-import Room from '../../models/Room/Room';
-import remote from '../../../../utils/command/remote';
+import Message from '../../models/Message/Message';
+import MessagingService from './MessagingService';
+import MessageImpl from '../../models/Message/MessageImpl';
+import MessageMetadataImpl from '../../models/MessageMetadata/MessageMetadataImpl';
 import RocketChatProvider from '../../providers/RocketChatProvider';
+import Room from '../../models/Room/Room';
 import RoomImpl from '../../models/Room/RoomImpl';
-import ModuleType from '../../../../utils/constant/ModuleType';
+import MessageFilter from '../../models/Message/MessageFilter';
+import User from '../user/models/User/User';
+import { ModuleType } from '../../../../utils/constant';
 
 /**
- * @internal
+ * @description Service that provides messaging operations for @User
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class MessagingServiceImpl extends AbstractBaseService implements MessagingService, Commandable {

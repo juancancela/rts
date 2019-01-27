@@ -10,6 +10,7 @@ import ProviderType from '../../../../utils/constant/ProviderType';
 import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
+ * @description User Service provides a set of fundamental operations for User.
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class UserServiceImpl extends AbstractBaseService implements UserService, Commandable {

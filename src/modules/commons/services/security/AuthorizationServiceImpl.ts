@@ -5,6 +5,7 @@ import remote from '../../../../utils/command/remote';
 import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
+ * Service that provides authorization operations for @User
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class AuthorizationServiceImpl extends AbstractBaseService implements AuthorizationService, Commandable {

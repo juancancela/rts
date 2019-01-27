@@ -10,7 +10,7 @@ import Service from '../../utils/service/Service';
  * @description
  * Commons Module
  * ===============================
- * Module Services:
+ * Services provided by Commonds Module:
  *   * Geolocation
  *   * Messaging
  *   * Authentication
@@ -29,6 +29,14 @@ export default class CommonsModuleImpl implements CommonsModule {
   private authorizationService: AuthorizationService;
   private userService: UserService;
 
+  /**
+   * constructor
+   * @param geoLocationService instance of GeoLocation Service
+   * @param messagingService instance of Messaging Service
+   * @param authenticationService instance of Authentication Service
+   * @param authorizationService instance of Authorization Service
+   * @param userService instance of User Service
+   */
   constructor(
     geoLocationService: GeoLocationService,
     messagingService: MessagingService,
@@ -43,6 +51,9 @@ export default class CommonsModuleImpl implements CommonsModule {
     this.userService = userService;
   }
 
+  /**
+   * @returns list of module services
+   */
   getServices(): Service[] {
     return [
       this.getLocationService(),
@@ -53,22 +64,37 @@ export default class CommonsModuleImpl implements CommonsModule {
     ];
   }
 
+  /**
+   * @returns GeoLocation Service
+   */
   getLocationService(): GeoLocationService {
     return this.geoLocationService;
   }
 
+  /**
+   * @returns Messaging Service
+   */
   getMessagingService(): MessagingService {
     return this.messagingService;
   }
 
+  /**
+   * @returns Authentication Service
+   */
   getAuthenticationService(): AuthenticationService {
     return this.authenticationService;
   }
 
+  /**
+   * @returns Authorization Service
+   */
   getAuthorizationService(): AuthorizationService {
     return this.authorizationService;
   }
 
+  /**
+   * @returns User Service
+   */
   getUserService(): UserService {
     return this.userService;
   }

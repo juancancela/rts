@@ -7,6 +7,7 @@ import Passport from '../../models/Passport/Passport';
 import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
+ * Service that provides authentication operations for @User
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class AuthenticationServiceImpl extends AbstractBaseService implements AuthenticationService, Commandable {

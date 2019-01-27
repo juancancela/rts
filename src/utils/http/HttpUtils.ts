@@ -6,7 +6,11 @@ export enum HTTPMethod {
 }
 
 export default class HttpUtils {
-  public static async exec(method: HTTPMethod, url: string, queryParams?: any, body?: any, headers?: any): Promise<any> {
+  private static composeUrl(url: string, queryParams: string) {
+    return `${url}?${queryParams}`;
+  }
+
+  public static async exec(method: HTTPMethod, url: string, queryParams?: string, body?: any, headers?: any): Promise<any> {
     try {
       let response = await fetch(url, {
         method,

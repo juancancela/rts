@@ -18,14 +18,14 @@ export default class GeoLocationImpl implements GeoLocation {
   }
 
   /**
-   * @returns the latitude
+   * @returns the latitude of the location
    */
   getLat(): number {
     return this.lat;
   }
 
   /**
-   * @returns the longitude
+   * @returns the longitude of the location
    */
   getLon(): number {
     return this.lon;

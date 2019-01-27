@@ -6,12 +6,12 @@ import Resource from '../../../../utils/resource/Resource';
  */
 export default interface GeoLocation extends Resource {
   /**
-   * @returns the latitude
+   * @returns the latitude of the location
    */
   getLat(): number;
 
   /**
-   * @returns the longitude
+   * @returns the longitude of the location
    */
   getLon(): number;
 }

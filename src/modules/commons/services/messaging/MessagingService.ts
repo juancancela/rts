@@ -7,6 +7,7 @@ import Room from '../../models/Room/Room';
 import UserImpl from '../user/models/User/UserImpl';
 
 /**
+ * @description Service that provides messaging operations for @User
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface MessagingService extends Service {

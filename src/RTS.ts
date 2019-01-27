@@ -18,7 +18,7 @@ import ExecutionContextType from './utils/constant/ExecutionContextType';
  *
  * RTS services are implemented using a dual/hybrid/remote architecture, so they
  * can be executed from remote locations (IE: A React Native app, a web app, or
- * even another backend service). In order to archive that, every service operation
+ * even another backend service). In order to achieve that, every service operation
  * is annotated with a @remote decorator that updates implementation on runtime
  * to remotely -and transparently- execute the operation on the server side.
  * In example, given a service T with an operation O, if O is annotated with @remote
