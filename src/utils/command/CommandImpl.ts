@@ -3,12 +3,10 @@ import fetch from 'node-fetch';
 import CommonsModuleFactory from '../../modules/commons/utils/CommonsModuleFactory';
 import EvertokModuleFactory from '../../modules/evertok/utils/factories/EvertokModuleFactory';
 import AbstractBaseModule from '../module/AbstractBaseModule';
-import Config from '../../config/Config';
 import ModuleType from '../constant/ModuleType';
 
 /**
- * @description
- * TBD
+ * @description Command allows to execute module service operations over http or locally transparently.
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class CommandImpl implements Command {
@@ -31,7 +29,7 @@ export default class CommandImpl implements Command {
    * @param parameters parameters that need to be provided to the target method.
    */
   async executeRemotely(moduleName: ModuleType, serviceName: string, methodName: string, parameters: any) {
-    return (await fetch(Config.apiBaseUrl, {
+    return (await fetch(process.env.RTS_API_BASE_URL, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -69,7 +67,7 @@ export default class CommandImpl implements Command {
    * @param parameters parameters that need to be provided to the target method.
    */
   async execute(moduleName: ModuleType, serviceName: string, methodName: string, parameters: any): Promise<Object[]> {
-    if (Config.isRemote === true) {
+    if (JSON.parse(process.env.RTS_IS_REMOTE)) {
       return await this.executeRemotely(moduleName, serviceName, methodName, parameters);
     } else {
       return await this.executeLocally(this.getModule(moduleName), serviceName, methodName, parameters);

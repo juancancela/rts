@@ -30,26 +30,46 @@ export default class EvertokSpotMetadataImpl implements EvertokSpotMetadata {
     this.userMentions = userMentions;
   }
 
-  getMembersCount(): number {
+  /**
+   * @returns number of user that participated on the Evertok Spot
+   */
+  getUserCount(): number {
     return this.userCount;
   }
 
+  /**
+   * @returns list of unread messages of Evertok Spot
+   */
   getUnreadMessages(userId: string): number {
     return this.unreadMessages;
   }
 
+  /**
+   * date of last time @User accessed to Evertok Spot
+   * @param userId id of user
+   */
   getLastDateOfRead(userId: string): number {
     return this.lastDateOfRead;
   }
 
+  /**
+   * @returns number of messages of Evertok Spot
+   */
   getMessagesCount(): number {
     return this.messagesCount;
   }
 
+  /**
+   * number of mentions on @Message of Evertok Spot where @User is mentioned
+   * @param userId id of the user
+   */
   getUserMentions(userId: string): number {
     return this.userMentions;
   }
 
+  /**
+   * @returns id of this instance
+   */
   getId(): string {
     return this.id;
   }

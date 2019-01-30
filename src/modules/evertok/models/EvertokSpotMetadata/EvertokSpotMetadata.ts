@@ -6,7 +6,7 @@ import Resource from '../../../../utils/resource/Resource';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface EvertokSpotMetadata extends Resource {
-  getMembersCount(): number;
+  getUserCount(): number;
   getUnreadMessages(userId: string): number;
   getLastDateOfRead(userId: string): number;
   getMessagesCount(): number;

@@ -1,5 +1,5 @@
 /**
- * @description
+ * @description command utils
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 

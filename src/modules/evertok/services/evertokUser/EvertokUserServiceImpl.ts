@@ -9,14 +9,10 @@ import Passport from '../../../commons/models/Passport/Passport';
 import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
+ * @description Evertok User Service
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokUserServiceImpl extends AbstractBaseService implements EvertokUserService, Commandable {
-  @remote
-  getCurrentlyConnectedUsers(spot: EvertokSpot): User[] {
-    throw new Error('Method not implemented.');
-  }
-
   @remote
   getSpotUsers(spot: EvertokSpot): User[] {
     throw new Error('Method not implemented.');

@@ -4,8 +4,6 @@ import CommonsModuleFactory from './modules/commons/utils/CommonsModuleFactory';
 import EvertokModuleFactory from './modules/evertok/utils/factories/EvertokModuleFactory';
 import CommonsModule from './modules/commons/CommonsModule';
 import EvertokModule from './modules/evertok/EvertokModule';
-import Config from './config/Config';
-import ExecutionContextType from './utils/constant/ExecutionContextType';
 
 /**
  * @description
@@ -27,8 +25,8 @@ import ExecutionContextType from './utils/constant/ExecutionContextType';
  * as well as the operation name and parameters) and will proceed to reconstruct
  * the operation locally on the server. This is conceptually similar to Java's RMI
  * (Remote Method Invokation) api.
- * Config.isRemote variable will be read to determine if the operation is executed
- * locally or remotely.
+ * process.env.RTS_IS_REMOTE variable will be read to determine if the operation is
+ * executed locally or remotely.
  *
  * Integration steps:
  * ==================
@@ -36,9 +34,8 @@ import ExecutionContextType from './utils/constant/ExecutionContextType';
  * 1. From a client (React Native, a web app, etc.) import RTS package:
  * => import { rts } from 'rt-services';
  *
- * 2. Set Config.isRemote to true:
- * => import Config from 'rt-services/src/config/Config';
- * => Config.isRemote = true;
+ * 2. Set process.env.RTS_API_BASE_URL to true on .env
+ *
  *
  * 3. Start using RTS services
  *
@@ -93,16 +90,7 @@ export default class RTS {
    * @param executionContext sets execution context. If not provided,
    * defaults to local.
    */
-  constructor(executionContext?: ExecutionContextType) {
-    switch (executionContext) {
-      case ExecutionContextType.LOCAL:
-        Config.isRemote = false;
-      case ExecutionContextType.REMOTE:
-        Config.isRemote = true;
-      default:
-        Config.isRemote = false;
-    }
-  }
+  constructor() {}
 
   /**
    * @returns Command instance

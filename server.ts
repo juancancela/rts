@@ -1,5 +1,4 @@
 import app from './app';
-import Config from './src/config/Config';
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
@@ -16,4 +15,4 @@ io.on('connection', (socket: any) => {
   }
 });
 
-http.listen(Config.port, () => {});
+http.listen(process.env.RTS_SERVER_PORT, () => {});

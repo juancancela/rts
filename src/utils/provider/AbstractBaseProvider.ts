@@ -2,6 +2,7 @@ import Provider from './Provider';
 import ProviderType from '../constant/ProviderType';
 
 /**
+ * @description base class to be used by service providers
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 abstract class AbstractBaseProvider implements Provider {

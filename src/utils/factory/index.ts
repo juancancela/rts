@@ -1,5 +1,5 @@
 /**
- * @description
+ * @description factory utils
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 

@@ -2,6 +2,7 @@ import AbstractBaseModule from '../module/AbstractBaseModule';
 import ModuleType from '../constant/ModuleType';
 
 /**
+ * @description Contract to be implemented by commands
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface Command {

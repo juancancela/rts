@@ -7,6 +7,7 @@ import remote from '../../../../utils/command/remote';
 import ModuleType from '../../../../utils/constant/ModuleType';
 
 /**
+ * @description Evertok Spot Service operations
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokSpotServiceImpl extends AbstractBaseService implements EvertokSpotService, Commandable {

@@ -1,18 +1,23 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Debug rt-services",
-            "program": "${workspaceFolder}/server.ts",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
-            ]
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug rt-services",
+      "program": "${workspaceFolder}/server.ts",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "env": {
+        "RTS_IS_REMOTE": "true",
+        "RTS_SERVER_PORT": "8090",
+        "RTS_SERVER_BASE_URL": "http://localhost:8090",
+        "RTS_API_BASE_URL": "http://localhost:8090/remote",
+        "RTS_ROCKET_CHAT_URL": "http://localhost:3000/api/v1/"
+      }
+    }
+  ]
 }

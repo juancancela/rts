@@ -5,6 +5,7 @@ import AbstractFactory from '../../../../utils/factory/AbstractFactory';
 import EvertokModule from '../../EvertokModule';
 
 /**
+ * @description Factory used to create instances of Evertok module
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class EvertokModuleFactory implements AbstractFactory<EvertokModule> {

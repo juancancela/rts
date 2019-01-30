@@ -1,5 +1,4 @@
-import Config from '../../../config/Config';
-import HttpUtils, { HTTPMethod } from '../../../utils/http/HttpUtils';
+import { HTTPMethod, exec } from '../../../utils/http/core';
 import RocketChatOperations from './RocketChatOperations';
 import UserServiceImpl from '../services/user/UserServiceImpl';
 import UserService from '../services/user/UserService';
@@ -42,7 +41,7 @@ export default class RocketChatProvider extends AbstractBaseProvider {
     try {
       let headers = await RocketChatProvider.getAuthHeaders();
       headers['Content-Type'] = 'application/json';
-      return await HttpUtils.exec(method, `${Config.rocketChatUrl}${operation}`, queryParams, body, headers);
+      return await exec(method, `${process.env.RTS_ROCKET_CHAT_URL}${operation}`, queryParams, body, headers);
     } catch (e) {
       console.log('error ', e);
     }
