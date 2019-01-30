@@ -32,7 +32,7 @@ import EvertokModule from './modules/evertok/EvertokModule';
  * ==================
  *
  * 1. From a client (React Native, a web app, etc.) import RTS package:
- * => import { rts } from 'rt-services';
+ * => import { rts } from 'rts';
  *
  * 2. Set process.env.RTS_API_BASE_URL to true on .env
  *
@@ -46,7 +46,7 @@ import EvertokModule from './modules/evertok/EvertokModule';
  * 1. Once a client imported RTS, it can execute an O operation of a service
  *    S as follows:
  *
- * import { rts } from 'rt-services';
+ * import { rts } from 'rts';
  *
  * rts.M(void).S(void).O(params: any);
  *

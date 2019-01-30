@@ -1,5 +1,5 @@
 {
-  "name": "rt-services",
+  "name": "rts",
   "version": "1.0.0",
   "description": "Randiantech Services Application",
   "main": "index.ts",
@@ -17,7 +17,7 @@
   ],
   "author": "Juan Carlos Cancela <cancela.juancarlos@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/juancancela/rt-services#readme",
+  "homepage": "https://github.com/juancancela/rts#readme",
   "dependencies": {
     "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.0",
