@@ -6,7 +6,7 @@ import AuthorizationService from './services/security/AuthorizationService';
 import UserService from './services/user/UserService';
 
 /**
- * Base interface to be implemented by RTS modules.
+ * @description Base interface to be implemented by RTS modules.
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface CommonsModule extends AbstractBaseModule {

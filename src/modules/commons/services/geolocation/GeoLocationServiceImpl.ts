@@ -2,7 +2,7 @@ import GeoLocationService from './GeoLocationService';
 import Commandable from '../../../../utils/command/Commandable';
 import GeoLocation from '../../models/GeoLocation/GeoLocation';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
-import ModuleType from '../../../../utils/constant/ModuleType';
+import ModuleType from '../../../../utils/module/ModuleType';
 
 /**
  * @description contract that specifies operations of a geolocation service

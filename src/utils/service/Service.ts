@@ -1,5 +1,5 @@
 import Remoteable from '../command/Remoteable';
-import ModuleType from '../constant/ModuleType';
+import ModuleType from '../module/ModuleType';
 
 /**
  * Base interface that must be implemented by RTS services.

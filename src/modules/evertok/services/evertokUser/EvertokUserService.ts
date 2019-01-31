@@ -7,6 +7,6 @@ import User from '../../../commons/services/user/models/User/User';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default interface EvertokUserService extends UserService {
-  getSpotUsers(spot: EvertokSpot): User[];
-  isUserVisitedSpot(user: User, spot: EvertokSpot): boolean;
+  getSpotUsers(spotId: string): User[];
+  isUserVisitedSpot(userId: string, spotId: string): boolean;
 }

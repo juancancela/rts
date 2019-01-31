@@ -1,5 +1,5 @@
 import Passport from './Passport';
-import ProviderType from '../../../../utils/constant/ProviderType';
+import ProviderType from '../../../../utils/provider/ProviderType';
 
 /**
  * Passport is used to specify User identity data.

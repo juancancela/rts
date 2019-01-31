@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import CommonsModuleFactory from '../../modules/commons/utils/CommonsModuleFactory';
 import EvertokModuleFactory from '../../modules/evertok/utils/factories/EvertokModuleFactory';
 import AbstractBaseModule from '../module/AbstractBaseModule';
-import ModuleType from '../constant/ModuleType';
+import ModuleType from '../module/ModuleType';
 
 /**
  * @description Command allows to execute module service operations over http or locally transparently.

@@ -1,10 +1,7 @@
 import Service from '../../../../utils/service/Service';
 import Message from '../../models/Message/Message';
 import User from '../user/models/User/User';
-import MessageFilter from '../../models/Message/MessageFilter';
-import RoomFilter from '../../models/Room/RoomFilter';
 import Room from '../../models/Room/Room';
-import UserImpl from '../user/models/User/UserImpl';
 
 /**
  * @description Service that provides messaging operations for @User
@@ -17,7 +14,7 @@ export default interface MessagingService extends Service {
   getLastMessage(userId: string): Promise<Message>;
   sendMessageToRoom(roomId: string, message: Message): Promise<Message>;
   getMessage(messageId: string): Promise<Message>;
-  getMessages(messageFilter: MessageFilter): Promise<Message[]>;
+  getMessages(): Promise<Message[]>;
   updateMessage(updatedMessage: Message): Promise<Message>;
   deleteMessage(messageId: string): Promise<Message>;
   getModerators(roomId: string): Promise<User[]>;

@@ -8,6 +8,7 @@ import AuthorizationServiceImpl from '../services/security/AuthorizationServiceI
 import UserServiceImpl from '../services/user/UserServiceImpl';
 
 /**
+ * @description Factory in charge of creating @CommonsModule instance
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class CommonsModuleFactory implements AbstractFactory<CommonsModule> {

@@ -1,5 +1,5 @@
 import AbstractBaseModule from '../module/AbstractBaseModule';
-import ModuleType from '../constant/ModuleType';
+import ModuleType from '../module/ModuleType';
 
 /**
  * @description Contract to be implemented by commands

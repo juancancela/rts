@@ -1,5 +1,5 @@
 import Provider from './Provider';
-import ProviderType from '../constant/ProviderType';
+import ProviderType from './ProviderType';
 
 /**
  * @description base class to be used by service providers

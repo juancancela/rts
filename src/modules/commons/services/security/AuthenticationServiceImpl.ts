@@ -4,13 +4,14 @@ import Commandable from '../../../../utils/command/Commandable';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import remote from '../../../../utils/command/remote';
 import Passport from '../../models/Passport/Passport';
-import ModuleType from '../../../../utils/constant/ModuleType';
+import ModuleType from '../../../../utils/module/ModuleType';
 
 /**
  * Service that provides authentication operations for @User
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
-export default class AuthenticationServiceImpl extends AbstractBaseService implements AuthenticationService, Commandable {
+export default class AuthenticationServiceImpl extends AbstractBaseService
+  implements AuthenticationService, Commandable {
   @remote
   login(identity: Passport): boolean {
     throw new Error('Method not implemented.');

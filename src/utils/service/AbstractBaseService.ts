@@ -1,6 +1,6 @@
 import CommandImpl from '../command/CommandImpl';
 import Command from '../command/Command';
-import ModuleType from '../constant/ModuleType';
+import ModuleType from '../module/ModuleType';
 
 /**
  * @description base class to be used by RTS module services
@@ -15,7 +15,13 @@ abstract class AbstractBaseService {
     return new CommandImpl();
   }
 
-  async execute(methodName: string, params: any, command: Command, serviceName: string, module: ModuleType): Promise<any> {
+  async execute(
+    methodName: string,
+    params: any,
+    command: Command,
+    serviceName: string,
+    module: ModuleType
+  ): Promise<any> {
     return await command.execute(module, serviceName, methodName, params);
   }
 }

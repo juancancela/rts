@@ -7,7 +7,6 @@ import MessageMetadataImpl from '../../models/MessageMetadata/MessageMetadataImp
 import RocketChatProvider from '../../providers/RocketChatProvider';
 import Room from '../../models/Room/Room';
 import RoomImpl from '../../models/Room/RoomImpl';
-import MessageFilter from '../../models/Message/MessageFilter';
 import User from '../user/models/User/User';
 import { ModuleType } from '../../../../utils/constant';
 
@@ -28,8 +27,6 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
 
   @remote
   async reportMessage({ messageId, userId }: { messageId: string; userId: string }): Promise<Message> {
-    console.log('messageId => ', messageId);
-    console.log('userId => ', userId);
     return await new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'zaraza report');
   }
 
@@ -45,11 +42,16 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
 
   @remote
   async getMessage(messageId: string): Promise<Message> {
-    return await new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), messageId, true, 'local text content');
+    return await new MessageImpl(
+      new MessageMetadataImpl(new Date(), true, '23'),
+      messageId,
+      true,
+      'local text content'
+    );
   }
 
   @remote
-  async getMessages(messageFilter: MessageFilter): Promise<Message[]> {
+  async getMessages(): Promise<Message[]> {
     return await [new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'local text content')];
   }
 

@@ -1,9 +1,5 @@
-import Resource from '../resource/Resource';
+import FilterCriteria from './FilterCriteria';
 
-/**
- * Interface used to define model filters.
- * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
- */
-export default interface Filter<T extends Resource> {
-  executeFilter(): T[];
+export default interface Filter {
+  getFilterCriterias(): FilterCriteria[];
 }

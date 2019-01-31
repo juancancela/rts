@@ -1,12 +1,11 @@
 import EvertokUserService from './EvertokUserService';
 import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import User from '../../../commons/services/user/models/User/User';
-import UserFilter from '../../../commons/services/user/models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import remote from '../../../../utils/command/remote';
 import Passport from '../../../commons/models/Passport/Passport';
-import ModuleType from '../../../../utils/constant/ModuleType';
+import ModuleType from '../../../../utils/module/ModuleType';
 
 /**
  * @description Evertok User Service
@@ -14,12 +13,12 @@ import ModuleType from '../../../../utils/constant/ModuleType';
  */
 export default class EvertokUserServiceImpl extends AbstractBaseService implements EvertokUserService, Commandable {
   @remote
-  getSpotUsers(spot: EvertokSpot): User[] {
+  getSpotUsers(spotId: string): User[] {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  isUserVisitedSpot(user: User, spot: EvertokSpot): boolean {
+  isUserVisitedSpot(userId: string, spotId: string): boolean {
     throw new Error('Method not implemented.');
   }
 
@@ -29,7 +28,7 @@ export default class EvertokUserServiceImpl extends AbstractBaseService implemen
   }
 
   @remote
-  getUsers(userFilter: UserFilter): User[] {
+  getUsers(): User[] {
     throw new Error('Method not implemented.');
   }
 

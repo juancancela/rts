@@ -1,4 +1,4 @@
-import ProviderType from '../constant/ProviderType';
+import ProviderType from './ProviderType';
 
 /**
  * @description Contract to be implemented by service providers

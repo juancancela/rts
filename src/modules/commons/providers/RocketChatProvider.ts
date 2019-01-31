@@ -2,7 +2,7 @@ import { HTTPMethod, exec } from '../../../utils/http/core';
 import RocketChatOperations from './RocketChatOperations';
 import UserServiceImpl from '../services/user/UserServiceImpl';
 import UserService from '../services/user/UserService';
-import ProviderType from '../../../utils/constant/ProviderType';
+import ProviderType from '../../../utils/provider/ProviderType';
 import AbstractBaseProvider from '../../../utils/provider/AbstractBaseProvider';
 
 /**
@@ -60,6 +60,9 @@ export default class RocketChatProvider extends AbstractBaseProvider {
    * @param text the text message to be sent
    */
   static async chatPostMessage(channel: string, text: string): Promise<any> {
-    return await RocketChatProvider._exec(HTTPMethod.POST, RocketChatOperations.ChatPostMessage, null, { channel, text });
+    return await RocketChatProvider._exec(HTTPMethod.POST, RocketChatOperations.ChatPostMessage, null, {
+      channel,
+      text
+    });
   }
 }

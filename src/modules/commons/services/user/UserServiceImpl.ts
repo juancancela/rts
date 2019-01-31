@@ -1,13 +1,12 @@
 import UserService from './UserService';
 import User from './models/User/User';
-import UserFilter from './models/User/UserFilter';
 import Commandable from '../../../../utils/command/Commandable';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import remote from '../../../../utils/command/remote';
 import Passport from '../../models/Passport/Passport';
 import PassportImpl from '../../models/Passport/PassportImpl';
-import ProviderType from '../../../../utils/constant/ProviderType';
-import ModuleType from '../../../../utils/constant/ModuleType';
+import ProviderType from '../../../../utils/provider/ProviderType';
+import ModuleType from '../../../../utils/module/ModuleType';
 
 /**
  * @description User Service provides a set of fundamental operations for User.
@@ -20,7 +19,7 @@ export default class UserServiceImpl extends AbstractBaseService implements User
   }
 
   @remote
-  getUsers(userFilter: UserFilter): User[] {
+  getUsers(): User[] {
     throw new Error('Method not implemented.');
   }
 

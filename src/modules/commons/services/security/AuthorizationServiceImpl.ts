@@ -2,7 +2,7 @@ import AuthorizationService from './AuthorizationService';
 import Commandable from '../../../../utils/command/Commandable';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import remote from '../../../../utils/command/remote';
-import ModuleType from '../../../../utils/constant/ModuleType';
+import ModuleType from '../../../../utils/module/ModuleType';
 
 /**
  * Service that provides authorization operations for @User
