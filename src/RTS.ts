@@ -4,6 +4,7 @@ import CommonsModuleFactory from './modules/commons/utils/CommonsModuleFactory';
 import EvertokModuleFactory from './modules/evertok/utils/factories/EvertokModuleFactory';
 import CommonsModule from './modules/commons/CommonsModule';
 import EvertokModule from './modules/evertok/EvertokModule';
+import Runtime from './utils/environment/Runtime';
 
 /**
  * @description
@@ -25,36 +26,6 @@ import EvertokModule from './modules/evertok/EvertokModule';
  * as well as the operation name and parameters) and will proceed to reconstruct
  * the operation locally on the server. This is conceptually similar to Java's RMI
  * (Remote Method Invokation) api.
- * process.env.RTS_IS_REMOTE variable will be read to determine if the operation is
- * executed locally or remotely.
- *
- * Integration steps:
- * ==================
- *
- * 1. From a client (React Native, a web app, etc.) import RTS package:
- * => import { rts } from 'rts';
- *
- * 2. Set process.env.RTS_API_BASE_URL to true on .env
- *
- *
- * 3. Start using RTS services
- *
- *
- * Execution flow:
- * ===============
- *
- * 1. Once a client imported RTS, it can execute an O operation of a service
- *    S as follows:
- *
- * import { rts } from 'rts';
- *
- * rts.M(void).S(void).O(params: any);
- *
- * In example, if RTS contains a module Commons, with a service User, and an
- * opeation getUser(userId: string), UI code will look like this:
- *
- * let user = rts.getCommons().getUserService().getUser('1');
- *
  *
  * Limitations:
  * ============
@@ -90,7 +61,11 @@ export default class RTS {
    * @param executionContext sets execution context. If not provided,
    * defaults to local.
    */
-  constructor() {}
+  constructor(isRemote: boolean = false, serverBaseUrl: string, apiBaseUrl: string) {
+    Runtime.isRemote = isRemote;
+    Runtime.serverBaseUrl = serverBaseUrl;
+    Runtime.apiBaseUrl = apiBaseUrl;
+  }
 
   /**
    * @returns Command instance
@@ -111,5 +86,29 @@ export default class RTS {
    */
   getEvertokModule(): EvertokModule {
     return this.evertokModule;
+  }
+
+  getIsRemote(): boolean {
+    return Runtime.isRemote;
+  }
+
+  setIsRemote(isRemote: boolean): void {
+    Runtime.isRemote = isRemote;
+  }
+
+  getServerBaseUrl(): string {
+    return Runtime.serverBaseUrl;
+  }
+
+  setServerBaseUrl(serverBaseUrl: string): void {
+    Runtime.serverBaseUrl = serverBaseUrl;
+  }
+
+  getApiBaseUrl(): string {
+    return Runtime.apiBaseUrl;
+  }
+
+  setApiBaseUrl(apiBaseUrl: string): void {
+    Runtime.apiBaseUrl = apiBaseUrl;
   }
 }

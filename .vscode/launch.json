@@ -12,7 +12,7 @@
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "env": {
-        "RTS_IS_REMOTE": "true",
+        "RTS_IS_REMOTE": "false",
         "RTS_SERVER_PORT": "8090",
         "RTS_SERVER_BASE_URL": "http://localhost:8090",
         "RTS_API_BASE_URL": "http://localhost:8090/remote",

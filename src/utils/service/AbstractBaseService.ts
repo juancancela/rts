@@ -1,6 +1,7 @@
 import CommandImpl from '../command/CommandImpl';
 import Command from '../command/Command';
 import ModuleType from '../module/ModuleType';
+import Runtime from '../environment/Runtime';
 
 /**
  * @description base class to be used by RTS module services
@@ -8,7 +9,7 @@ import ModuleType from '../module/ModuleType';
  */
 abstract class AbstractBaseService {
   isRemote(): boolean {
-    return JSON.parse(process.env.RTS_IS_REMOTE);
+    return Runtime.isRemote;
   }
 
   getCommand(): Command {

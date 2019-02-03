@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import RTS from './src/RTS';
 import MessageImpl from './src/modules/commons/models/Message/MessageImpl';
 import MessageMetadataImpl from './src/modules/commons/models/MessageMetadata/MessageMetadataImpl';
-const rts = new RTS();
+const rts = new RTS(false, process.env.RTS_SERVER_BASE_URL, process.env.RTS_API_BASE_URL);
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -29,7 +29,7 @@ app.get('/socket', (req: any, res: any) => {
 });
 
 app.get('/test', async (req: any, res: any) => {
-  process.env.RTS_IS_REMOTE = 'true';
+  rts.setIsRemote(true);
   const result = await rts
     .getEvertokModule()
     .getSpotService()
@@ -38,7 +38,7 @@ app.get('/test', async (req: any, res: any) => {
 });
 
 app.get('/test2', async (req: any, res: any) => {
-  process.env.RTS_IS_REMOTE = 'true';
+  rts.setIsRemote(true);
   const result = await rts
     .getCommonsModule()
     .getMessagingService()
@@ -47,7 +47,7 @@ app.get('/test2', async (req: any, res: any) => {
 });
 
 app.get('/test3', async (req: any, res: any) => {
-  process.env.RTS_IS_REMOTE = 'true';
+  rts.setIsRemote(true);
   const result = await rts
     .getCommonsModule()
     .getMessagingService()
@@ -56,8 +56,13 @@ app.get('/test3', async (req: any, res: any) => {
 });
 
 app.get('/test4', async (req: any, res: any) => {
-  process.env.RTS_IS_REMOTE = 'true';
-  const message = new MessageImpl(new MessageMetadataImpl(new Date(), false, '1'), '1', false, 'test message from server');
+  rts.setIsRemote(true);
+  const message = new MessageImpl(
+    new MessageMetadataImpl(new Date(), false, '1'),
+    '1',
+    false,
+    'test message from server'
+  );
   return res.send(
     await rts
       .getCommonsModule()
@@ -71,7 +76,7 @@ app.get('/test4', async (req: any, res: any) => {
 // Remote Method Execution Entry Point
 //*****************************************************************************
 app.post('/remote', async (req: any, res: any) => {
-  process.env.RTS_IS_REMOTE = 'false';
+  rts.setIsRemote(false);
   const { moduleName, methodName, serviceName, parameters } = req.body;
   log(`Executing remotely ${serviceName}.${methodName}()`);
   return res.send(await rts.getCommand().execute(moduleName, serviceName, methodName, parameters));
