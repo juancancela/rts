@@ -5,6 +5,7 @@ import MessageMetadataImpl from './src/modules/commons/models/MessageMetadata/Me
 import FilterImpl from './src/utils/filter/FilterImpl';
 import FilterCriteriaImpl from './src/utils/filter/FilterCriteriaImpl';
 import FilterOperationType from './src/utils/filter/FilterOperationType';
+import SortType from './src/utils/http/SortType';
 const rts = new RTS(false, process.env.RTS_SERVER_BASE_URL, process.env.RTS_API_BASE_URL);
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -51,14 +52,23 @@ app.get('/test2', async (req: any, res: any) => {
 
 app.get('/test3', async (req: any, res: any) => {
   rts.setIsRemote(true);
-  const filter = new FilterImpl([
-    new FilterCriteriaImpl(FilterOperationType.REGEX, ['testchannel'], 'name'),
+  const filter1 = new FilterImpl([
+    new FilterCriteriaImpl(FilterOperationType.MATCHES_REGEX, ['testchannel'], 'name'),
     new FilterCriteriaImpl(FilterOperationType.OFFSET, ['1'], 'offset')
+  ]);
+  const filter2 = new FilterImpl([new FilterCriteriaImpl(FilterOperationType.EQUALS_TO, ['testchannel'], 'name')]);
+  const filter3 = new FilterImpl([new FilterCriteriaImpl(FilterOperationType.SORT, [SortType.DESC], 'name')]);
+  const filter4 = new FilterImpl([
+    new FilterCriteriaImpl(FilterOperationType.DIFFERENT_THAN, ['testchannel'], 'name'),
+    new FilterCriteriaImpl(FilterOperationType.LIMIT, ['1'], 'count')
+  ]);
+  const filter5 = new FilterImpl([
+    new FilterCriteriaImpl(FilterOperationType.DIFFERENT_THAN, ['testchannel1'], 'name')
   ]);
   const result = await rts
     .getCommonsModule()
     .getMessagingService()
-    .getRooms(filter);
+    .getRooms(filter5);
   return res.send(result);
 });
 

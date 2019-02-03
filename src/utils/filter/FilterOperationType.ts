@@ -11,7 +11,7 @@ enum FilterOperationType {
   LIMIT,
   OFFSET,
   SORT,
-  REGEX
+  MATCHES_REGEX
 }
 
 export default FilterOperationType;
