@@ -1,20 +1,18 @@
-import Resource from '../resource/Resource';
 import Filter from './Filter';
 import FilterCriteria from './FilterCriteria';
 
-export default class FilterImpl implements Filter, Resource {
+/**
+ * @description FilterImpl
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
+export default class FilterImpl implements Filter {
   private filterCriterias: any[];
 
-  constructor(filterCriterias: any[]) {
+  constructor(filterCriterias?: FilterCriteria[]) {
     this.filterCriterias = filterCriterias;
   }
 
   getFilterCriterias(): FilterCriteria[] {
     return this.filterCriterias;
-  }
-
-  getId(): string {
-    //TBD
-    return '0';
   }
 }

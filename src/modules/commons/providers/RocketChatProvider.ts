@@ -1,9 +1,12 @@
-import { HTTPMethod, exec } from '../../../utils/http/core';
+import { exec } from '../../../utils/http/exec';
 import RocketChatOperations from './RocketChatOperations';
 import UserServiceImpl from '../services/user/UserServiceImpl';
 import UserService from '../services/user/UserService';
 import ProviderType from '../../../utils/provider/ProviderType';
 import AbstractBaseProvider from '../../../utils/provider/AbstractBaseProvider';
+import { HTTPMethodType } from '../../../utils/http/HttpMethodType';
+import Filter from '../../../utils/filter/Filter';
+import RocketChatFilterBuilder from './RocketChatFilterBuilder';
 
 /**
  * @description RocketChat Provider class enabled access to Rocket Chat API. Official docs: https://rocket.chat/docs/developer-guides/rest-api/
@@ -34,14 +37,21 @@ export default class RocketChatProvider extends AbstractBaseProvider {
    * Execute an operation on Rocket Chat Rest API
    * @param method HTTP method
    * @param operation operation name. In example, for endpoint api/v1/channels/channels.list, channels.list is the operation name.
-   * @param queryParams list of query parameters to the added to the request to Rocket Chat Rest API.
+   * @param filter Filter object
    * @param body Body to the appended to the request to Rocket Chat Rest API.
    */
-  private static async _exec(method: HTTPMethod, operation: string, queryParams?: string, body?: object): Promise<any> {
+  private static async _exec(method: HTTPMethodType, operation: string, filter?: Filter, body?: object): Promise<any> {
     try {
       let headers = await RocketChatProvider.getAuthHeaders();
       headers['Content-Type'] = 'application/json';
-      return await exec(method, `${process.env.RTS_ROCKET_CHAT_URL}${operation}`, queryParams, body, headers);
+
+      return await exec(
+        method,
+        `${process.env.RTS_ROCKET_CHAT_URL}${operation}`,
+        filter ? RocketChatFilterBuilder.build(filter) : '',
+        body,
+        headers
+      );
     } catch (e) {
       console.log('error ', e);
     }
@@ -50,8 +60,8 @@ export default class RocketChatProvider extends AbstractBaseProvider {
   /**
    * Gets the list of channels
    */
-  static async channelsList(): Promise<any> {
-    return await RocketChatProvider._exec(HTTPMethod.GET, RocketChatOperations.ChannelsList);
+  static async channelsList(filter?: Filter): Promise<any> {
+    return await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperations.ChannelsList, filter);
   }
 
   /**
@@ -60,7 +70,7 @@ export default class RocketChatProvider extends AbstractBaseProvider {
    * @param text the text message to be sent
    */
   static async chatPostMessage(channel: string, text: string): Promise<any> {
-    return await RocketChatProvider._exec(HTTPMethod.POST, RocketChatOperations.ChatPostMessage, null, {
+    return await RocketChatProvider._exec(HTTPMethodType.POST, RocketChatOperations.ChatPostMessage, null, {
       channel,
       text
     });

@@ -2,6 +2,9 @@ import * as dotenv from 'dotenv';
 import RTS from './src/RTS';
 import MessageImpl from './src/modules/commons/models/Message/MessageImpl';
 import MessageMetadataImpl from './src/modules/commons/models/MessageMetadata/MessageMetadataImpl';
+import FilterImpl from './src/utils/filter/FilterImpl';
+import FilterCriteriaImpl from './src/utils/filter/FilterCriteriaImpl';
+import FilterOperationType from './src/utils/filter/FilterOperationType';
 const rts = new RTS(false, process.env.RTS_SERVER_BASE_URL, process.env.RTS_API_BASE_URL);
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -48,10 +51,14 @@ app.get('/test2', async (req: any, res: any) => {
 
 app.get('/test3', async (req: any, res: any) => {
   rts.setIsRemote(true);
+  const filter = new FilterImpl([
+    new FilterCriteriaImpl(FilterOperationType.REGEX, ['testchannel'], 'name'),
+    new FilterCriteriaImpl(FilterOperationType.OFFSET, ['1'], 'offset')
+  ]);
   const result = await rts
     .getCommonsModule()
     .getMessagingService()
-    .getRooms();
+    .getRooms(filter);
   return res.send(result);
 });
 

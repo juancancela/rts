@@ -2,6 +2,7 @@ import Service from '../../../../utils/service/Service';
 import Message from '../../models/Message/Message';
 import User from '../user/models/User/User';
 import Room from '../../models/Room/Room';
+import Filter from '../../../../utils/filter/Filter';
 
 /**
  * @description Service that provides messaging operations for @User
@@ -23,5 +24,5 @@ export default interface MessagingService extends Service {
   deleteRoom(roomId: string): Promise<Room>;
   addUserToRoom(userId: string, roomId: string): Promise<User>;
   removeUserFromRoom(userId: string, roomID: string): Promise<User>;
-  getRooms(): Promise<Room[]>;
+  getRooms(filter?: Filter): Promise<Room[]>;
 }

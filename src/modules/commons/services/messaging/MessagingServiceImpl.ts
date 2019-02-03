@@ -9,6 +9,7 @@ import Room from '../../models/Room/Room';
 import RoomImpl from '../../models/Room/RoomImpl';
 import User from '../user/models/User/User';
 import { ModuleType } from '../../../../utils/constant';
+import Filter from '../../../../utils/filter/Filter';
 
 /**
  * @description Service that provides messaging operations for @User
@@ -56,8 +57,8 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
-  async getRooms(): Promise<Room[]> {
-    const rocketChatChannelsList = await RocketChatProvider.channelsList();
+  async getRooms(filter?: Filter): Promise<Room[]> {
+    const rocketChatChannelsList = await RocketChatProvider.channelsList(filter);
     const rooms = [];
     rocketChatChannelsList.channels.forEach(channel => rooms.push(new RoomImpl(channel.name, channel._id)));
 

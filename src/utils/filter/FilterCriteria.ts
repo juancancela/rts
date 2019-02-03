@@ -1,7 +1,11 @@
 import FilterOperationType from './FilterOperationType';
 
+/**
+ * @description FilterCriteria
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 export default interface FilterCriteria {
   getFilterOperation(): FilterOperationType;
-  getValue(): any;
-  getValueId(): string;
+  getValues(): string[];
+  getKey(): string;
 }

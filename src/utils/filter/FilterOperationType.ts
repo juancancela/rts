@@ -1,3 +1,7 @@
+/**
+ * @description FilterOperationType
+ * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
+ */
 enum FilterOperationType {
   EQUALS_TO,
   GREATER_THAN,
@@ -5,7 +9,9 @@ enum FilterOperationType {
   DIFFERENT_THAN,
   WITHIN,
   LIMIT,
-  OFFSET
+  OFFSET,
+  SORT,
+  REGEX
 }
 
 export default FilterOperationType;
