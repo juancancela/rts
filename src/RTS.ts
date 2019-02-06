@@ -7,9 +7,7 @@ import EvertokModule from './modules/evertok/EvertokModule';
 import Runtime from './utils/environment/Runtime';
 
 /**
- * @description
- * Randiantech Services (RTS) entry point.
- * =======================================
+ * @description Randiantech Services (RTS) entry point.
  *
  * RTS emcompasses a set of data services used by Randiantech applications.
  * RTS is organized as a set of Modules that bundle a set of Services, each of
@@ -28,7 +26,6 @@ import Runtime from './utils/environment/Runtime';
  * (Remote Method Invokation) api.
  *
  * Limitations:
- * ============
  *
  * * Service operation attributes cant be correctly assigned to its own
  *   constructors, then class methods are not accessible when the service

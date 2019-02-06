@@ -7,6 +7,7 @@ import Passport from '../../models/Passport/Passport';
 import PassportImpl from '../../models/Passport/PassportImpl';
 import ProviderType from '../../../../utils/provider/ProviderType';
 import ModuleType from '../../../../utils/module/ModuleType';
+import ApplicationError from '../../../../utils/error/ApplicationError';
 
 /**
  * @description User Service provides a set of fundamental operations for User.
@@ -14,37 +15,40 @@ import ModuleType from '../../../../utils/module/ModuleType';
  */
 export default class UserServiceImpl extends AbstractBaseService implements UserService, Commandable {
   @remote
-  getUser(userId: string): User {
+  async getUser(userId: string): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  getUsers(): User[] {
+  async getUsers(): Promise<User[] | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  deleteUser(userId: string): User {
+  async deleteUser(userId: string): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  updateUser(updatedUser: User): User {
+  async updateUser(updatedUser: User): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  createUser(newUser: User): User {
+  async createUser(newUser: User): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  getUserPassport(userId: string): Passport {
-    const mockedPassport = new PassportImpl('1', '15560655', 'travel', {}, '1');
-    mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-Auth-Token', '9YSiSLGtxV7XOPsFDxZmcN7eurrho2SWjmedhGWJ4nz');
-    mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-User-Id', 'WzuLnwgsMmPq3CrwJ');
-
-    return mockedPassport;
+  async getUserPassport(userId: string): Promise<Passport | ApplicationError> {
+    try {
+      const mockedPassport = new PassportImpl('1', '15560655', 'travel', {}, '1');
+      mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-Auth-Token', '9YSiSLGtxV7XOPsFDxZmcN7eurrho2SWjmedhGWJ4nz');
+      mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-User-Id', 'WzuLnwgsMmPq3CrwJ');
+      return mockedPassport;
+    } catch (error) {
+      return error;
+    }
   }
 
   @remote

@@ -3,6 +3,7 @@ import Commandable from '../../../../utils/command/Commandable';
 import GeoLocation from '../../models/GeoLocation/GeoLocation';
 import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import ModuleType from '../../../../utils/module/ModuleType';
+import ApplicationError from '../../../../utils/error/ApplicationError';
 
 /**
  * @description contract that specifies operations of a geolocation service
@@ -13,7 +14,7 @@ export default class GeoLocationServiceImpl extends AbstractBaseService implemen
    * @param userId id of the user to be located
    * @returns the @GeoLocation of a @User
    */
-  getUserLocation(userId: string): GeoLocation {
+  getUserLocation(userId: string): GeoLocation | ApplicationError {
     throw new Error('Method not implemented.');
   }
 

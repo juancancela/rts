@@ -9,12 +9,10 @@ import ModuleType from '../../../../utils/module/ModuleType';
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 export default class AuthorizationServiceImpl extends AbstractBaseService implements AuthorizationService, Commandable {
-  @remote
   getModuleName(): ModuleType {
     return ModuleType.COMMONS;
   }
 
-  @remote
   getServiceName(): string {
     return 'authorizationService';
   }

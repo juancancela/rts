@@ -1,6 +1,7 @@
 import Service from '../../../../utils/service/Service';
 import User from './models/User/User';
 import Passport from '../../models/Passport/Passport';
+import ApplicationError from '../../../../utils/error/ApplicationError';
 
 /**
  * @description User Service provides a set of fundamental operations for User.
@@ -11,30 +12,30 @@ export default interface UserService extends Service {
    * @param userId id of the user to be retrieved
    * @returns an User instance
    */
-  getUser(userId: string): User;
+  getUser(userId: string): Promise<User | ApplicationError>;
 
   /**
    * @param userFilter
    */
-  getUsers(): User[];
+  getUsers(): Promise<User[] | ApplicationError>;
 
   /**
    * @param userId
    */
-  deleteUser(userId: string): User;
+  deleteUser(userId: string): Promise<User | ApplicationError>;
 
   /**
    * @param updatedUser
    */
-  updateUser(updatedUser: User): User;
+  updateUser(updatedUser: User): Promise<User | ApplicationError>;
 
   /**
    * @param newUser
    */
-  createUser(newUser: User): User;
+  createUser(newUser: User): Promise<User | ApplicationError>;
 
   /**
    * @param userId
    */
-  getUserPassport(userId: string): Passport;
+  getUserPassport(userId: string): Promise<Passport | ApplicationError>;
 }

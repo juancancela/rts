@@ -20,7 +20,7 @@ export default class PassportImpl implements Passport {
    * @param keys user passport keys
    * @param id passport id
    */
-  constructor(userId: string, phoneNumber: string, password: string, keys: object, id?: string) {
+  constructor(userId?: string, phoneNumber?: string, password?: string, keys?: object, id?: string) {
     this.userId = userId;
     this.phoneNumber = phoneNumber;
     this.password = password;

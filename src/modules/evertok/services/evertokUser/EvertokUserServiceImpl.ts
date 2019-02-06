@@ -6,6 +6,7 @@ import AbstractBaseService from '../../../../utils/service/AbstractBaseService';
 import remote from '../../../../utils/command/remote';
 import Passport from '../../../commons/models/Passport/Passport';
 import ModuleType from '../../../../utils/module/ModuleType';
+import ApplicationError from '../../../../utils/error/ApplicationError';
 
 /**
  * @description Evertok User Service
@@ -13,42 +14,42 @@ import ModuleType from '../../../../utils/module/ModuleType';
  */
 export default class EvertokUserServiceImpl extends AbstractBaseService implements EvertokUserService, Commandable {
   @remote
-  getSpotUsers(spotId: string): User[] {
+  async getSpotUsers(spotId: string): Promise<User[] | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  isUserVisitedSpot(userId: string, spotId: string): boolean {
+  async isUserVisitedSpot(userId: string, spotId: string): Promise<boolean | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  getUser(userId: string): User {
+  async getUser(userId: string): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  getUsers(): User[] {
+  async getUsers(): Promise<User[] | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  deleteUser(userId: string): User {
+  async deleteUser(userId: string): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  updateUser(updatedUser: User): User {
+  async updateUser(updatedUser: User): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  createUser(newUser: User): User {
+  async createUser(newUser: User): Promise<User | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 
   @remote
-  getUserPassport(userId: string): Passport {
+  async getUserPassport(userId: string): Promise<Passport | ApplicationError> {
     throw new Error('Method not implemented.');
   }
 

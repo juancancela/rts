@@ -1,5 +1,5 @@
 import { exec } from '../../../utils/http/exec';
-import RocketChatOperations from './RocketChatOperations';
+import RocketChatOperationType from './RocketChatOperationType';
 import UserServiceImpl from '../services/user/UserServiceImpl';
 import UserService from '../services/user/UserService';
 import ProviderType from '../../../utils/provider/ProviderType';
@@ -7,6 +7,8 @@ import AbstractBaseProvider from '../../../utils/provider/AbstractBaseProvider';
 import { HTTPMethodType } from '../../../utils/http/HttpMethodType';
 import Filter from '../../../utils/filter/Filter';
 import RocketChatFilterBuilder from './RocketChatFilterBuilder';
+import RocketChatChannel from './models/RocketChatChannel';
+import PassportImpl from '../models/Passport/PassportImpl';
 
 /**
  * @description RocketChat Provider class enabled access to Rocket Chat API. Official docs: https://rocket.chat/docs/developer-guides/rest-api/
@@ -24,13 +26,18 @@ export default class RocketChatProvider extends AbstractBaseProvider {
    * @returns Rocket Chat HTTP Authentication Headers.
    */
   private static async getAuthHeaders() {
-    const passport = await RocketChatProvider.userService.getUserPassport('mockedUserId');
-    const xAuthToken = passport.getKey(ProviderType.ROCKET_CHAT, 'X-Auth-Token');
-    const xUserId = passport.getKey(ProviderType.ROCKET_CHAT, 'X-User-Id');
-    return {
-      'X-Auth-Token': xAuthToken,
-      'X-User-Id': xUserId
-    };
+    try {
+      const passport = await RocketChatProvider.userService.getUserPassport('mockedUserId');
+      const p = Object.assign(new PassportImpl(), passport);
+      const xAuthToken = p.getKey(ProviderType.ROCKET_CHAT, 'X-Auth-Token');
+      const xUserId = p.getKey(ProviderType.ROCKET_CHAT, 'X-User-Id');
+      return {
+        'X-Auth-Token': xAuthToken,
+        'X-User-Id': xUserId
+      };
+    } catch (error) {
+      return error;
+    }
   }
 
   /**
@@ -58,10 +65,10 @@ export default class RocketChatProvider extends AbstractBaseProvider {
   }
 
   /**
-   * Gets the list of channels
+   * @returns list of rocket chat channels
    */
-  static async channelsList(filter?: Filter): Promise<any> {
-    return await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperations.ChannelsList, filter);
+  static async channelsList(filter?: Filter): Promise<RocketChatChannel[]> {
+    return (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsList, filter)).channels;
   }
 
   /**
@@ -70,7 +77,7 @@ export default class RocketChatProvider extends AbstractBaseProvider {
    * @param text the text message to be sent
    */
   static async chatPostMessage(channel: string, text: string): Promise<any> {
-    return await RocketChatProvider._exec(HTTPMethodType.POST, RocketChatOperations.ChatPostMessage, null, {
+    return await RocketChatProvider._exec(HTTPMethodType.POST, RocketChatOperationType.ChatPostMessage, null, {
       channel,
       text
     });
