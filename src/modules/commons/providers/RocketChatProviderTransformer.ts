@@ -15,7 +15,7 @@ export default class RocketChatProviderTransformer {
    * @returns a list of Rooms
    */
   static toRoomsFrom(channels: RocketChatChannel[]): Room[] {
-    if (_.isEmpty(channels)) {
+    if (!_.isEmpty(channels)) {
       throw new ApplicationError(
         ApplicationErrorCodeType.PROVIDER_TRANSFORMATION_ERROR,
         'RocketChatProviderTransformer.toRoomsFrom(channels) should not receive as input an empty list of channels',

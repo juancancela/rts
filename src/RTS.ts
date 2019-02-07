@@ -5,6 +5,7 @@ import EvertokModuleFactory from './modules/evertok/utils/factories/EvertokModul
 import CommonsModule from './modules/commons/CommonsModule';
 import EvertokModule from './modules/evertok/EvertokModule';
 import Runtime from './utils/environment/Runtime';
+import get from './utils/command/get';
 
 /**
  * @description Randiantech Services (RTS) entry point.
@@ -107,5 +108,9 @@ export default class RTS {
 
   setApiBaseUrl(apiBaseUrl: string): void {
     Runtime.apiBaseUrl = apiBaseUrl;
+  }
+
+  get<T>(response: T): T {
+    return get(response);
   }
 }
