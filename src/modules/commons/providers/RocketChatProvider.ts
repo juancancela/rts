@@ -9,6 +9,8 @@ import Filter from '../../../utils/filter/Filter';
 import RocketChatFilterBuilder from './RocketChatFilterBuilder';
 import RocketChatChannel from './models/RocketChatChannel';
 import PassportImpl from '../models/Passport/PassportImpl';
+import RocketChatMessage from './models/RocketChatMessage';
+import QueryParams from '../../../utils/http/QueryParams';
 
 /**
  * @description RocketChat Provider class enabled access to Rocket Chat API. Official docs: https://rocket.chat/docs/developer-guides/rest-api/
@@ -20,6 +22,15 @@ export default class RocketChatProvider extends AbstractBaseProvider {
   }
 
   private static userService: UserService = new UserServiceImpl();
+
+  static getQueryParamsString(queryParams: object): string {
+    if (!queryParams) return '';
+    let queryParamsString = '?';
+    Object.keys(queryParams).forEach(queryParamKey => {
+      queryParams[queryParamKey] ? queryParamsString += `${queryParamKey}=${queryParams[queryParamKey]}&` : '';
+    });
+    return queryParamsString.slice(0, -1);
+  }
 
   /**
    * Authentication Headers are used to operate with Rocket Chat Rest API.
@@ -47,14 +58,14 @@ export default class RocketChatProvider extends AbstractBaseProvider {
    * @param filter Filter object
    * @param body Body to the appended to the request to Rocket Chat Rest API.
    */
-  private static async _exec(method: HTTPMethodType, operation: string, filter?: Filter, body?: object): Promise<any> {
+  private static async _exec(method: HTTPMethodType, operation: string, filter?: Filter, body?: object, queryParams?: object): Promise<any> {
     try {
       let headers = await RocketChatProvider.getAuthHeaders();
       headers['Content-Type'] = 'application/json';
 
       return await exec(
         method,
-        `${process.env.RTS_ROCKET_CHAT_URL}${operation}`,
+        `${process.env.RTS_ROCKET_CHAT_URL}${operation}${RocketChatProvider.getQueryParamsString(queryParams)}`,
         filter ? RocketChatFilterBuilder.build(filter) : '',
         body,
         headers
@@ -70,6 +81,14 @@ export default class RocketChatProvider extends AbstractBaseProvider {
   static async channelsList(filter?: Filter): Promise<RocketChatChannel[]> {
     return (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsList, filter)).channels;
   }
+
+  static async channelsMessages(filter?: Filter, params?: object): Promise<RocketChatMessage[]> {
+    try {
+      return (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsMessages, filter, null, params)).messages;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   /**
    * Sends a message to the specified channel

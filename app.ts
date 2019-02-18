@@ -74,6 +74,15 @@ app.get('/test3', async (req: any, res: any) => {
 
 app.get('/test4', async (req: any, res: any) => {
   rts.setIsRemote(true);
+  const result = await rts
+    .getCommonsModule()
+    .getMessagingService()
+    .getMessages('loco')
+  return res.send(result);
+});
+
+app.get('/test5', async (req: any, res: any) => {
+  rts.setIsRemote(true);
   const message = new MessageImpl(
     new MessageMetadataImpl(new Date(), false, '1'),
     '1',

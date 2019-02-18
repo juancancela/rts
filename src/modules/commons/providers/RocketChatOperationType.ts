@@ -4,7 +4,8 @@
  */
 enum RocketChatOperationType {
   ChannelsList = 'channels.list',
-  ChatPostMessage = 'chat.postMessage'
+  ChatPostMessage = 'chat.postMessage',
+  ChannelsMessages = 'channels.messages'
 }
 
 export default RocketChatOperationType;

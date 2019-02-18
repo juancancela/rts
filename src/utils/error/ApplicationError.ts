@@ -15,7 +15,7 @@ export default class ApplicationError {
    * @param message application error message
    * @param stack application error stack
    */
-  constructor(code: ApplicationErrorCodeType, message: string, stack: any) {
+  constructor(code: ApplicationErrorCodeType, message: string) {
     this.code = code;
     this.message = message;
     this.stack = new Error().stack;

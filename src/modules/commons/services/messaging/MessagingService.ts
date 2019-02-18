@@ -4,6 +4,7 @@ import User from '../user/models/User/User';
 import Room from '../../models/Room/Room';
 import Filter from '../../../../utils/filter/Filter';
 import ApplicationError from '../../../../utils/error/ApplicationError';
+import ServiceResponse from '../../../../utils/service/ServiceResponse';
 
 /**
  * @description Service that provides messaging operations for @User
@@ -16,7 +17,7 @@ export default interface MessagingService extends Service {
   getLastMessage(userId: string): Promise<Message | ApplicationError>;
   sendMessageToRoom(roomId: string, message: Message): Promise<Message | ApplicationError>;
   getMessage(messageId: string): Promise<Message | ApplicationError>;
-  getMessages(): Promise<Message[] | ApplicationError>;
+  getMessages(roomName: string, filter?: Filter): Promise<ServiceResponse<Message[]>>;
   updateMessage(updatedMessage: Message): Promise<Message | ApplicationError>;
   deleteMessage(messageId: string): Promise<Message | ApplicationError>;
   getModerators(roomId: string): Promise<User[] | ApplicationError>;

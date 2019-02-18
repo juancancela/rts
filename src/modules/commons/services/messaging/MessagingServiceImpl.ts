@@ -11,6 +11,8 @@ import { ModuleType } from '../../../../utils/constant';
 import Filter from '../../../../utils/filter/Filter';
 import RocketChatProviderTransformer from '../../providers/RocketChatProviderTransformer';
 import ApplicationError from '../../../../utils/error/ApplicationError';
+import ServiceResponse from '../../../../utils/service/ServiceResponse';
+import ServiceResponseImpl from '../../../../utils/service/ServiceResponseImpl';
 
 /**
  * @description Service that provides messaging operations for @User
@@ -59,8 +61,13 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   }
 
   @remote
-  async getMessages(): Promise<Message[] | ApplicationError> {
-    return await [new MessageImpl(new MessageMetadataImpl(new Date(), true, '23'), '3', true, 'local text content')];
+  async getMessages(roomName: string, filter?: Filter): Promise<ServiceResponse<Message[]>> {
+    try {
+      const response = RocketChatProviderTransformer.toMessagesFrom(await RocketChatProvider.channelsMessages(filter, { roomName }));
+      return new ServiceResponseImpl(response);
+    } catch (error) {
+      return new ServiceResponseImpl(null, error);
+    }
   }
 
   @remote

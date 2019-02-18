@@ -5,7 +5,8 @@ import EvertokModuleFactory from './modules/evertok/utils/factories/EvertokModul
 import CommonsModule from './modules/commons/CommonsModule';
 import EvertokModule from './modules/evertok/EvertokModule';
 import Runtime from './utils/environment/Runtime';
-import get from './utils/command/get';
+import ApplicationError from './utils/error/ApplicationError';
+import ApplicationErrorCodeType from './utils/error/ApplicationErrorCodeType';
 
 /**
  * @description Randiantech Services (RTS) entry point.
@@ -110,7 +111,15 @@ export default class RTS {
     Runtime.apiBaseUrl = apiBaseUrl;
   }
 
-  get<T>(response: T): T {
-    return get(response);
+  set<T>(context: any, errorKey: string, resultKey: string, response: T | ApplicationError): void {
+    if (!response) {
+      return context.setState({
+        [errorKey]: new ApplicationError(ApplicationErrorCodeType.UNKNOWN_ERROR, 'unknown error')
+      });
+    }
+    if (response.constructor.name === 'ApplicationError') {
+      return context.setState({ [errorKey]: response });
+    }
+    return context.setState({ [resultKey]: response });
   }
 }
