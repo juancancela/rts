@@ -27,6 +27,11 @@ export default interface Message extends Resource {
   getContent(): string;
 
   /**
+   * @returns the name of the user that created the message
+   */
+  getUserName(): string;
+
+  /**
    * @returns message metadata
    */
   getMessageMetadata(): MessageMetadata;

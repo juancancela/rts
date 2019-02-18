@@ -8,4 +8,7 @@ export default class RocketChatMessage {
     ts: string;
     attachments: any;
     starred: any;
+    u: {
+        username: string;
+    }
 }

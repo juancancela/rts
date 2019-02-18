@@ -47,6 +47,7 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
 
   @remote
   async sendMessageToRoom(roomId: string, message: Message): Promise<Message | ApplicationError> {
+    message = Object.assign(new MessageImpl(), message);
     return await RocketChatProvider.chatPostMessage(roomId, message.getContent());
   }
 

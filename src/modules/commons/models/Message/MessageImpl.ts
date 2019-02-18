@@ -10,6 +10,7 @@ export default class MessageImpl implements Message {
   private id: string;
   private promoted: boolean;
   private content: string;
+  private userName: string;
 
   /**
    * constructor
@@ -18,11 +19,12 @@ export default class MessageImpl implements Message {
    * @param promoted whether or not its a promoted -ad- message
    * @param content the content of the message
    */
-  constructor(messageMetadata?: MessageMetadata, id?: string, promoted?: boolean, content?: string) {
+  constructor(messageMetadata?: MessageMetadata, id?: string, promoted?: boolean, content?: string, userName?: string) {
     this.messageMetadata = messageMetadata;
     this.id = id;
     this.promoted = promoted;
     this.content = content;
+    this.userName = userName;
   }
 
   /**
@@ -37,6 +39,13 @@ export default class MessageImpl implements Message {
    */
   getIsPromoted(): boolean {
     return this.promoted;
+  }
+
+  /**
+   * @returns name of the user that created the message
+   */
+  getUserName(): string {
+    return this.userName;
   }
 
   /**

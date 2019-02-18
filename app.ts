@@ -93,7 +93,7 @@ app.get('/test5', async (req: any, res: any) => {
     await rts
       .getCommonsModule()
       .getMessagingService()
-      .sendMessageToRoom('#channelloco', message)
+      .sendMessageToRoom('#loco', message)
   );
 });
 //*****************************************************************************

@@ -84,7 +84,9 @@ export default class RocketChatProvider extends AbstractBaseProvider {
 
   static async channelsMessages(filter?: Filter, params?: object): Promise<RocketChatMessage[]> {
     try {
-      return (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsMessages, filter, null, params)).messages;
+      const r = (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsMessages, filter, null, params)).messages;
+      console.log('r[0] => ', JSON.stringify(r[0]));
+      return r;
     } catch (error) {
       console.log(error);
     }

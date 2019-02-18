@@ -59,6 +59,7 @@ export default class RocketChatProviderTransformer {
 
     const messages = [];
     rocketChatMessages.forEach(message => messages.push(RocketChatProviderTransformer.toMessageFrom(message)));
+    console.log("lala: ", JSON.stringify(rocketChatMessages));
     return messages;
   }
 
@@ -73,6 +74,6 @@ export default class RocketChatProviderTransformer {
         'RocketChatProviderTransformer.toMessageFrom(rocketChatMessage) should not receive as input an empty rocketChatMessage'
       );
     }
-    return new MessageImpl(new MessageMetadataImpl(new Date(rocketChatMessage.ts), false), rocketChatMessage._id, false, rocketChatMessage.msg);
+    return new MessageImpl(new MessageMetadataImpl(new Date(rocketChatMessage.ts), false), rocketChatMessage._id, false, rocketChatMessage.msg, rocketChatMessage.u.username);
   }
 }
