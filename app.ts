@@ -96,6 +96,15 @@ app.get('/test5', async (req: any, res: any) => {
       .sendMessageToRoom('#loco', message)
   );
 });
+
+app.get('/test6', async (req: any, res: any) => {
+  rts.setIsRemote(true);
+  const result = await rts
+    .getEvertokModule()
+    .getSpotService()
+    .getTrendingSpots()
+  return res.send(result);
+});
 //*****************************************************************************
 
 //*****************************************************************************

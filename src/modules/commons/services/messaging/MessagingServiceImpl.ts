@@ -64,7 +64,8 @@ export default class MessagingServiceImpl extends AbstractBaseService implements
   @remote
   async getMessages(roomName: string, filter?: Filter): Promise<ServiceResponse<Message[]>> {
     try {
-      const response = RocketChatProviderTransformer.toMessagesFrom(await RocketChatProvider.channelsMessages(filter, { roomName }));
+      const channelsMessages = await RocketChatProvider.channelsMessages(filter, roomName);
+      const response = RocketChatProviderTransformer.toMessagesFrom(channelsMessages);
       return new ServiceResponseImpl(response);
     } catch (error) {
       return new ServiceResponseImpl(null, error);

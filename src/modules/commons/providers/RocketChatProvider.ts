@@ -10,7 +10,8 @@ import RocketChatFilterBuilder from './RocketChatFilterBuilder';
 import RocketChatChannel from './models/RocketChatChannel';
 import PassportImpl from '../models/Passport/PassportImpl';
 import RocketChatMessage from './models/RocketChatMessage';
-import QueryParams from '../../../utils/http/QueryParams';
+import ApplicationError from '../../../utils/error/ApplicationError';
+import ApplicationErrorCodeType from '../../../utils/error/ApplicationErrorCodeType';
 
 /**
  * @description RocketChat Provider class enabled access to Rocket Chat API. Official docs: https://rocket.chat/docs/developer-guides/rest-api/
@@ -82,13 +83,18 @@ export default class RocketChatProvider extends AbstractBaseProvider {
     return (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsList, filter)).channels;
   }
 
-  static async channelsMessages(filter?: Filter, params?: object): Promise<RocketChatMessage[]> {
+  /**
+   * @param filter filter object
+   * @param roomName name of the channel/room
+   * @returns list of messages of the given params
+   */
+  static async channelsMessages(filter?: Filter, roomName?: string): Promise<RocketChatMessage[]> {
     try {
-      const r = (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsMessages, filter, null, params)).messages;
+      const r = (await RocketChatProvider._exec(HTTPMethodType.GET, RocketChatOperationType.ChannelsMessages, filter, null, { roomName })).messages;
       console.log('r[0] => ', JSON.stringify(r[0]));
       return r;
     } catch (error) {
-      console.log(error);
+      throw new ApplicationError(ApplicationErrorCodeType.PROVIDER_NOT_AVAILABLE_ERROR, error.message);
     }
   };
 

@@ -1,6 +1,7 @@
 import Service from '../../../../utils/service/Service';
 import EvertokSpot from '../../models/EvertokSpot/EvertokSpot';
 import ApplicationError from '../../../../utils/error/ApplicationError';
+import ServiceResponse from '../../../../utils/service/ServiceResponse';
 
 /**
  * @description Evertok Spot Service operations
@@ -10,7 +11,7 @@ export default interface EvertokSpotService extends Service {
   /**
    * @returns list of trending Evertok Spots
    */
-  getTrendingSpots(): Promise<EvertokSpot[] | ApplicationError>;
+  getTrendingSpots(): Promise<ServiceResponse<EvertokSpot[]>>;
 
   /**
    * @returns List of Evertok Spots visited by @User
