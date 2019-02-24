@@ -43,8 +43,8 @@ export default class UserServiceImpl extends AbstractBaseService implements User
   async getUserPassport(userId: string): Promise<Passport | ApplicationError> {
     try {
       const mockedPassport = new PassportImpl('1', '15560655', 'travel', {}, '1');
-      mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-Auth-Token', '9YSiSLGtxV7XOPsFDxZmcN7eurrho2SWjmedhGWJ4nz');
-      mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-User-Id', 'WzuLnwgsMmPq3CrwJ');
+      mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-Auth-Token', 'bLVW3zLUjzVM0sz7PhqlDtMrQuDYKjy8cXYycg5NcdP');
+      mockedPassport.setKey(ProviderType.ROCKET_CHAT, 'X-User-Id', 'onzrkFf5HEDaDJ5or');
       return mockedPassport;
     } catch (error) {
       return error;

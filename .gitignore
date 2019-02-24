@@ -1,3 +1,6 @@
 node_modules
 dist
 docs
+storage/pg/data/**
+storage/mongo/data/**
+storage/rocketchat/data/**

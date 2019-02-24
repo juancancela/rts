@@ -77,7 +77,7 @@ app.get('/test4', async (req: any, res: any) => {
   const result = await rts
     .getCommonsModule()
     .getMessagingService()
-    .getMessages('loco')
+    .getMessages('loco2')
   return res.send(result);
 });
 
@@ -93,7 +93,7 @@ app.get('/test5', async (req: any, res: any) => {
     await rts
       .getCommonsModule()
       .getMessagingService()
-      .sendMessageToRoom('#loco', message)
+      .sendMessageToRoom('#2', message)
   );
 });
 

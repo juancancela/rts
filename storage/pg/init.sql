@@ -1,0 +1,15 @@
+CREATE TABLE COMPANY(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL
+);
+
+CREATE TABLE TEST_TABLE(
+    TESTVALUE     TEXT    NOT NULL
+);
+
+INSERT INTO COMPANY VALUES(1, 'Juan Carlos Cancela', 34, 'Domingo Faustino Sarmiento 3372', 9600);
+
+INSERT INTO TEST_TABLE VALUES('TEST VALUE!!!');
