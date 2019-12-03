@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: rts
 
   mongo:
-      image: mongo:3.2
+      image: mongo:3.4
       restart: unless-stopped
       volumes:
        - ./storage/mongo/data/db:/data/db

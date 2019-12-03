@@ -6,16 +6,13 @@
   "scripts": {
     "exec:watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run ___exec:watch:::exec:watch-ts\" \"yarn run ___exec:watch:::exec:watch-node\"",
     "quality:lint": "./node_modules/.bin/eslint '**/*.ts*'",
-    "docker:start": "docker-compose down && rm -rf ./storage/pg/data && mkdir ./storage/pg/data && docker-compose up",
+    "docker:start": "sudo docker-compose down && rm -rf ./storage/pg/data && mkdir ./storage/pg/data && docker-compose up",
     "docs:generate": "./node_modules/typedoc/bin/typedoc --out docs/ src --module commonjs --target es6",
     "docs:view": "open ./docs/index.html",
     "___exec:watch:::exec:watch-ts": "tsc -w",
     "___exec:watch:::exec:watch-node": "nodemon dist/server.js"
   },
-  "keywords": [
-    "api",
-    "typescript"
-  ],
+  "keywords": ["api", "typescript"],
   "author": "Juan Carlos Cancela <cancela.juancarlos@gmail.com>",
   "license": "ISC",
   "homepage": "https://github.com/juancancela/rts#readme",
@@ -31,6 +28,7 @@
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "node-fetch": "^2.3.0",
+    "nodemon": "^2.0.1",
     "socket.io": "^2.2.0",
     "systemjs": "^3.0.0",
     "typedoc": "^0.14.2",
