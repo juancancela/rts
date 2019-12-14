@@ -12,7 +12,10 @@
     "___exec:watch:::exec:watch-ts": "tsc -w",
     "___exec:watch:::exec:watch-node": "nodemon dist/server.js"
   },
-  "keywords": ["api", "typescript"],
+  "keywords": [
+    "api",
+    "typescript"
+  ],
   "author": "Juan Carlos Cancela <cancela.juancarlos@gmail.com>",
   "license": "ISC",
   "homepage": "https://github.com/juancancela/rts#readme",
